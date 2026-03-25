@@ -132,6 +132,10 @@
   .divider-subtle {
     @apply border-t border-border/50;
   }
+
+  .footer-gradient {
+    background: linear-gradient(135deg, hsl(var(--purple-mid)), hsl(var(--purple-dark)) 60%, hsl(252 60% 40%));
+  }
 }
 
 @layer utilities {
