@@ -38,7 +38,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logoBlack} alt="KLENTEC" className="h-8 w-auto" />
+          <img src={logoBlack} alt="KLENTEC" className="h-10 w-auto" />
         </Link>
 
         {/* Desktop */}
