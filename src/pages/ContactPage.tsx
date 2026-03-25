@@ -31,31 +31,28 @@ const ContactPage = () => {
 
   const selectOption = (key: string, value: string) => {
     setSelections((prev) => ({ ...prev, [key]: value }));
-    setTimeout(() => setStep((s) => s + 1), 300);
+    setTimeout(() => setStep((s) => s + 1), 250);
   };
 
   const handleSubmit = () => setSubmitted(true);
 
   return (
     <main>
-      <section className="relative min-h-screen flex items-center justify-center hero-gradient-bg pt-32 pb-16">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-neon-blue/5 blur-3xl animate-glow-pulse" />
-
-        <div className="container mx-auto px-6 relative z-10 max-w-2xl">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-6">
-              Contact Us
-            </span>
-            <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight">
+      <section className="relative min-h-screen flex items-center justify-center gradient-bg-hero pt-28 pb-16">
+        <div className="container mx-auto px-6 relative z-10 max-w-xl">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-10">
+            <span className="badge-pill mb-6 inline-block">Contact Us</span>
+            <h1 className="text-3xl md:text-5xl font-display font-extrabold tracking-tight">
               Let's Build Something <span className="gradient-text">Powerful</span>
             </h1>
-            <p className="mt-4 text-muted-foreground">Tell us about your project — we'll handle the rest.</p>
+            <p className="mt-3 text-muted-foreground text-sm">Tell us about your project — we'll handle the rest.</p>
           </motion.div>
 
-          {/* Progress bar */}
-          <div className="w-full h-1 bg-muted rounded-full mb-10 overflow-hidden">
+          {/* Progress */}
+          <div className="w-full h-1.5 bg-muted rounded-full mb-8 overflow-hidden">
             <motion.div
-              className="h-full bg-primary rounded-full"
+              className="h-full rounded-full"
+              style={{ background: "linear-gradient(90deg, hsl(252 75% 60%), hsl(200 100% 55%))" }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.3 }}
             />
@@ -65,38 +62,38 @@ const ContactPage = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass-card gradient-border p-12 text-center"
+              className="card-elevated p-12 text-center"
             >
-              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6">
-                <Check className="w-8 h-8 text-accent" />
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <Check className="w-8 h-8 text-primary" />
               </div>
               <h2 className="text-2xl font-display font-bold text-foreground">We'll be in touch!</h2>
-              <p className="mt-3 text-muted-foreground">Thank you for reaching out. Our team will contact you shortly.</p>
+              <p className="mt-3 text-muted-foreground text-sm">Thank you for reaching out. Our team will contact you shortly.</p>
             </motion.div>
           ) : (
-            <div className="glass-card gradient-border p-8 md:p-12">
+            <div className="card-elevated p-8 md:p-10">
               <AnimatePresence mode="wait">
                 {step < 3 ? (
                   <motion.div
                     key={step}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
                   >
-                    <p className="text-xs text-muted-foreground mb-2">Step {step + 1} of {totalSteps}</p>
-                    <h2 className="text-xl md:text-2xl font-display font-bold text-foreground mb-8">
+                    <p className="text-xs text-muted-foreground mb-1.5">Step {step + 1} of {totalSteps}</p>
+                    <h2 className="text-xl font-display font-bold text-foreground mb-6">
                       {steps[step].title}
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {steps[step].options.map((opt) => (
                         <button
                           key={opt}
                           onClick={() => selectOption(steps[step].key, opt)}
                           className={`p-4 rounded-xl border text-left text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
                             selections[steps[step].key] === opt
-                              ? "border-primary bg-primary/10 text-primary"
-                              : "border-white/10 bg-muted/30 text-foreground hover:border-white/20"
+                              ? "border-primary bg-primary/5 text-primary"
+                              : "border-border bg-background text-foreground hover:border-primary/30"
                           }`}
                         >
                           {opt}
@@ -107,14 +104,14 @@ const ContactPage = () => {
                 ) : (
                   <motion.div
                     key="details"
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
                   >
-                    <p className="text-xs text-muted-foreground mb-2">Step 4 of {totalSteps}</p>
-                    <h2 className="text-xl md:text-2xl font-display font-bold text-foreground mb-8">Your Details</h2>
-                    <div className="space-y-4">
+                    <p className="text-xs text-muted-foreground mb-1.5">Step 4 of {totalSteps}</p>
+                    <h2 className="text-xl font-display font-bold text-foreground mb-6">Your Details</h2>
+                    <div className="space-y-3">
                       {(["name", "email", "phone"] as const).map((field) => (
                         <input
                           key={field}
@@ -122,13 +119,13 @@ const ContactPage = () => {
                           placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                           value={details[field]}
                           onChange={(e) => setDetails((prev) => ({ ...prev, [field]: e.target.value }))}
-                          className="w-full p-4 rounded-xl bg-muted/30 border border-white/10 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
+                          className="w-full p-3.5 rounded-xl bg-background border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
                         />
                       ))}
                       <button
                         onClick={handleSubmit}
                         disabled={!details.name || !details.email}
-                        className="w-full magnetic-btn px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold neon-glow hover:scale-[1.02] transition-transform text-base disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full btn-primary-gradient py-3.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Start My Project <ArrowRight className="w-4 h-4" />
                       </button>
@@ -140,7 +137,7 @@ const ContactPage = () => {
               {step > 0 && !submitted && (
                 <button
                   onClick={() => setStep((s) => s - 1)}
-                  className="mt-6 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="mt-5 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4" /> Back
                 </button>
