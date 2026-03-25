@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoWhite from "@/assets/logo-white.png";
+import logoBlack from "@/assets/logo-black.png";
 
 const footerLinks = [
   { label: "Home", to: "/" },
@@ -10,11 +10,11 @@ const footerLinks = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-white/5 bg-background">
-    <div className="container mx-auto px-6 py-16">
+  <footer className="border-t border-border bg-secondary/50">
+    <div className="container mx-auto px-6 py-14">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logoWhite} alt="KLENTEC" className="h-7 w-auto" />
+          <img src={logoBlack} alt="KLENTEC" className="h-7 w-auto" />
         </Link>
         <div className="flex flex-wrap items-center justify-center gap-6">
           {footerLinks.map((link) => (
@@ -28,7 +28,7 @@ const Footer = () => (
           ))}
         </div>
       </div>
-      <div className="mt-12 pt-8 border-t border-white/5 text-center">
+      <div className="mt-10 pt-6 divider-subtle text-center">
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} KLENTEC — Building Digital Machines
         </p>
