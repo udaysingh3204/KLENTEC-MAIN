@@ -33,35 +33,40 @@ const footerColumns = [
 ];
 
 const Footer = () => (
-  <footer className="footer-gradient text-white">
-    {/* Main footer */}
-    <div className="container mx-auto px-6 pt-16 pb-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-        {/* Brand column */}
+  <footer className="footer-clean">
+    <div className="container mx-auto px-6 pt-20 pb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        {/* Brand */}
         <div className="lg:col-span-2">
-          <Link to="/" className="flex items-center gap-2 mb-4">
-            <img src={logoBlack} alt="KLENTEC" className="h-10 w-auto brightness-0 invert" />
+          <Link to="/" className="flex items-center gap-2 mb-5">
+            <img src={logoBlack} alt="KLENTEC" className="h-16 w-auto" />
           </Link>
-          <p className="text-white/70 text-sm leading-relaxed max-w-xs mb-6">
+          <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mb-8">
             We build digital machines that scale businesses. Performance marketing, design, and development — all under one roof.
           </p>
           <div className="flex items-center gap-3">
-            <a href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white/80 hover:text-white text-sm">𝕏</a>
-            <a href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white/80 hover:text-white text-sm">in</a>
-            <a href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white/80 hover:text-white text-sm">ig</a>
+            {["𝕏", "in", "ig"].map((icon) => (
+              <a
+                key={icon}
+                href="#"
+                className="w-10 h-10 rounded-2xl bg-muted hover:bg-accent flex items-center justify-center transition-all duration-300 text-muted-foreground hover:text-accent-foreground text-sm"
+              >
+                {icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Link columns */}
+        {/* Links */}
         {footerColumns.map((col) => (
           <div key={col.title}>
-            <h4 className="font-display font-semibold text-sm mb-4 text-white">{col.title}</h4>
-            <ul className="space-y-2.5">
+            <h4 className="font-display font-semibold text-sm mb-5 text-foreground">{col.title}</h4>
+            <ul className="space-y-3">
               {col.links.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-white/60 hover:text-white transition-colors"
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -73,15 +78,15 @@ const Footer = () => (
       </div>
     </div>
 
-    {/* Bottom bar */}
-    <div className="border-t border-white/10">
-      <div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-sm text-white/50">
+    {/* Bottom */}
+    <div className="divider-soft">
+      <div className="container mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} KLENTEC — Building Digital Machines
         </p>
-        <div className="flex items-center gap-4 text-sm text-white/50">
-          <a href="#" className="hover:text-white/80 transition-colors">Privacy</a>
-          <a href="#" className="hover:text-white/80 transition-colors">Terms</a>
+        <div className="flex items-center gap-6 text-sm text-muted-foreground">
+          <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
+          <a href="#" className="hover:text-foreground transition-colors">Terms</a>
         </div>
       </div>
     </div>

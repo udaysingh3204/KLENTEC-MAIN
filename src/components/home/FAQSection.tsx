@@ -16,7 +16,7 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section id="faq" className="section-padding gradient-bg-subtle">
+  <section id="faq" className="section-padding gradient-bg-soft">
     <div className="container mx-auto max-w-2xl">
       <SectionHeading badge="FAQ" title="Frequently Asked Questions" />
       <motion.div
@@ -25,13 +25,13 @@ const FAQSection = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <Accordion type="single" collapsible className="space-y-3">
+        <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, i) => (
-            <AccordionItem key={i} value={`item-${i}`} className="card-elevated px-6 border rounded-xl">
-              <AccordionTrigger className="text-sm font-display font-semibold text-foreground hover:no-underline py-5">
+            <AccordionItem key={i} value={`item-${i}`} className="card-dreamy px-7 border rounded-2xl">
+              <AccordionTrigger className="text-sm font-display font-semibold text-foreground hover:no-underline py-6">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-6">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>
