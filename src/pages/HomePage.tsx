@@ -17,16 +17,6 @@ import FinalCTASection from "@/components/home/FinalCTASection";
 const HomePage = () => (
   <main>
     <HeroSection />
-
-    {/* Social Proof Strip */}
-    <section className="divider-subtle py-6">
-      <div className="container mx-auto px-6 text-center">
-        <p className="text-sm text-muted-foreground">
-          Trusted by fast-growing brands, startups, and ambitious founders.
-        </p>
-      </div>
-    </section>
-
     <ProblemSection />
     <ServicesSection />
     <HowItWorksSection />

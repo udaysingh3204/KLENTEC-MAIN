@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const metrics = [
@@ -19,7 +19,6 @@ function Counter({ value, suffix, prefix }: { value: number; suffix: string; pre
       ([entry]) => {
         if (entry.isIntersecting && !started) {
           setStarted(true);
-          let start = 0;
           const duration = 1500;
           const startTime = performance.now();
           const step = (now: number) => {
@@ -53,26 +52,26 @@ const MetricsSection = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-14"
+        transition={{ duration: 0.6 }}
+        className="text-center mb-16"
       >
-        <span className="badge-pill mb-5 inline-block">Results</span>
+        <span className="badge-dreamy mb-5 inline-block">Results</span>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground">
           Numbers That Speak
         </h2>
       </motion.div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {metrics.map((m, i) => (
           <motion.div
             key={m.label}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="card-elevated p-8"
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="card-dreamy p-8"
           >
             <Counter value={m.value} suffix={m.suffix} prefix={m.prefix} />
-            <p className="text-sm text-muted-foreground mt-3 text-center">{m.label}</p>
+            <p className="text-sm text-muted-foreground mt-4 text-center">{m.label}</p>
           </motion.div>
         ))}
       </div>
@@ -81,7 +80,7 @@ const MetricsSection = () => (
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5 }}
-        className="text-center mt-8 text-sm text-muted-foreground"
+        className="text-center mt-10 text-sm text-muted-foreground"
       >
         We don't guess. <span className="font-semibold text-foreground">We measure.</span>
       </motion.p>

@@ -8,12 +8,6 @@ const testimonials = [
   { quote: "Their systems changed how we scale. Highly recommended.", name: "Rahul Mehta", role: "Director, Real Estate Firm" },
 ];
 
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-};
-
 const TestimonialsSection = () => (
   <section className="section-padding">
     <div className="container mx-auto">
@@ -22,19 +16,21 @@ const TestimonialsSection = () => (
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
-            {...fadeUp}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="card-elevated p-7"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="card-dreamy p-8"
           >
-            <div className="flex gap-0.5 mb-4">
+            <div className="flex gap-1 mb-5">
               {[...Array(5)].map((_, j) => (
                 <Star key={j} className="w-4 h-4 fill-primary text-primary" />
               ))}
             </div>
-            <p className="text-foreground text-sm leading-relaxed italic">"{t.quote}"</p>
-            <div className="mt-5 pt-4 border-t border-border">
+            <p className="text-foreground text-sm leading-relaxed">"{t.quote}"</p>
+            <div className="mt-6 pt-5 border-t border-border/30">
               <p className="text-sm font-display font-bold text-foreground">{t.name}</p>
-              <p className="text-xs text-muted-foreground">{t.role}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{t.role}</p>
             </div>
           </motion.div>
         ))}
