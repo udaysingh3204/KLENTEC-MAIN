@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import heroAbstract from "@/assets/hero-abstract.jpg";
+import HeroScene from "@/components/three/HeroScene";
 
 const HeroSection = () => (
   <section className="relative min-h-screen flex items-center justify-center gradient-bg-hero overflow-hidden">
@@ -71,20 +71,16 @@ const HeroSection = () => (
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative hidden lg:block"
         >
-          <div className="relative">
-            <img
-              src={heroAbstract}
-              alt="Abstract 3D shapes"
-              width={1280}
-              height={720}
-              className="w-full rounded-3xl"
-            />
+          <div className="relative aspect-square">
+            <div className="absolute inset-0 rounded-3xl overflow-hidden">
+              <HeroScene />
+            </div>
             {/* Glass overlay stats */}
-            <div className="absolute -bottom-6 -left-6 card-glass p-5 animate-float">
+            <div className="absolute -bottom-6 -left-6 card-glass p-5 animate-float z-10">
               <p className="text-2xl font-display font-bold gradient-text">4.2X</p>
               <p className="text-xs text-muted-foreground mt-1">Avg. ROAS</p>
             </div>
-            <div className="absolute -top-4 -right-4 card-glass p-5 animate-float" style={{ animationDelay: "1s" }}>
+            <div className="absolute -top-4 -right-4 card-glass p-5 animate-float z-10" style={{ animationDelay: "1s" }}>
               <p className="text-2xl font-display font-bold gradient-text">95%</p>
               <p className="text-xs text-muted-foreground mt-1">Client Retention</p>
             </div>
