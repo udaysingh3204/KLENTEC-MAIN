@@ -53,6 +53,10 @@
     scroll-behavior: smooth;
   }
 
+  @media (pointer: fine) {
+    html, body, * { cursor: none !important; }
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }

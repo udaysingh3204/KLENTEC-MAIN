@@ -53,7 +53,7 @@ const ShowcaseSection = () => {
       <div className="sticky top-0 h-screen flex items-center overflow-hidden gradient-bg-soft">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-6">
           <div className="order-2 lg:order-1">
-            <SectionHeading badge="Capabilities" title="Built to scale, designed to convert" align="left" />
+            <SectionHeading badge="Capabilities" title="Built to scale, designed to convert" center={false} />
             {slides.map((s, i) => (
               <div
                 key={s.title}
