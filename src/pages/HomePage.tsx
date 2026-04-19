@@ -1,6 +1,8 @@
 import HeroSection from "@/components/home/HeroSection";
+import LogoMarquee from "@/components/home/LogoMarquee";
 import ProblemSection from "@/components/home/ProblemSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import ShowcaseSection from "@/components/home/ShowcaseSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import WhyKlentecSection from "@/components/home/WhyKlentecSection";
 import TechSection from "@/components/home/TechSection";
@@ -17,8 +19,10 @@ import FinalCTASection from "@/components/home/FinalCTASection";
 const HomePage = () => (
   <main>
     <HeroSection />
+    <LogoMarquee />
     <ProblemSection />
     <ServicesSection />
+    <ShowcaseSection />
     <HowItWorksSection />
     <WhyKlentecSection />
     <TechSection />
