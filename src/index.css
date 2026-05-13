@@ -53,10 +53,6 @@
     scroll-behavior: smooth;
   }
 
-  @media (pointer: fine) {
-    html, body, * { cursor: none !important; }
-  }
-
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
@@ -202,6 +198,12 @@
 
   .animate-drift {
     animation: drift 6s ease-in-out infinite;
+  }
+
+  /* Aceternity spotlight reveal */
+  @keyframes spotlight {
+    0% { opacity: 0; transform: translate(-72%, -62%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -40%) scale(1); }
   }
 }
 
