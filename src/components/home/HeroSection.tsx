@@ -19,9 +19,9 @@ const HeroSection = () => (
           className="inline-block"
         >
           <MovingBorder containerClassName="rounded-full">
-            <span className="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase text-primary">
+            <span className="flex items-center gap-2 px-5 py-2 rounded-full text-[11px] font-semibold tracking-[0.25em] uppercase text-primary">
               <Sparkles className="w-3.5 h-3.5" />
-              Digital Growth Partner
+              Creative · Technology · Marketing
             </span>
           </MovingBorder>
         </motion.div>
@@ -30,10 +30,10 @@ const HeroSection = () => (
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-8 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight leading-[1.02]"
+          className="mt-8 text-5xl sm:text-6xl md:text-7xl lg:text-[7.5rem] font-display tracking-tight leading-[1.02]"
         >
-          Big Dreams, <br className="hidden sm:block" />
-          <span className="gradient-text">Designed to Work.</span>
+          Your growth partner —<br className="hidden sm:block" />
+          <em className="gradient-text not-italic">from idea to empire.</em>
         </motion.h1>
 
         <motion.p
@@ -42,8 +42,8 @@ const HeroSection = () => (
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
         >
-          KLENTEC helps brands scale faster with performance marketing,
-          conversion-focused design, and powerful development systems.
+          KLENTEC blends design, development, marketing and AI automation under one
+          roof — so ambitious brands scale without the chaos.
         </motion.p>
 
         <motion.div
@@ -53,7 +53,7 @@ const HeroSection = () => (
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link to="/contact" className="btn-dreamy text-base inline-flex items-center gap-2">
-            Start a Project <ArrowRight className="w-4 h-4" />
+            Book a Free Strategy Call <ArrowRight className="w-4 h-4" />
           </Link>
           <Link to="/work" className="btn-ghost text-base">
             View Our Work
@@ -75,8 +75,8 @@ const HeroSection = () => (
               key={stat.label}
               className="card-dreamy p-5 md:p-7 text-center"
             >
-              <p className="text-2xl md:text-4xl font-display font-bold gradient-text">{stat.value}</p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-2 tracking-wide">{stat.label}</p>
+              <p className="text-3xl md:text-5xl font-display gradient-text">{stat.value}</p>
+              <p className="text-[11px] md:text-xs text-muted-foreground mt-2 tracking-[0.2em] uppercase">{stat.label}</p>
             </div>
           ))}
         </motion.div>
