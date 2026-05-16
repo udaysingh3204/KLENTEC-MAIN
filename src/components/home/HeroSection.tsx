@@ -75,8 +75,8 @@ const HeroSection = () => (
               key={stat.label}
               className="card-dreamy p-5 md:p-7 text-center"
             >
-              <p className="text-2xl md:text-4xl font-display font-bold gradient-text">{stat.value}</p>
-              <p className="text-xs md:text-sm text-muted-foreground mt-2 tracking-wide">{stat.label}</p>
+              <p className="text-3xl md:text-5xl font-display gradient-text">{stat.value}</p>
+              <p className="text-[11px] md:text-xs text-muted-foreground mt-2 tracking-[0.2em] uppercase">{stat.label}</p>
             </div>
           ))}
         </motion.div>
