@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { supabase } from "@/lib/supabase";
 import {
   Check,
   ArrowRight,
@@ -150,7 +152,46 @@ const ContactPage = () => {
 
   const canContinue = current.fields.every((f) => !f.required || (data[f.key] && data[f.key].trim().length > 0));
 
-  const handleSubmit = () => setSubmitted(true);
+  const handleSubmit = async () => {
+    // 1. Save inquiry to Supabase
+    await supabase.from("inquiries").insert({
+      name:     data.name     ?? null,
+      company:  data.company  ?? null,
+      email:    data.email    ?? null,
+      whatsapp: data.whatsapp ?? null,
+      link:     data.link     ?? null,
+      services: data.services ?? null,
+      stage:    data.stage    ?? null,
+      about:    data.about    ?? null,
+      goal:     data.goal     ?? null,
+      budget:   data.budget   ?? null,
+      timeline: data.timeline ?? null,
+      deadline: data.deadline ?? null,
+      source:   data.source   ?? null,
+      notes:    data.notes    ?? null,
+      status:   "new",
+    });
+
+    // 2. Send email notification via EmailJS (non-blocking)
+    const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (serviceId && templateId && publicKey) {
+      emailjs.send(serviceId, templateId, {
+        from_name:    data.name,
+        from_email:   data.email,
+        company:      data.company,
+        whatsapp:     data.whatsapp,
+        services:     data.services,
+        budget:       data.budget,
+        goal:         data.goal,
+        about:        data.about,
+        source:       data.source,
+      }, publicKey).catch(() => { /* fail silently */ });
+    }
+
+    setSubmitted(true);
+  };
 
   return (
     <main className="overflow-hidden">
