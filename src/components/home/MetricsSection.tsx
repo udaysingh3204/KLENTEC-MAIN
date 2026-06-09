@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const metrics = [
-  { value: 10, suffix: "X", prefix: "3–", label: "ROI Generated" },
-  { value: 200, suffix: "%+", prefix: "", label: "Average Growth" },
-  { value: 100, suffix: "+", prefix: "", label: "Projects Delivered" },
-  { value: 95, suffix: "%", prefix: "", label: "Client Retention" },
+  { value: 42, suffix: "X", divisor: 10, label: "Avg ROAS in 90 Days" },
+  { value: 320, suffix: "%", divisor: 1, label: "Avg Lead Growth" },
+  { value: 150, suffix: "+", divisor: 1, label: "Successful Projects" },
+  { value: 95, suffix: "%", divisor: 1, label: "Client Retention Rate" },
 ];
 
-function Counter({ value, suffix, prefix }: { value: number; suffix: string; prefix: string }) {
+function Counter({ value, suffix, divisor }: { value: number; suffix: string; divisor: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
@@ -36,10 +36,12 @@ function Counter({ value, suffix, prefix }: { value: number; suffix: string; pre
     return () => observer.disconnect();
   }, [value, started]);
 
+  const displayCount = divisor > 1 ? (count / divisor).toFixed(1) : count;
+
   return (
     <div ref={ref} className="text-center">
       <p className="text-4xl md:text-5xl font-display font-extrabold gradient-text">
-        {prefix}{count}{suffix}
+        {displayCount}{suffix}
       </p>
     </div>
   );
@@ -55,10 +57,11 @@ const MetricsSection = () => (
         transition={{ duration: 0.6 }}
         className="text-center mb-16"
       >
-        <span className="badge-dreamy mb-5 inline-block">Results</span>
+        <span className="badge-dreamy mb-5 inline-block">Proven Results</span>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground">
-          Numbers That Speak
+          Results That Matter
         </h2>
+        <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">These aren't promises. These are averages from our last 50 client engagements.</p>
       </motion.div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {metrics.map((m, i) => (
@@ -70,7 +73,7 @@ const MetricsSection = () => (
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="card-dreamy p-8"
           >
-            <Counter value={m.value} suffix={m.suffix} prefix={m.prefix} />
+            <Counter value={m.value} suffix={m.suffix} divisor={m.divisor} />
             <p className="text-sm text-muted-foreground mt-4 text-center">{m.label}</p>
           </motion.div>
         ))}

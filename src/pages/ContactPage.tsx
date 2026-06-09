@@ -172,22 +172,37 @@ const ContactPage = () => {
       status:   "new",
     });
 
-    // 2. Send email notification via EmailJS (non-blocking)
-    const serviceId  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    if (serviceId && templateId && publicKey) {
-      emailjs.send(serviceId, templateId, {
-        from_name:    data.name,
-        from_email:   data.email,
-        company:      data.company,
-        whatsapp:     data.whatsapp,
-        services:     data.services,
-        budget:       data.budget,
-        goal:         data.goal,
-        about:        data.about,
-        source:       data.source,
-      }, publicKey).catch(() => { /* fail silently */ });
+    // 2. Send email notifications via EmailJS (non-blocking)
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceHello = import.meta.env.VITE_EMAILJS_SERVICE_HELLO;
+    const serviceAdmin = import.meta.env.VITE_EMAILJS_SERVICE_ADMIN;
+    const templateInquiry = import.meta.env.VITE_EMAILJS_TEMPLATE_INQUIRY;
+    const templateAdmin = import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN;
+
+    if (publicKey) {
+      emailjs.init(publicKey);
+
+      const emailData = {
+        from_name: data.name,
+        from_email: data.email,
+        company: data.company,
+        whatsapp: data.whatsapp,
+        services: data.services,
+        budget: data.budget,
+        goal: data.goal,
+        about: data.about,
+        source: data.source,
+      };
+
+      // Send full inquiry to hello@klentec.com
+      if (serviceHello && templateInquiry) {
+        emailjs.send(serviceHello, templateInquiry, emailData).catch(() => {});
+      }
+
+      // Send admin alert to udaysingh@klentec.com
+      if (serviceAdmin && templateAdmin) {
+        emailjs.send(serviceAdmin, templateAdmin, emailData).catch(() => {});
+      }
     }
 
     setSubmitted(true);
@@ -197,13 +212,13 @@ const ContactPage = () => {
     <main className="overflow-hidden">
       {/* ----------------------------- Hero ----------------------------- */}
       <section className="relative gradient-bg-hero pt-36 pb-20">
-        <div className="container mx-auto px-6 text-center max-w-3xl relative z-10">
+        <div className="container mx-auto px-6 text-center max-w-4xl relative z-10">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className="badge-dreamy"
           >
-            <Sparkles className="w-3.5 h-3.5" /> Get in touch
+            <Sparkles className="w-3.5 h-3.5" /> Ready to Scale?
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -211,17 +226,33 @@ const ContactPage = () => {
             transition={{ delay: 0.05, duration: 0.6 }}
             className="mt-6 text-5xl md:text-7xl font-display tracking-tight leading-[1.05]"
           >
-            Your Growth Partner —<br />
-            <em className="gradient-text not-italic">from idea to empire.</em>
+            Let's Build Your<br />
+            <em className="gradient-text not-italic">Growth Machine.</em>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15 }}
-            className="mt-6 text-lg text-muted-foreground leading-relaxed"
+            className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           >
-            We respond to every inquiry within 4 business hours — because your time matters.
+            Whether you need a complete rebrand, a high-converting website, a fully automated marketing system, or a custom SaaS platform — we'll build it. <strong className="text-foreground">Fill out the form below. We'll respond within 4 hours with a custom proposal.</strong>
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mt-8 flex flex-wrap justify-center gap-4 text-sm font-medium"
+          >
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ Free 30-min strategy call
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ No upfront costs
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ Proposal in 24 hours
+            </div>
+          </motion.div>
         </div>
       </section>
 

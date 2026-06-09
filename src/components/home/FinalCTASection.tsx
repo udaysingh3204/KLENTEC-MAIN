@@ -15,22 +15,42 @@ const FinalCTASection = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto"
       >
         <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight leading-tight">
-          This Isn't Just a Website Upgrade.{" "}
-          <span className="gradient-text">It's a Business Upgrade.</span>
+          Your Competitors Are Already Scaling.{" "}
+          <span className="gradient-text">Don't Get Left Behind.</span>
         </h2>
-        <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
-          If you're ready to scale, we're ready to build.
+        <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Every month you wait is revenue you're leaving on the table. Our clients average 4.2x ROAS on ad campaigns in the first 90 days. The only question is: will you be next?
         </p>
+
+        {/* Social Proof */}
+        <div className="mt-10 grid grid-cols-3 gap-4 max-w-md mx-auto mb-10">
+          {[
+            { emoji: "⚡", text: "90-day results" },
+            { emoji: "📈", text: "4.2x avg ROAS" },
+            { emoji: "🎯", text: "Real results" },
+          ].map((item, i) => (
+            <div key={i} className="text-center">
+              <span className="text-3xl">{item.emoji}</span>
+              <p className="text-xs text-muted-foreground mt-2">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link to="/contact" className="btn-dreamy px-12 py-5 text-base">
-            Start Your Project
+          <Link to="/contact" className="btn-dreamy px-12 py-5 text-base inline-flex items-center gap-2">
+            🚀 Start Your Growth Journey
           </Link>
           <Link to="/contact" className="btn-ghost px-12 py-5 text-base">
-            Book a Call
+            Schedule Free Strategy Call
           </Link>
         </div>
+
+        <p className="mt-8 text-xs text-muted-foreground">
+          ✓ No credit card required · ✓ 30-minute strategy call · ✓ Personalized growth roadmap
+        </p>
       </motion.div>
     </div>
   </section>

@@ -24,6 +24,8 @@ import InquiriesPage from "./pages/admin/InquiriesPage";
 import ClientsPage from "./pages/admin/ClientsPage";
 import ProjectsPage from "./pages/admin/ProjectsPage";
 import InvoicesPage from "./pages/admin/InvoicesPage";
+import AdminMessagesPage from "./pages/admin/AdminMessagesPage";
+import AdminDeliverablesPage from "./pages/admin/AdminDeliverablesPage";
 
 // Client pages
 import ClientLayout from "./pages/client/ClientLayout";
@@ -58,11 +60,13 @@ const App = () => (
             {/* ── Admin portal (auth guarded) ── */}
             <Route element={<ProtectedRoute role="admin" />}>
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index           element={<AdminDashboard />} />
-                <Route path="inquiries" element={<InquiriesPage />} />
-                <Route path="clients"   element={<ClientsPage />} />
-                <Route path="projects"  element={<ProjectsPage />} />
-                <Route path="invoices"  element={<InvoicesPage />} />
+                <Route index            element={<AdminDashboard />} />
+                <Route path="inquiries"  element={<InquiriesPage />} />
+                <Route path="clients"    element={<ClientsPage />} />
+                <Route path="projects"   element={<ProjectsPage />} />
+                <Route path="deliverables" element={<AdminDeliverablesPage />} />
+                <Route path="invoices"   element={<InvoicesPage />} />
+                <Route path="messages"   element={<AdminMessagesPage />} />
               </Route>
             </Route>
 

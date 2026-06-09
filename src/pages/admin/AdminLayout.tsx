@@ -3,32 +3,55 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Inbox, Users, FolderKanban,
-  Receipt, LogOut, Menu, X, ChevronRight, Bell,
+  Receipt, LogOut, Menu, X, ChevronRight, Bell, MessageCircle, PackageOpen,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/lib/supabase";
 import logoWhite from "@/assets/logo-white.png";
 
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard",  to: "/admin" },
-  { icon: Inbox,           label: "Inquiries",  to: "/admin/inquiries" },
-  { icon: Users,           label: "Clients",    to: "/admin/clients" },
-  { icon: FolderKanban,   label: "Projects",   to: "/admin/projects" },
-  { icon: Receipt,         label: "Invoices",   to: "/admin/invoices" },
+  { icon: LayoutDashboard, label: "Dashboard",     to: "/admin" },
+  { icon: Inbox,           label: "Inquiries",     to: "/admin/inquiries" },
+  { icon: MessageCircle,   label: "Messages",      to: "/admin/messages" },
+  { icon: Users,           label: "Clients",       to: "/admin/clients" },
+  { icon: FolderKanban,    label: "Projects",      to: "/admin/projects" },
+  { icon: PackageOpen,     label: "Deliverables",  to: "/admin/deliverables" },
+  { icon: Receipt,         label: "Invoices",      to: "/admin/invoices" },
 ];
+
+interface Inquiry {
+  id: string;
+  name: string;
+  company?: string;
+  email: string;
+  created_at: string;
+}
 
 const AdminLayout = () => {
   const { profile, signOut } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [newInquiries, setNewInquiries] = useState(0);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [recentInquiries, setRecentInquiries] = useState<Inquiry[]>([]);
 
   useEffect(() => {
-    supabase
-      .from("inquiries")
-      .select("id", { count: "exact", head: true })
-      .eq("status", "new")
-      .then(({ count }) => setNewInquiries(count ?? 0));
+    const loadNotifications = async () => {
+      const { data: count } = await supabase
+        .from("inquiries")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "new");
+      setNewInquiries(count?.length ?? 0);
+
+      const { data: inquiries } = await supabase
+        .from("inquiries")
+        .select("id,name,company,email,created_at")
+        .eq("status", "new")
+        .order("created_at", { ascending: false })
+        .limit(5);
+      setRecentInquiries(inquiries ?? []);
+    };
+    loadNotifications();
   }, []);
 
   const handleSignOut = async () => {
@@ -160,12 +183,52 @@ const AdminLayout = () => {
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
-            <button className="relative p-2 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors">
-              <Bell className="w-4 h-4" />
-              {newInquiries > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-400 rounded-full" />
+            <div className="relative">
+              <button
+                onClick={() => setNotificationOpen(!notificationOpen)}
+                className="relative p-2 rounded-lg text-slate-500 hover:bg-slate-100 transition-colors"
+              >
+                <Bell className="w-4 h-4" />
+                {newInquiries > 0 && (
+                  <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-400 rounded-full" />
+                )}
+              </button>
+              {notificationOpen && recentInquiries.length > 0 && (
+                <div className="absolute right-0 top-12 w-80 bg-white border border-slate-200 rounded-lg shadow-lg z-50">
+                  <div className="px-4 py-3 border-b border-slate-100">
+                    <h3 className="text-sm font-semibold text-slate-900">New Inquiries</h3>
+                  </div>
+                  <div className="max-h-96 overflow-y-auto">
+                    {recentInquiries.map((inquiry) => (
+                      <NavLink
+                        key={inquiry.id}
+                        to="/admin/inquiries"
+                        onClick={() => setNotificationOpen(false)}
+                        className="block px-4 py-3 border-b border-slate-50 hover:bg-slate-50 transition-colors"
+                      >
+                        <p className="text-sm font-medium text-slate-900">{inquiry.name}</p>
+                        <p className="text-xs text-slate-500">{inquiry.company || "No company"}</p>
+                        <p className="text-xs text-slate-400 mt-1">
+                          {new Date(inquiry.created_at).toLocaleDateString("en-IN", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </p>
+                      </NavLink>
+                    ))}
+                  </div>
+                  <NavLink
+                    to="/admin/inquiries"
+                    onClick={() => setNotificationOpen(false)}
+                    className="block px-4 py-3 text-center text-sm font-medium text-primary hover:bg-slate-50 transition-colors border-t border-slate-100"
+                  >
+                    View all inquiries →
+                  </NavLink>
+                </div>
               )}
-            </button>
+            </div>
             <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
               style={{ background: "linear-gradient(135deg, hsl(260 65% 55%), hsl(260 100% 70%))" }}>
               {profile?.full_name?.[0]?.toUpperCase() ?? "A"}

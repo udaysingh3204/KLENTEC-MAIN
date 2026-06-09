@@ -5,13 +5,12 @@ import ServicesSection from "@/components/home/ServicesSection";
 
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import WhyKlentecSection from "@/components/home/WhyKlentecSection";
-import TechSection from "@/components/home/TechSection";
+import EngagementModelsSection from "@/components/home/EngagementModelsSection";
 import MetricsSection from "@/components/home/MetricsSection";
 import CaseStudiesSection from "@/components/home/CaseStudiesSection";
 import ComparisonSection from "@/components/home/ComparisonSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
-import TrustSection from "@/components/home/TrustSection";
 import GrowthAuditSection from "@/components/home/GrowthAuditSection";
 import FAQSection from "@/components/home/FAQSection";
 import FinalCTASection from "@/components/home/FinalCTASection";
@@ -24,13 +23,12 @@ const HomePage = () => (
     <ServicesSection />
     <HowItWorksSection />
     <WhyKlentecSection />
-    <TechSection />
+    <EngagementModelsSection />
     <MetricsSection />
     <CaseStudiesSection />
     <ComparisonSection />
     <IndustriesSection />
     <TestimonialsSection />
-    <TrustSection />
     <GrowthAuditSection />
     <FAQSection />
     <FinalCTASection />

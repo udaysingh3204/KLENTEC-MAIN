@@ -427,11 +427,22 @@ const ServicesPage = () => (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <span className="badge-dreamy mb-6 inline-block">🚀 Services & Pricing</span>
           <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-balance">
-            Premium Solutions <span className="gradient-text">Built to Scale</span>
+            Everything You Need to <span className="gradient-text">Scale & Dominate</span>
           </h1>
-          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Creative • Technology • Marketing • Automation • Fintech — built for startups, brands, creators & enterprises.
+          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Whether you need a brand from scratch, a fully-automated funnel, or a custom SaaS platform — we've got you covered. <strong className="text-foreground">All-inclusive packages with transparent pricing and zero surprises.</strong>
           </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-medium">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ 150+ Projects Delivered
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ 4.2x Avg ROI
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              ✓ Fixed-Price Packages
+            </div>
+          </div>
         </motion.div>
 
         {/* Quick nav */}
@@ -452,6 +463,41 @@ const ServicesPage = () => (
             </a>
           ))}
         </motion.div>
+      </div>
+    </section>
+
+    {/* Value Proposition */}
+    <section className="section-padding bg-primary/5 border-y border-primary/10">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-3xl font-display font-bold gradient-text mb-2">Fixed Pricing</p>
+            <p className="text-sm text-muted-foreground">No hidden fees. No surprises. Transparent, all-inclusive packages.</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <p className="text-3xl font-display font-bold gradient-text mb-2">Full Support</p>
+            <p className="text-sm text-muted-foreground">Dedicated account manager. Weekly check-ins. Always here when you need us.</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <p className="text-3xl font-display font-bold gradient-text mb-2">Fast Turnaround</p>
+            <p className="text-sm text-muted-foreground">Most projects ship in 2-4 weeks. Custom SaaS take 8-12 weeks.</p>
+          </motion.div>
+        </div>
       </div>
     </section>
 
@@ -525,22 +571,39 @@ const ServicesPage = () => (
 
     {/* CTA */}
     <section className="section-padding gradient-bg-soft">
-      <div className="container mx-auto text-center">
+      <div className="container mx-auto text-center max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <span className="badge-dreamy mb-4 inline-block">Ready to Scale?</span>
           <h2 className="text-3xl md:text-5xl font-display font-bold">
-            Need a <span className="gradient-text">custom quote</span>?
+            Don't See Exactly What You Need? <span className="gradient-text">Let's Build It Together.</span>
           </h2>
-          <p className="mt-4 text-muted-foreground text-base max-w-xl mx-auto">
-            Tell us about your project. We'll tailor a package that fits your goals and budget.
+          <p className="mt-6 text-muted-foreground text-base leading-relaxed">
+            Our pricing covers 90% of common projects. But if you need something custom — whether it's a unique SaaS platform, a complex automation system, or a full digital transformation — we'll work with you to create the perfect solution.
           </p>
-          <Link to="/contact" className="btn-dreamy inline-block mt-8">
-            Get a Custom Quote
-          </Link>
+
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm font-medium text-muted-foreground mb-10">
+            <div className="flex items-center justify-center gap-2">✓ Free consultation</div>
+            <div className="flex items-center justify-center gap-2">✓ Detailed timeline</div>
+            <div className="flex items-center justify-center gap-2">✓ Budget transparency</div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact" className="btn-dreamy">
+              Book Free Strategy Call
+            </Link>
+            <a href="#branding" className="btn-ghost">
+              ↓ Browse All Services
+            </a>
+          </div>
+
+          <p className="mt-8 text-xs text-muted-foreground">
+            💡 <strong>Pro tip:</strong> We offer 10-20% discounts on bundled services. Mix and match to build your perfect package.
+          </p>
         </motion.div>
       </div>
     </section>

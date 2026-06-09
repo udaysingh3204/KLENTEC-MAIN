@@ -2,61 +2,67 @@ import { motion } from "framer-motion";
 import { X, Check } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
 
-const traditional = [
-  "Focus on deliverables",
-  "Slow execution",
-  "No real tracking",
-  "Generic strategies",
-];
-
-const klentec = [
-  "Focus on results",
-  "Fast & agile",
-  "Data-driven decisions",
-  "Custom growth systems",
+const comparisons = [
+  {
+    traditional: "6+ months to first results",
+    klentec: "90 days to measurable ROI",
+  },
+  {
+    traditional: "Monthly email reports",
+    klentec: "Weekly live performance dashboard",
+  },
+  {
+    traditional: "Rotating junior team members",
+    klentec: "Dedicated senior strategist",
+  },
+  {
+    traditional: "Manual processes & spreadsheets",
+    klentec: "OpenAI, n8n, Make.com automation",
+  },
+  {
+    traditional: "Locked-in retainers, no flexibility",
+    klentec: "Flexible + performance-based options",
+  },
+  {
+    traditional: "Email communication",
+    klentec: "Dedicated Slack + weekly strategy calls",
+  },
 ];
 
 const ComparisonSection = () => (
-  <section className="section-padding">
+  <section className="section-padding gradient-bg-subtle">
     <div className="container mx-auto">
-      <SectionHeading badge="Compare" title="KLENTEC vs Traditional Agencies" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="card-dreamy p-8"
-        >
-          <h3 className="text-lg font-display font-bold text-muted-foreground mb-6">Traditional Agencies</h3>
-          <ul className="space-y-4">
-            {traditional.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
-                <X className="w-4 h-4 text-destructive shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="card-dreamy p-8 border-primary/20"
-          style={{ boxShadow: "0 8px 40px hsl(260 65% 55% / 0.08)" }}
-        >
-          <h3 className="text-lg font-display font-bold gradient-text mb-6">KLENTEC</h3>
-          <ul className="space-y-4">
-            {klentec.map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm text-foreground">
-                <Check className="w-4 h-4 text-primary shrink-0" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+      <SectionHeading badge="Compare" title="KLENTEC vs Traditional Agencies" subtitle="Specific, quantified differences that matter for your growth." />
+
+      <div className="max-w-4xl mx-auto">
+        {comparisons.map((row, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.05 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4"
+          >
+            {/* Traditional */}
+            <div className="card-dreamy p-6 border-l-4 border-destructive/40 bg-destructive/[0.02]">
+              <div className="flex items-start gap-3">
+                <X className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                <p className="text-sm text-muted-foreground">{row.traditional}</p>
+              </div>
+            </div>
+
+            {/* KLENTEC */}
+            <div className="card-dreamy p-6 border-l-4 border-primary/60 bg-primary/[0.02]">
+              <div className="flex items-start gap-3">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <p className="text-sm font-medium text-foreground">{row.klentec}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -64,7 +70,7 @@ const ComparisonSection = () => (
         transition={{ delay: 0.4 }}
         className="text-center mt-12 text-muted-foreground"
       >
-        You don't need another agency. <span className="font-semibold text-foreground">You need a growth partner.</span>
+        You don't need another agency. <span className="font-semibold text-foreground">You need a growth partner obsessed with your revenue.</span>
       </motion.p>
     </div>
   </section>

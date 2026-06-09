@@ -42,8 +42,7 @@ const HeroSection = () => (
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
         >
-          KLENTEC blends design, development, marketing and AI automation under one
-          roof — so ambitious brands scale without the chaos.
+          KLENTEC blends design, development, marketing and AI automation under one roof. We transform ambitious brands into market leaders — delivering 4.2x ROAS, 320% lead growth, and sustainable scaling without the headaches.
         </motion.p>
 
         <motion.div
