@@ -33,21 +33,43 @@ const ClientDashboard = () => {
 
   useEffect(() => {
     const load = async () => {
-      if (!profile) return;
-      // Get client record linked to this user
-      const { data: cl } = await supabase.from("clients").select("id").eq("user_id", profile.id).single();
-      if (!cl) { setLoading(false); return; }
-      setClientId(cl.id);
+      try {
+        if (!profile) return;
+        // Get client record linked to this user
+        const { data: cl, error: clError } = await supabase.from("clients").select("id").eq("user_id", profile.id).single();
 
-      const [{ data: pr }, { data: inv }, { count }] = await Promise.all([
-        supabase.from("projects").select("*").eq("client_id", cl.id).order("created_at", { ascending: false }).limit(3),
-        supabase.from("invoices").select("*").eq("client_id", cl.id).order("created_at", { ascending: false }).limit(3),
-        supabase.from("messages").select("id", { count: "exact", head: true }).eq("client_id", cl.id).eq("is_admin", true).is("read_at", null),
-      ]);
-      setProjects(pr ?? []);
-      setInvoices(inv ?? []);
-      setUnread(count ?? 0);
-      setLoading(false);
+        if (clError) {
+          console.error('Client fetch error:', clError);
+          setLoading(false);
+          return;
+        }
+
+        if (!cl) {
+          console.warn('No client record found for user:', profile.id);
+          setLoading(false);
+          return;
+        }
+
+        setClientId(cl.id);
+
+        const [{ data: pr, error: prError }, { data: inv, error: invError }, { count, error: msgError }] = await Promise.all([
+          supabase.from("projects").select("*").eq("client_id", cl.id).order("created_at", { ascending: false }).limit(3),
+          supabase.from("invoices").select("*").eq("client_id", cl.id).order("created_at", { ascending: false }).limit(3),
+          supabase.from("messages").select("id", { count: "exact", head: true }).eq("client_id", cl.id).eq("is_admin", true).is("read_at", null),
+        ]);
+
+        if (prError) console.error('Projects error:', prError);
+        if (invError) console.error('Invoices error:', invError);
+        if (msgError) console.error('Messages error:', msgError);
+
+        setProjects(pr ?? []);
+        setInvoices(inv ?? []);
+        setUnread(count ?? 0);
+        setLoading(false);
+      } catch (err) {
+        console.error('Dashboard load error:', err);
+        setLoading(false);
+      }
     };
     load();
   }, [profile]);

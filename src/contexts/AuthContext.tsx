@@ -77,7 +77,47 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (authData.user) {
-        console.log('User created, trigger will handle profile and client creation...')
+        console.log('User created:', authData.user.id)
+
+        // Wait a moment for trigger to create profile
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        // Verify profile was created
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', authData.user.id)
+          .single()
+
+        if (profileError || !profile) {
+          console.warn('Profile not found, creating manually...')
+          const { error: manualProfileError } = await supabase
+            .from('profiles')
+            .insert({
+              id: authData.user.id,
+              email,
+              full_name: fullName,
+              role,
+            })
+          if (manualProfileError) {
+            console.error('Manual profile insert error:', manualProfileError)
+          }
+        }
+
+        // Create client record if role is client
+        if (role === 'client') {
+          const { error: clientError } = await supabase
+            .from('clients')
+            .insert({
+              user_id: authData.user.id,
+              company: 'My Company',
+              contact_name: fullName,
+              contact_email: email,
+            })
+          if (clientError && !clientError.message.includes('duplicate')) {
+            console.error('Client insert error:', clientError)
+          }
+        }
       }
     } catch (err) {
       console.error('SignUp error:', err)
@@ -96,7 +136,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    try {
+      await supabase.auth.signOut()
+      setUser(null)
+      setSession(null)
+      setProfile(null)
+      setLoading(false)
+    } catch (err) {
+      console.error('Sign out error:', err)
+      setUser(null)
+      setSession(null)
+      setProfile(null)
+    }
   }
 
   return (
