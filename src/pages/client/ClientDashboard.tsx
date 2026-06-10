@@ -84,37 +84,37 @@ const ClientDashboard = () => {
   const firstName = profile?.full_name?.split(" ")[0] ?? "there";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Welcome */}
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-        className="card-dreamy p-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/40 via-transparent to-primary/[0.03] pointer-events-none" />
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: "easeOut" }}
+        className="card-dreamy p-10 relative overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-shadow">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/5 pointer-events-none" />
         <div className="relative z-10">
-          <p className="text-sm text-muted-foreground">{greeting()},</p>
-          <h1 className="mt-1 text-3xl font-display font-bold text-foreground">{firstName} 👋</h1>
-          <p className="mt-2 text-muted-foreground text-sm">
-            Welcome to your KLENTEC client portal. Here's a quick overview of your work.
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">{greeting()}</p>
+          <h1 className="mt-3 text-4xl font-display font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">{firstName} 👋</h1>
+          <p className="mt-3 text-muted-foreground text-base leading-relaxed">
+            Welcome back to your KLENTEC client portal. Here's a quick overview of your current work.
           </p>
         </div>
       </motion.div>
 
       {/* Quick stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {[
-          { icon: FolderOpen, label: "Active Projects", value: loading ? "—" : projects.filter(p => p.status === "active").length, link: "/client/projects", color: "from-blue-500 to-indigo-600" },
-          { icon: Receipt, label: "Pending Invoices", value: loading ? "—" : invoices.filter(i => i.status === "pending").length, link: "/client/invoices", color: "from-amber-500 to-orange-500" },
-          { icon: MessageCircle, label: "Unread Messages", value: loading ? "—" : unread, link: "/client/messages", color: unread > 0 ? "from-red-500 to-rose-600" : "from-violet-500 to-purple-600" },
+          { icon: FolderOpen, label: "Active Projects", value: loading ? "—" : projects.filter(p => p.status === "active").length, link: "/client/projects", color: "from-blue-500 via-blue-600 to-indigo-600" },
+          { icon: Receipt, label: "Pending Invoices", value: loading ? "—" : invoices.filter(i => i.status === "pending").length, link: "/client/invoices", color: "from-amber-500 via-orange-500 to-orange-600" },
+          { icon: MessageCircle, label: "Unread Messages", value: loading ? "—" : unread, link: "/client/messages", color: unread > 0 ? "from-red-500 via-rose-500 to-rose-600" : "from-violet-500 via-purple-500 to-purple-600" },
         ].map((s, i) => (
-          <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
-            <Link to={s.link} className="card-dreamy p-5 flex items-center gap-4 group block hover:-translate-y-0.5 transition-transform duration-300">
-              <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0`}>
-                <s.icon className="w-5 h-5 text-white" />
+          <motion.div key={s.label} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12, ease: "easeOut" }}>
+            <Link to={s.link} className="card-dreamy p-7 flex items-center gap-5 group block hover:-translate-y-1.5 transition-all duration-300 shadow-lg hover:shadow-2xl border border-white/10 hover:border-white/20">
+              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${s.color} flex items-center justify-center shrink-0 shadow-md`}>
+                <s.icon className="w-7 h-7 text-white" />
               </div>
-              <div>
-                <p className="text-2xl font-display font-bold text-foreground">{s.value}</p>
-                <p className="text-sm text-muted-foreground">{s.label}</p>
+              <div className="flex-1">
+                <p className="text-3xl font-display font-bold text-foreground">{s.value}</p>
+                <p className="text-sm font-medium text-muted-foreground mt-1">{s.label}</p>
               </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+              <ArrowRight className="w-5 h-5 text-muted-foreground ml-auto opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1" />
             </Link>
           </motion.div>
         ))}
@@ -124,12 +124,12 @@ const ClientDashboard = () => {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
         {/* Projects */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="card-dreamy p-6">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-base font-display font-bold text-foreground">My Projects</h2>
-            <Link to="/client/projects" className="text-xs text-primary hover:underline flex items-center gap-1">
-              View all <ArrowRight className="w-3 h-3" />
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, ease: "easeOut" }}
+          className="card-dreamy p-8 shadow-lg border border-white/10">
+          <div className="flex items-center justify-between mb-7">
+            <h2 className="text-lg font-display font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">My Projects</h2>
+            <Link to="/client/projects" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-2 hover:gap-3">
+              View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 

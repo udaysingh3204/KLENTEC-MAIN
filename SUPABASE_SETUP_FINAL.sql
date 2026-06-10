@@ -76,7 +76,7 @@ USING (auth.uid() = id);
 
 CREATE POLICY "Admins can read all profiles"
 ON public.profiles FOR SELECT
-USING (EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'admin'));
+USING (auth.jwt() ->> 'role' = 'admin' OR (SELECT role FROM public.profiles WHERE id = auth.uid()) = 'admin');
 
 CREATE POLICY "Users can update their own profile"
 ON public.profiles FOR UPDATE
