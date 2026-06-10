@@ -1,0 +1,19 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "VITE_SUPABASE_URL": "@VITE_SUPABASE_URL",
+    "VITE_SUPABASE_ANON_KEY": "@VITE_SUPABASE_ANON_KEY",
+    "VITE_EMAILJS_PUBLIC_KEY": "@VITE_EMAILJS_PUBLIC_KEY",
+    "VITE_EMAILJS_SERVICE_HELLO": "@VITE_EMAILJS_SERVICE_HELLO",
+    "VITE_EMAILJS_SERVICE_ADMIN": "@VITE_EMAILJS_SERVICE_ADMIN",
+    "VITE_EMAILJS_TEMPLATE_INQUIRY": "@VITE_EMAILJS_TEMPLATE_INQUIRY",
+    "VITE_EMAILJS_TEMPLATE_ADMIN": "@VITE_EMAILJS_TEMPLATE_ADMIN"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
