@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, LogOut, LayoutDashboard } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
+import { Menu, X } from "lucide-react";
 import logoBlack from "@/assets/logo-black.png";
 
 const navLinks = [
@@ -53,10 +52,7 @@ const LogoPattern = () => (
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  const { profile, signOut } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -66,13 +62,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setMobileOpen(false);
-    setProfileOpen(false);
   }, [location]);
-
-  const handleLogout = async () => {
-    await signOut();
-    navigate("/");
-  };
 
   return (
     <motion.nav
@@ -111,66 +101,11 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop — Auth Section */}
+        {/* Desktop — CTA Section */}
         <div className="hidden md:flex items-center gap-4">
-          {profile ? (
-            <div className="relative">
-              <button
-                onClick={() => setProfileOpen(!profileOpen)}
-                className="flex items-center gap-3 px-3 py-2 rounded-full hover:bg-muted transition-colors"
-              >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-xs font-bold">
-                  {profile.full_name?.[0]?.toUpperCase() || "C"}
-                </div>
-                <span className="text-sm font-medium text-foreground hidden sm:inline">
-                  {profile.full_name?.split(" ")[0] || "User"}
-                </span>
-              </button>
-
-              <AnimatePresence>
-                {profileOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-xl shadow-lg overflow-hidden z-50"
-                  >
-                    <div className="p-4 border-b border-border/50">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wide">Logged in as</p>
-                      <p className="text-sm font-semibold text-foreground">{profile.full_name || profile.email}</p>
-                    </div>
-                    <Link
-                      to={profile.role === "admin" ? "/admin" : "/client"}
-                      className="flex items-center gap-2 w-full px-4 py-3 text-sm hover:bg-muted transition-colors text-foreground"
-                      onClick={() => setProfileOpen(false)}
-                    >
-                      <LayoutDashboard className="w-4 h-4" />
-                      {profile.role === "admin" ? "Admin Dashboard" : "Client Portal"}
-                    </Link>
-                    <button
-                      onClick={() => {
-                        handleLogout();
-                        setProfileOpen(false);
-                      }}
-                      className="flex items-center gap-2 w-full px-4 py-3 text-sm hover:bg-destructive/10 transition-colors text-destructive"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Logout
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ) : (
-            <>
-              <Link to="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Sign in
-              </Link>
-              <Link to="/contact" className="btn-dreamy text-sm">
-                Start Free
-              </Link>
-            </>
-          )}
+          <Link to="/contact" className="btn-dreamy text-sm">
+            Book Free Strategy Call
+          </Link>
         </div>
 
         <button
@@ -204,44 +139,11 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {profile ? (
-                <>
-                  <div className="border-t border-border/30 mt-4 pt-4">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-sm font-bold">
-                        {profile.full_name?.[0]?.toUpperCase() || "C"}
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground uppercase">Logged in as</p>
-                        <p className="text-sm font-semibold text-foreground">{profile.full_name || profile.email}</p>
-                      </div>
-                    </div>
-                    <Link
-                      to={profile.role === "admin" ? "/admin" : "/client"}
-                      className="flex items-center gap-2 w-full py-3 px-5 rounded-2xl bg-accent text-primary text-sm font-medium transition-colors mb-2"
-                    >
-                      <LayoutDashboard className="w-4 h-4" />
-                      {profile.role === "admin" ? "Admin Dashboard" : "Client Portal"}
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="flex items-center gap-2 w-full py-3 px-5 rounded-2xl hover:bg-destructive/10 text-destructive text-sm font-medium transition-colors"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      Logout
-                    </button>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <Link to="/login" className="py-3 px-5 rounded-2xl text-center text-sm font-medium text-muted-foreground hover:bg-muted transition-colors">
-                    Sign in
-                  </Link>
-                  <Link to="/contact" className="btn-dreamy text-center mt-2">
-                    Start Free
-                  </Link>
-                </>
-              )}
+              <div className="border-t border-border/30 mt-4 pt-4">
+                <Link to="/contact" className="btn-dreamy text-center w-full">
+                  Book Free Strategy Call
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
