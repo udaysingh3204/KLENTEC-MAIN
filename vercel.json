@@ -10,10 +10,16 @@
     "VITE_EMAILJS_TEMPLATE_INQUIRY": "@VITE_EMAILJS_TEMPLATE_INQUIRY",
     "VITE_EMAILJS_TEMPLATE_ADMIN": "@VITE_EMAILJS_TEMPLATE_ADMIN"
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(?!.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$)(.*)",
-      "destination": "/index.html"
+      "src": "^/assets/.*",
+      "dest": "/$0",
+      "continue": false
+    },
+    {
+      "src": "^/.*",
+      "dest": "/index.html",
+      "continue": false
     }
   ]
 }
