@@ -1,34 +1,31 @@
-const express = require('express');
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 
-const app = express();
+export default function handler(req, res) {
+  // Get the requested path
+  const pathname = new URL(req.url, `http://${req.headers.host}`).pathname;
 
-// Serve static files from dist folder
-const distPath = path.join(__dirname, '../dist');
-app.use(express.static(distPath, {
-  maxAge: '1d',
-  etag: false
-}));
-
-// SPA fallback - serve index.html for all non-file routes
-app.use((req, res) => {
-  // Check if the requested path looks like a file (has an extension)
-  if (path.extname(req.path)) {
-    res.status(404).send('Not Found');
-    return;
+  // Serve static files from dist
+  if (pathname.startsWith('/assets/') || pathname.endsWith('.js') || pathname.endsWith('.css') || pathname.endsWith('.json')) {
+    const filePath = path.join(__dirname, '../dist', pathname);
+    try {
+      const data = fs.readFileSync(filePath);
+      res.setHeader('Content-Type', 'application/octet-stream');
+      res.status(200).send(data);
+      return;
+    } catch (err) {
+      res.status(404).send('Not Found');
+      return;
+    }
   }
 
-  // Serve index.html for all other routes
-  const indexPath = path.join(distPath, 'index.html');
-  res.set('Content-Type', 'text/html');
-  res.sendFile(indexPath);
-});
-
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send('Internal Server Error');
-});
-
-module.exports = app;
+  // Serve index.html for all other routes (SPA fallback)
+  try {
+    const indexPath = path.join(__dirname, '../dist/index.html');
+    const data = fs.readFileSync(indexPath, 'utf-8');
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.status(200).send(data);
+  } catch (err) {
+    res.status(500).send('Internal Server Error');
+  }
+}
