@@ -1,5 +1,6 @@
 {
   "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "env": {
     "VITE_SUPABASE_URL": "@VITE_SUPABASE_URL",
     "VITE_SUPABASE_ANON_KEY": "@VITE_SUPABASE_ANON_KEY",
@@ -8,10 +9,5 @@
     "VITE_EMAILJS_SERVICE_ADMIN": "@VITE_EMAILJS_SERVICE_ADMIN",
     "VITE_EMAILJS_TEMPLATE_INQUIRY": "@VITE_EMAILJS_TEMPLATE_INQUIRY",
     "VITE_EMAILJS_TEMPLATE_ADMIN": "@VITE_EMAILJS_TEMPLATE_ADMIN"
-  },
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 10
-    }
   }
 }
