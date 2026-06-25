@@ -9,5 +9,15 @@
     "VITE_EMAILJS_SERVICE_ADMIN": "@VITE_EMAILJS_SERVICE_ADMIN",
     "VITE_EMAILJS_TEMPLATE_INQUIRY": "@VITE_EMAILJS_TEMPLATE_INQUIRY",
     "VITE_EMAILJS_TEMPLATE_ADMIN": "@VITE_EMAILJS_TEMPLATE_ADMIN"
-  }
+  },
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/handler"
+    }
+  ]
 }
