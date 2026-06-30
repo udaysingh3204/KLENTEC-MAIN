@@ -1,8 +1,12 @@
-import HeroSection from "@/components/home/HeroSection";
+// Enterprise components (Phase 1)
+import EnterpriseHeroSection from "@/components/home/EnterpriseHeroSection";
+import SocialProofBanner from "@/components/home/SocialProofBanner";
+import EnterpriseServicesShowcase from "@/components/home/EnterpriseServicesShowcase";
+import StrategicCTASection from "@/components/home/StrategicCTASection";
+
+// Existing sections (legacy - can be optimized later)
 import LogoMarquee from "@/components/home/LogoMarquee";
 import ProblemSection from "@/components/home/ProblemSection";
-import ServicesSection from "@/components/home/ServicesSection";
-
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import WhyKlentecSection from "@/components/home/WhyKlentecSection";
 import EngagementModelsSection from "@/components/home/EngagementModelsSection";
@@ -17,10 +21,13 @@ import FinalCTASection from "@/components/home/FinalCTASection";
 
 const HomePage = () => (
   <main>
-    <HeroSection />
-    <LogoMarquee />
+    {/* Phase 1: Enterprise Foundation */}
+    <EnterpriseHeroSection />
+    <SocialProofBanner />
+    <EnterpriseServicesShowcase />
+
+    {/* Supporting sections */}
     <ProblemSection />
-    <ServicesSection />
     <HowItWorksSection />
     <WhyKlentecSection />
     <EngagementModelsSection />
@@ -29,6 +36,11 @@ const HomePage = () => (
     <ComparisonSection />
     <IndustriesSection />
     <TestimonialsSection />
+
+    {/* Lead generation section */}
+    <StrategicCTASection />
+
+    {/* Existing sections */}
     <GrowthAuditSection />
     <FAQSection />
     <FinalCTASection />
