@@ -33,25 +33,29 @@ const footerColumns = [
 ];
 
 const Footer = () => (
-  <footer className="footer-clean">
-    <div className="container mx-auto px-6 pt-20 pb-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+  <footer className="bg-slate-950 border-t border-slate-800">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
         {/* Brand */}
         <div className="lg:col-span-2">
           <Link to="/" className="flex items-center gap-2 mb-5">
-            <img src={logoBlack} alt="KLENTEC" className="h-16 w-auto" />
+            <img src={logoBlack} alt="KLENTEC" className="h-10 w-auto" />
           </Link>
-          <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mb-8">
+          <p className="text-slate-400 text-sm leading-relaxed max-w-xs mb-6">
             We build digital machines that scale businesses. Performance marketing, design, and development — all under one roof.
           </p>
           <div className="flex items-center gap-3">
-            {["𝕏", "in", "ig"].map((icon) => (
+            {[
+              { label: "Twitter", url: "#" },
+              { label: "LinkedIn", url: "#" },
+              { label: "Instagram", url: "#" },
+            ].map((social) => (
               <a
-                key={icon}
-                href="#"
-                className="w-10 h-10 rounded-2xl bg-muted hover:bg-accent flex items-center justify-center transition-all duration-300 text-muted-foreground hover:text-accent-foreground text-sm"
+                key={social.label}
+                href={social.url}
+                className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors text-slate-400 hover:text-white"
               >
-                {icon}
+                {social.label.charAt(0)}
               </a>
             ))}
           </div>
@@ -60,13 +64,13 @@ const Footer = () => (
         {/* Links */}
         {footerColumns.map((col) => (
           <div key={col.title}>
-            <h4 className="font-display font-semibold text-sm mb-5 text-foreground">{col.title}</h4>
-            <ul className="space-y-3">
+            <h4 className="font-semibold text-white text-sm mb-4">{col.title}</h4>
+            <ul className="space-y-2">
               {col.links.map((link) => (
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300"
+                    className="text-sm text-slate-400 hover:text-white transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -76,17 +80,22 @@ const Footer = () => (
           </div>
         ))}
       </div>
-    </div>
 
-    {/* Bottom */}
-    <div className="divider-soft">
-      <div className="container mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="text-sm text-muted-foreground">
+      {/* Divider */}
+      <div className="border-t border-slate-800" />
+
+      {/* Bottom */}
+      <div className="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-sm text-slate-500">
           © {new Date().getFullYear()} KLENTEC — Building Digital Machines
         </p>
-        <div className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-          <a href="#" className="hover:text-foreground transition-colors">Terms</a>
+        <div className="flex items-center gap-6 text-sm">
+          <Link to="/privacy" className="text-slate-400 hover:text-white transition-colors">
+            Privacy
+          </Link>
+          <Link to="/terms" className="text-slate-400 hover:text-white transition-colors">
+            Terms
+          </Link>
         </div>
       </div>
     </div>
