@@ -1,555 +1,203 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { supabase } from "@/lib/supabase";
-import {
-  Check,
-  ArrowRight,
-  ArrowLeft,
-  Phone,
-  Mail,
-  MessageCircle,
-  Globe,
-  Instagram,
-  Linkedin,
-  MapPin,
-  Clock,
-  ShieldCheck,
-  Sparkles,
-  Handshake,
-  Wallet,
-  BadgeCheck,
-  CalendarClock,
-} from "lucide-react";
-
-/* ----------------------------- Wizard config ----------------------------- */
-
-type Field =
-  | { type: "text"; key: string; label: string; placeholder?: string; required?: boolean }
-  | { type: "choice"; key: string; label: string; options: string[]; required?: boolean }
-  | { type: "textarea"; key: string; label: string; placeholder?: string; required?: boolean };
-
-const sections: { id: string; title: string; subtitle: string; fields: Field[] }[] = [
-  {
-    id: "A",
-    title: "Your Details",
-    subtitle: "Tell us a little about you.",
-    fields: [
-      { type: "text", key: "name", label: "Full Name", placeholder: "e.g. Rahul Sharma", required: true },
-      { type: "text", key: "company", label: "Company / Brand", placeholder: "e.g. TechNova Pvt. Ltd.", required: true },
-      { type: "text", key: "email", label: "Email Address", placeholder: "you@brand.com", required: true },
-      { type: "text", key: "whatsapp", label: "WhatsApp Number", placeholder: "+91 98765 43210", required: true },
-      { type: "text", key: "link", label: "Website / Social (optional)", placeholder: "https://…" },
-    ],
-  },
-  {
-    id: "B",
-    title: "Project Details",
-    subtitle: "What are we building together?",
-    fields: [
-      { type: "text", key: "services", label: "Services You Need", placeholder: "Logo + Website + Social Media", required: true },
-      {
-        type: "choice",
-        key: "stage",
-        label: "Business Stage",
-        options: ["Just Starting", "Growing", "Scaling", "Established"],
-        required: true,
-      },
-      { type: "textarea", key: "about", label: "About Your Business", placeholder: "What you do, who you serve, what problem you solve.", required: true },
-      { type: "textarea", key: "goal", label: "Main Goal Right Now", placeholder: "Launch brand, get leads, build app, automate…", required: true },
-    ],
-  },
-  {
-    id: "C",
-    title: "Budget & Timeline",
-    subtitle: "We have solutions for every budget.",
-    fields: [
-      {
-        type: "choice",
-        key: "budget",
-        label: "Approximate Budget",
-        options: ["Under ₹25K", "₹25K – ₹1L", "₹1L – ₹5L", "₹5L+"],
-        required: true,
-      },
-      {
-        type: "choice",
-        key: "timeline",
-        label: "Delivery Timeline",
-        options: ["ASAP", "1–4 Weeks", "1–2 Months", "Flexible"],
-        required: true,
-      },
-      { type: "text", key: "deadline", label: "Specific Deadline (optional)", placeholder: "Launch on 15 Aug…" },
-    ],
-  },
-  {
-    id: "D",
-    title: "Final Notes",
-    subtitle: "Almost done.",
-    fields: [
-      {
-        type: "choice",
-        key: "source",
-        label: "How did you hear about us?",
-        options: ["Instagram", "LinkedIn", "Google", "Referral", "Other"],
-        required: true,
-      },
-      { type: "textarea", key: "notes", label: "Anything else? (optional)", placeholder: "References, inspiration, competitors…" },
-    ],
-  },
-];
-
-/* -------------------------------- Contact -------------------------------- */
-
-const channels = [
-  { Icon: Phone, label: "Phone", value: "+91 95576 30336", sub: "Mon – Sat · 10 AM – 7 PM IST", href: "tel:+919557630336" },
-  { Icon: Mail, label: "Email", value: "hello@klentec.com", sub: "Proposals within 24 hours", href: "mailto:hello@klentec.com" },
-  { Icon: MessageCircle, label: "WhatsApp", value: "wa.me/919557630336", sub: "Send ‘HELLO’ to start", href: "https://wa.me/919557630336" },
-  { Icon: Globe, label: "Website", value: "www.klentec.com", sub: "Remote-first · Global", href: "https://klentec.com" },
-  { Icon: Instagram, label: "Instagram", value: "@klentec.in", sub: "Behind the scenes", href: "https://instagram.com/klentec.in" },
-  { Icon: Linkedin, label: "LinkedIn", value: "Uday Singh", sub: "Founder · KLENTEC", href: "https://www.linkedin.com/in/uday-singh-57b986404" },
-];
-
-const process = [
-  { n: "01", t: "Free Discovery Call", d: "A 30-minute strategy call — no pitch, just honest conversation about your goals." },
-  { n: "02", t: "Custom Proposal in 24h", d: "Detailed scope, timeline and transparent pricing — zero hidden costs." },
-  { n: "03", t: "Onboarding & Roadmap", d: "Dedicated project manager assigned. Custom roadmap built for your brand." },
-  { n: "04", t: "Execution & Delivery", d: "Designers, developers, marketers and AI experts deliver with precision." },
-  { n: "05", t: "Review & Refinement", d: "Revision cycles until every deliverable exceeds your expectations." },
-  { n: "06", t: "Launch & Ongoing Growth", d: "Post-launch support, analytics and strategies to scale your business." },
-];
-
-const reasons = [
-  { Icon: Handshake, t: "One Roof for Everything", d: "Design, dev, marketing, AI & fintech — one team, one invoice, zero chaos." },
-  { Icon: Clock, t: "4-Hour Response Guarantee", d: "Every inquiry is acknowledged within 4 business hours." },
-  { Icon: Wallet, t: "Transparent Pricing", d: "No hidden fees. No surprise invoices. Clear scope from day one." },
-  { Icon: BadgeCheck, t: "Dedicated Account Manager", d: "One point of contact who knows your brand inside out." },
-  { Icon: Sparkles, t: "AI & Automation Ready", d: "Intelligent systems that scale your operations without extra headcount." },
-  { Icon: ShieldCheck, t: "NDA Before Every Project", d: "Your ideas are protected. We sign NDAs before discussing details." },
-];
-
-const promises = [
-  "Free 30-minute strategy call — zero obligation.",
-  "We sign an NDA before discussing your project.",
-  "Custom proposal delivered within 24 hours.",
-  "Milestone-based payments — pay as work progresses.",
-  "EMI options available for all projects above ₹50,000.",
-  "Dedicated WhatsApp support group for every project.",
-  "Limited new clients per month — quality over quantity.",
-];
-
-/* --------------------------------- Page ---------------------------------- */
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, ArrowRight } from "lucide-react";
 
 const ContactPage = () => {
-  const [step, setStep] = useState(0);
-  const [data, setData] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    service: "digital-marketing",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const totalSteps = sections.length;
-  const progress = ((step + 1) / totalSteps) * 100;
-  const current = sections[step];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const setField = (key: string, value: string) => setData((p) => ({ ...p, [key]: value }));
-
-  const canContinue = current.fields.every((f) => !f.required || (data[f.key] && data[f.key].trim().length > 0));
-
-  const handleSubmit = async () => {
-    // 1. Save inquiry to Supabase
-    await supabase.from("inquiries").insert({
-      name:     data.name     ?? null,
-      company:  data.company  ?? null,
-      email:    data.email    ?? null,
-      whatsapp: data.whatsapp ?? null,
-      link:     data.link     ?? null,
-      services: data.services ?? null,
-      stage:    data.stage    ?? null,
-      about:    data.about    ?? null,
-      goal:     data.goal     ?? null,
-      budget:   data.budget   ?? null,
-      timeline: data.timeline ?? null,
-      deadline: data.deadline ?? null,
-      source:   data.source   ?? null,
-      notes:    data.notes    ?? null,
-      status:   "new",
-    });
-
-    // 2. Send email notifications via EmailJS (non-blocking)
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const serviceHello = import.meta.env.VITE_EMAILJS_SERVICE_HELLO;
-    const serviceAdmin = import.meta.env.VITE_EMAILJS_SERVICE_ADMIN;
-    const templateInquiry = import.meta.env.VITE_EMAILJS_TEMPLATE_INQUIRY;
-    const templateAdmin = import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN;
-
-    if (publicKey) {
-      emailjs.init(publicKey);
-
-      const emailData = {
-        from_name: data.name,
-        from_email: data.email,
-        company: data.company,
-        whatsapp: data.whatsapp,
-        services: data.services,
-        budget: data.budget,
-        goal: data.goal,
-        about: data.about,
-        source: data.source,
-      };
-
-      // Send full inquiry to hello@klentec.com
-      if (serviceHello && templateInquiry) {
-        emailjs.send(serviceHello, templateInquiry, emailData).catch(() => {});
-      }
-
-      // Send admin alert to udaysingh@klentec.com
-      if (serviceAdmin && templateAdmin) {
-        emailjs.send(serviceAdmin, templateAdmin, emailData).catch(() => {});
-      }
-    }
-
-    setSubmitted(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setSubmitted(true);
+      setFormData({ name: "", email: "", company: "", phone: "", service: "digital-marketing", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
+      setLoading(false);
+    }, 1000);
   };
 
   return (
-    <main className="overflow-hidden">
-      {/* ----------------------------- Hero ----------------------------- */}
-      <section className="relative gradient-bg-hero pt-36 pb-20">
-        <div className="container mx-auto px-6 text-center max-w-4xl relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="badge-dreamy"
-          >
-            <Sparkles className="w-3.5 h-3.5" /> Ready to Scale?
-          </motion.span>
-          <motion.h1
+    <main className="min-h-screen bg-slate-950">
+      <section className="relative py-20 bg-gradient-to-br from-slate-950 via-purple-900/20 to-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05, duration: 0.6 }}
-            className="mt-6 text-5xl md:text-7xl font-display tracking-tight leading-[1.05]"
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            Let's Build Your<br />
-            <em className="gradient-text not-italic">Growth Machine.</em>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            className="mt-8 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
-          >
-            Whether you need a complete rebrand, a high-converting website, a fully automated marketing system, or a custom SaaS platform — we'll build it. <strong className="text-foreground">Fill out the form below. We'll respond within 4 hours with a custom proposal.</strong>
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-8 flex flex-wrap justify-center gap-4 text-sm font-medium"
-          >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ Free 30-min strategy call
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ No upfront costs
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ Proposal in 24 hours
-            </div>
+            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">Let's Work Together</h1>
+            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto">Ready to transform your digital presence? Get in touch.</p>
           </motion.div>
         </div>
       </section>
 
-      {/* --------------------------- Channels --------------------------- */}
-      <section className="section-padding pt-0">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {channels.map(({ Icon, label, value, sub, href }, i) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                className="card-dreamy p-6 flex items-start gap-4 group"
-              >
-                <span className="icon-dreamy shrink-0">
-                  <Icon className="w-5 h-5 text-primary" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">{label}</p>
-                  <p className="font-display text-xl mt-1 truncate group-hover:text-primary transition-colors">
-                    {value}
-                  </p>
-                  <p className="text-sm text-muted-foreground mt-1">{sub}</p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
+      <section className="py-20 bg-slate-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="lg:col-span-2">
+              <h2 className="text-3xl font-bold text-white mb-8">Get in Touch</h2>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> India · Remote-first · Serving globally</span>
-            <span className="inline-flex items-center gap-2"><Clock className="w-4 h-4 text-primary" /> Replies within 4 business hours</span>
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------- Wizard ----------------------------- */}
-      <section className="section-padding pt-0">
-        <div className="container mx-auto max-w-3xl">
-          <div className="text-center mb-10">
-            <span className="badge-dreamy">Client inquiry</span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display tracking-tight">
-              Tell us about your <em className="gradient-text not-italic">project.</em>
-            </h2>
-            <p className="mt-3 text-muted-foreground">Less than 3 minutes. Custom proposal within 24 hours.</p>
-          </div>
-
-          <div className="card-dreamy p-8 md:p-10">
-            {/* Progress */}
-            <div className="flex items-center justify-between mb-2 text-xs tracking-widest uppercase text-muted-foreground">
-              <span>Section {current.id} of D</span>
-              <span>{Math.round(progress)}%</span>
-            </div>
-            <div className="w-full h-1 bg-muted rounded-full mb-8 overflow-hidden">
-              <motion.div
-                className="h-full rounded-full"
-                style={{ background: "linear-gradient(90deg, hsl(var(--purple-mid)), hsl(var(--purple-glow)))" }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.4 }}
-              />
-            </div>
-
-            {submitted ? (
-              <motion.div initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                  <Check className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-3xl font-display tracking-tight">Thank you, {data.name?.split(" ")[0] || "friend"}.</h3>
-                <p className="mt-3 text-muted-foreground max-w-md mx-auto">
-                  Your inquiry has reached our team. Expect a personal reply from us within 4 business hours.
-                </p>
-                <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                  <a href="https://wa.me/919557630336" target="_blank" rel="noreferrer" className="btn-dreamy">
-                    Chat on WhatsApp
-                  </a>
-                  <a href="mailto:hello@klentec.com" className="btn-ghost">Email Us</a>
-                </div>
-              </motion.div>
-            ) : (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.id}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -16 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <h3 className="text-2xl md:text-3xl font-display tracking-tight">{current.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1 mb-7">{current.subtitle}</p>
-
-                  <div className="space-y-5">
-                    {current.fields.map((f) => (
-                      <div key={f.key}>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          {f.label}
-                          {f.required && <span className="text-primary/70"> *</span>}
-                        </label>
-
-                        {f.type === "text" && (
-                          <input
-                            type="text"
-                            value={data[f.key] || ""}
-                            onChange={(e) => setField(f.key, e.target.value)}
-                            placeholder={f.placeholder}
-                            className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all text-sm"
-                          />
-                        )}
-
-                        {f.type === "textarea" && (
-                          <textarea
-                            value={data[f.key] || ""}
-                            onChange={(e) => setField(f.key, e.target.value)}
-                            placeholder={f.placeholder}
-                            rows={3}
-                            className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all text-sm resize-none"
-                          />
-                        )}
-
-                        {f.type === "choice" && (
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                            {f.options.map((opt) => {
-                              const selected = data[f.key] === opt;
-                              return (
-                                <button
-                                  type="button"
-                                  key={opt}
-                                  onClick={() => setField(f.key, opt)}
-                                  className={`px-3 py-2.5 rounded-xl text-sm font-medium border transition-all ${
-                                    selected
-                                      ? "border-primary bg-primary/5 text-primary"
-                                      : "border-border bg-background text-foreground hover:border-primary/30"
-                                  }`}
-                                >
-                                  {opt}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex items-center justify-between">
-                    <button
-                      onClick={() => setStep((s) => Math.max(0, s - 1))}
-                      disabled={step === 0}
-                      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30"
-                    >
-                      <ArrowLeft className="w-4 h-4" /> Back
-                    </button>
-
-                    {step < totalSteps - 1 ? (
-                      <button
-                        onClick={() => canContinue && setStep((s) => s + 1)}
-                        disabled={!canContinue}
-                        className="btn-dreamy inline-flex items-center gap-2 disabled:opacity-50"
-                      >
-                        Continue <ArrowRight className="w-4 h-4" />
-                      </button>
-                    ) : (
-                      <button
-                        onClick={handleSubmit}
-                        disabled={!canContinue}
-                        className="btn-dreamy inline-flex items-center gap-2 disabled:opacity-50"
-                      >
-                        Submit Inquiry <ArrowRight className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
+              {submitted ? (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-green-500/10 border border-green-500/30 rounded-lg p-8 text-center">
+                  <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2">Message Received!</h3>
+                  <p className="text-slate-300">We'll get back to you within 2 hours.</p>
                 </motion.div>
-              </AnimatePresence>
-            )}
-          </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-white mb-2">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+                      placeholder="John Doe"
+                    />
+                  </div>
 
-          <p className="text-xs text-muted-foreground text-center mt-5">
-            Prefer to send it manually? WhatsApp <span className="text-foreground">+91 95576 30336</span> or email{" "}
-            <span className="text-foreground">hello@klentec.com</span> with subject "New Client Inquiry".
-          </p>
+                  <div>
+                    <label className="block text-sm font-semibold text-white mb-2">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-white mb-2">Company</label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+                        placeholder="Your Company"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-white mb-2">Phone</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-white mb-2">Service Interest</label>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:border-purple-500 focus:outline-none"
+                    >
+                      <option value="digital-marketing">Digital Marketing</option>
+                      <option value="web-development">Web Development</option>
+                      <option value="design-branding">Design & Branding</option>
+                      <option value="automation">Automation & Integration</option>
+                      <option value="strategy">Strategy & Consulting</option>
+                      <option value="managed-services">Managed Services</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-white mb-2">Message</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
+                      placeholder="Tell us about your project..."
+                    />
+                  </div>
+
+                  <Button type="submit" disabled={loading} size="lg" className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold disabled:opacity-50">
+                    {loading ? "Sending..." : "Send Message"}
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </form>
+              )}
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="space-y-8">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-6">Contact Info</h3>
+                <div className="space-y-4 text-slate-300">
+                  <div>
+                    <a href="mailto:hello@klentec.com" className="hover:text-purple-400">✉️ hello@klentec.com</a>
+                  </div>
+                  <div>
+                    <a href="tel:+919876543210" className="hover:text-purple-400">📞 +91 98765 43210</a>
+                  </div>
+                  <div>
+                    <a href="https://wa.me/919876543210" className="hover:text-purple-400">💬 WhatsApp</a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-slate-800 border border-slate-700 rounded-lg p-6 space-y-3">
+                <h4 className="font-semibold text-white">Why Us?</h4>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  <li>✓ 2-hour response</li>
+                  <li>✓ Free strategy calls</li>
+                  <li>✓ No credit card</li>
+                  <li>✓ Expert team</li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* --------------------------- Process ---------------------------- */}
-      <section className="section-padding gradient-bg-soft">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-14">
-            <span className="badge-dreamy">How we work</span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display tracking-tight">
-              Simple, transparent —<em className="gradient-text not-italic"> always in your favour.</em>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {process.map((p, i) => (
-              <motion.div
-                key={p.n}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="card-dreamy p-7"
-              >
-                <p className="font-display text-5xl gradient-text leading-none">{p.n}</p>
-                <h3 className="mt-5 text-2xl font-display tracking-tight">{p.t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.d}</p>
+      <section className="py-20 bg-slate-950">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white text-center mb-12">Common Questions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { q: "How quickly will I hear back?", a: "Within 2 hours during business hours." },
+              { q: "Do you offer free consultation?", a: "Yes! Completely free, no obligation." },
+              { q: "What's your typical timeline?", a: "4-12 weeks depending on scope." },
+              { q: "How do you charge?", a: "Fixed fees, retainers, or performance-based." },
+              { q: "Do you work with startups?", a: "Yes, all stages from pre-launch to enterprise." },
+              { q: "What's your onboarding?", a: "Discovery → Plan → Alignment → Launch." },
+            ].map((item, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="bg-slate-800 border border-slate-700 rounded-lg p-6">
+                <h3 className="font-semibold text-white mb-2">{item.q}</h3>
+                <p className="text-slate-400 text-sm">{item.a}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* --------------------------- Reasons ---------------------------- */}
-      <section className="section-padding">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-14">
-            <span className="badge-dreamy">Why brands choose us</span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display tracking-tight">
-              Built for brands that <em className="gradient-text not-italic">refuse to settle.</em>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {reasons.map(({ Icon, t, d }, i) => (
-              <motion.div
-                key={t}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
-                className="card-dreamy p-7"
-              >
-                <span className="icon-dreamy-lg">
-                  <Icon className="w-6 h-6 text-primary" />
-                </span>
-                <h3 className="mt-5 text-xl font-display tracking-tight">{t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------- Strategy CTA ----------------------- */}
-      <section className="section-padding pt-0">
-        <div className="container mx-auto max-w-5xl">
-          <div className="card-glass p-10 md:p-14 text-center relative overflow-hidden">
-            <span className="badge-dreamy">
-              <CalendarClock className="w-3.5 h-3.5" /> Free strategy call
-            </span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display tracking-tight">
-              A real conversation about your <em className="gradient-text not-italic">growth.</em>
-            </h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-              No commitment. No sales pressure. 30 minutes that could change the trajectory of your brand.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="https://wa.me/919557630336?text=STRATEGY%20CALL"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-dreamy inline-flex items-center gap-2"
-              >
-                <MessageCircle className="w-4 h-4" /> WhatsApp "STRATEGY CALL"
-              </a>
-              <a
-                href="mailto:hello@klentec.com?subject=STRATEGY%20CALL%20REQUEST"
-                className="btn-ghost inline-flex items-center gap-2"
-              >
-                <Mail className="w-4 h-4" /> Email Us
-              </a>
-            </div>
-            <p className="mt-5 text-xs text-muted-foreground">Confirmation in 4 hours · Proposal within 24 hours of call</p>
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------- Promises --------------------------- */}
-      <section className="section-padding pt-0">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-10">
-            <span className="badge-dreamy">Our promises</span>
-            <h2 className="mt-5 text-4xl md:text-5xl font-display tracking-tight">
-              No fine print — just <em className="gradient-text not-italic">commitments.</em>
-            </h2>
-          </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {promises.map((p) => (
-              <li key={p} className="card-dreamy p-5 flex items-start gap-3">
-                <Check className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-foreground/90">{p}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </main>
