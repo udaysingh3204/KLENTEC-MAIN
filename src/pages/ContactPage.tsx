@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { submitLead } from "@/services/leadService";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const ContactPage = () => {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -23,12 +25,27 @@ const ContactPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+
+    try {
+      await submitLead({
+        full_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service_interest: formData.service,
+        message: formData.message,
+        source: "contact-form",
+      });
+
       setSubmitted(true);
       setFormData({ name: "", email: "", company: "", phone: "", service: "digital-marketing", message: "" });
       setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to send message. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -56,8 +73,13 @@ const ContactPage = () => {
               {submitted ? (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-green-500/10 border border-green-500/30 rounded-lg p-8 text-center">
                   <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2">Message Received!</h3>
-                  <p className="text-slate-300">We'll get back to you within 2 hours.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Message Received! 🎉</h3>
+                  <p className="text-slate-300">We've saved your inquiry and will contact you within 2 hours.</p>
+                </motion.div>
+              ) : error ? (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-red-500/10 border border-red-500/30 rounded-lg p-8 text-center">
+                  <p className="text-red-400 font-semibold">{error}</p>
+                  <Button onClick={() => setError("")} className="mt-4 text-sm">Dismiss</Button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">

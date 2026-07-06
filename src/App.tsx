@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import PublicLayout from "@/components/PublicLayout";
+import AdminDashboard from "./pages/AdminDashboard";
 
 // Public pages
 import HomePage from "./pages/HomePage";
@@ -59,6 +60,9 @@ const App = () => (
             <Route path="/services/managed-services" element={<ManagedServicesPage />} />
             <Route path="/services/24-hour-web-dev" element={<FastTrackWebDevPage />} />
           </Route>
+
+          {/* ── Admin Dashboard (protected) ── */}
+          <Route path="/admin/leads" element={<AdminDashboard />} />
 
           {/* ── 404 ── */}
           <Route path="*" element={<NotFound />} />
