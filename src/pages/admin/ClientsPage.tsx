@@ -208,7 +208,7 @@ const ClientsPage = () => {
                   { key: "company", label: "Company / Brand *", placeholder: "TechNova Pvt. Ltd." },
                   { key: "contact_name", label: "Contact Name", placeholder: "Rahul Sharma" },
                   { key: "contact_email", label: "Contact Email", placeholder: "rahul@brand.com" },
-                  { key: "contact_phone", label: "Contact Phone", placeholder: "+91 98765 43210" },
+                  { key: "contact_phone", label: "Contact Phone", placeholder: "+91 9557 630336" },
                   { key: "website", label: "Website", placeholder: "https://brand.com" },
                 ].map((field) => (
                   <div key={field.key}>

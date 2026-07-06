@@ -129,7 +129,7 @@ const ContactPage = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none"
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 9557 630336"
                       />
                     </div>
                   </div>
@@ -180,10 +180,10 @@ const ContactPage = () => {
                     <a href="mailto:hello@klentec.com" className="hover:text-purple-400">✉️ hello@klentec.com</a>
                   </div>
                   <div>
-                    <a href="tel:+919876543210" className="hover:text-purple-400">📞 +91 98765 43210</a>
+                    <a href="tel:+919557630336" className="hover:text-purple-400">📞 +91 9557 630336</a>
                   </div>
                   <div>
-                    <a href="https://wa.me/919876543210" className="hover:text-purple-400">💬 WhatsApp</a>
+                    <a href="https://wa.me/919557630336" className="hover:text-purple-400">💬 WhatsApp</a>
                   </div>
                 </div>
               </div>

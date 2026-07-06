@@ -114,7 +114,7 @@ const TermsPage = () => {
                 <p>If you have any questions about these Terms & Conditions, please contact us at:</p>
                 <div className="mt-4 text-slate-300">
                   <p><strong>Email:</strong> legal@klentec.com</p>
-                  <p><strong>Phone:</strong> +91 98765 43210</p>
+                  <p><strong>Phone:</strong> +91 9557 630336</p>
                   <p><strong>Address:</strong> KLENTEC, India</p>
                 </div>
               </div>

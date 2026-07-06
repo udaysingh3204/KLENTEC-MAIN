@@ -216,7 +216,7 @@ const ExitIntentPopup = () => {
                       type="tel"
                       value={form.whatsapp}
                       onChange={(e) => setForm((p) => ({ ...p, whatsapp: e.target.value }))}
-                      placeholder="WhatsApp: +91 98765 43210"
+                      placeholder="WhatsApp: +91 9557 630336"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-300 transition-all"
                     />
 

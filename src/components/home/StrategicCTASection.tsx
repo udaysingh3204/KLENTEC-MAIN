@@ -28,7 +28,7 @@ const StrategicCTASection = () => {
       description: "Get answers to your questions instantly",
       benefits: ["Live support", "Expert advice", "No wait time"],
       cta: "Start Chat",
-      href: "https://wa.me/919876543210",
+      href: "https://wa.me/919557630336",
       primary: false,
     },
   ];
