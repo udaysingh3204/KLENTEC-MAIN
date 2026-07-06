@@ -26,6 +26,7 @@ import DesignBrandingPage from "./pages/services/DesignBrandingPage";
 import AutomationPage from "./pages/services/AutomationPage";
 import StrategyPage from "./pages/services/StrategyPage";
 import ManagedServicesPage from "./pages/services/ManagedServicesPage";
+import FastTrackWebDevPage from "./pages/services/FastTrackWebDevPage";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/services/automation" element={<AutomationPage />} />
             <Route path="/services/strategy" element={<StrategyPage />} />
             <Route path="/services/managed-services" element={<ManagedServicesPage />} />
+            <Route path="/services/24-hour-web-dev" element={<FastTrackWebDevPage />} />
           </Route>
 
           {/* ── 404 ── */}

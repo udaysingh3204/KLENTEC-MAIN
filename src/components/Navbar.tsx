@@ -12,14 +12,16 @@ const navLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
-/* Animated orbiting dots around logo */
-const LogoPattern = () => (
-  <div className="relative">
-    {/* Main logo — 3x bigger */}
-    <img src={logoBlack} alt="KLENTEC" className="h-28 w-auto relative z-10" />
+const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" };
 
-    {/* Orbiting dots */}
-    {[0, 1, 2, 3, 4, 5].map((i) => (
+/* Animated orbiting dots around logo */
+const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
+  <div className="relative">
+    {/* Main logo — scales down on scroll */}
+    <img src={logoBlack} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-28"} w-auto`} />
+
+    {/* Orbiting dots - hidden on scroll for cleaner navbar */}
+    {!scrolled && [0, 1, 2, 3, 4, 5].map((i) => (
       <span
         key={i}
         className="absolute top-1/2 left-1/2 orbit-dot"
@@ -42,10 +44,14 @@ const LogoPattern = () => (
       </span>
     ))}
 
-    {/* Static glow dots */}
-    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary/20 pulse-dot" style={{ animationDelay: "0s" }} />
-    <span className="absolute -bottom-1 -left-2 w-1.5 h-1.5 rounded-full bg-primary/15 pulse-dot" style={{ animationDelay: "1s" }} />
-    <span className="absolute top-1/2 -right-3 w-1 h-1 rounded-full bg-primary/25 pulse-dot" style={{ animationDelay: "2s" }} />
+    {/* Static glow dots - hidden on scroll */}
+    {!scrolled && (
+      <>
+        <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary/20 pulse-dot" style={{ animationDelay: "0s" }} />
+        <span className="absolute -bottom-1 -left-2 w-1.5 h-1.5 rounded-full bg-primary/15 pulse-dot" style={{ animationDelay: "1s" }} />
+        <span className="absolute top-1/2 -right-3 w-1 h-1 rounded-full bg-primary/25 pulse-dot" style={{ animationDelay: "2s" }} />
+      </>
+    )}
   </div>
 );
 
@@ -75,7 +81,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between h-20 px-6">
         <Link to="/" className="flex items-center">
-          <LogoPattern />
+          <LogoPattern scrolled={scrolled} />
         </Link>
 
         {/* Desktop */}
@@ -99,6 +105,18 @@ const Navbar = () => {
               )}
             </Link>
           ))}
+
+          {/* Special 24-Hour Web Dev Link */}
+          <Link
+            to={specialLink.to}
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              location.pathname === specialLink.to
+                ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg"
+                : "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+            }`}
+          >
+            ⚡ {specialLink.label}
+          </Link>
         </div>
 
         {/* Desktop — CTA Section */}
@@ -138,6 +156,17 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+
+              <Link
+                to={specialLink.to}
+                className={`text-sm font-semibold py-3 px-5 rounded-2xl transition-colors ${
+                  location.pathname === specialLink.to
+                    ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white"
+                    : "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+                }`}
+              >
+                ⚡ {specialLink.label}
+              </Link>
 
               <div className="border-t border-border/30 mt-4 pt-4">
                 <Link to="/contact" className="btn-dreamy text-center w-full">

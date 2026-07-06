@@ -501,6 +501,60 @@ const ServicesPage = () => (
       </div>
     </section>
 
+    {/* Featured 24-Hour Web Dev Banner */}
+    <section className="section-padding">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-cyan-600 p-12 md:p-16 border border-blue-400/30"
+        >
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,blue/20_1px,transparent_1px)] bg-[length:20px_20px]" />
+          </div>
+
+          <div className="relative z-10 max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 border border-white/30 mb-6">
+              <span className="text-lg">⚡</span>
+              <span className="text-white font-semibold text-sm">MOST POPULAR OFFER</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+              Website in 24 Hours?
+            </h2>
+            <p className="text-lg text-white/90 mb-8">
+              Strategy → Design → Development → Live. All in one day. Enterprise Speed delivers your complete business website fast.
+            </p>
+
+            <Link
+              to="/services/24-hour-web-dev"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white text-blue-600 font-semibold hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Explore Enterprise Speed
+              <span className="ml-2">→</span>
+            </Link>
+
+            <div className="mt-10 grid grid-cols-3 gap-4 md:gap-8 text-white text-center text-sm">
+              <div>
+                <p className="text-2xl font-bold">24 hrs</p>
+                <p className="text-white/70">Turnaround</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold">₹6.2K+</p>
+                <p className="text-white/70">Starting</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold">5 Pages</p>
+                <p className="text-white/70">Included</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
     {/* Categories */}
     <section className="section-padding">
       <div className="container mx-auto space-y-24">

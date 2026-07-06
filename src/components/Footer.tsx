@@ -47,13 +47,16 @@ const Footer = () => (
           <div className="flex items-center gap-3">
             {[
               { label: "Twitter", url: "#" },
-              { label: "LinkedIn", url: "#" },
-              { label: "Instagram", url: "#" },
+              { label: "LinkedIn", url: "https://www.linkedin.com/company/klentec-solutions/about/?viewAsMember=true" },
+              { label: "Instagram", url: "https://www.instagram.com/klentec.in" },
             ].map((social) => (
               <a
                 key={social.label}
                 href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center transition-colors text-slate-400 hover:text-white"
+                title={social.label}
               >
                 {social.label.charAt(0)}
               </a>

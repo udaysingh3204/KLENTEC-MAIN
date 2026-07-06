@@ -6,41 +6,41 @@
 
 @layer base {
   :root {
-    --background: 240 20% 98%;
-    --foreground: 240 20% 12%;
+    --background: 240 10% 3%;
+    --foreground: 240 10% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 20% 12%;
+    --card: 240 10% 8%;
+    --card-foreground: 240 10% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 20% 12%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 240 10% 98%;
 
     --primary: 260 65% 55%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 15% 95%;
-    --secondary-foreground: 240 20% 12%;
+    --secondary: 240 15% 20%;
+    --secondary-foreground: 240 10% 98%;
 
-    --muted: 240 10% 94%;
-    --muted-foreground: 240 8% 55%;
+    --muted: 240 10% 30%;
+    --muted-foreground: 240 10% 60%;
 
-    --accent: 260 50% 92%;
-    --accent-foreground: 260 65% 45%;
+    --accent: 260 50% 55%;
+    --accent-foreground: 240 10% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 90%;
-    --input: 240 10% 90%;
+    --border: 240 10% 20%;
+    --input: 240 10% 15%;
     --ring: 260 65% 55%;
 
     --radius: 1rem;
 
-    --purple-soft: 260 80% 96%;
+    --purple-soft: 260 40% 20%;
     --purple-mid: 260 65% 55%;
     --purple-dark: 260 60% 45%;
     --purple-glow: 260 100% 75%;
-    --surface-raised: 240 20% 99%;
+    --surface-raised: 240 10% 12%;
   }
 }
 
@@ -108,14 +108,14 @@
   /* Backgrounds */
   .gradient-bg-hero {
     background:
-      radial-gradient(ellipse 70% 50% at 50% -5%, hsl(260 65% 55% / 0.06), transparent),
-      radial-gradient(ellipse 40% 30% at 80% 20%, hsl(260 100% 75% / 0.04), transparent),
-      radial-gradient(ellipse 40% 40% at 20% 80%, hsl(260 65% 55% / 0.03), transparent),
+      radial-gradient(ellipse 70% 50% at 50% -5%, hsl(260 65% 55% / 0.15), transparent),
+      radial-gradient(ellipse 40% 30% at 80% 20%, hsl(260 100% 75% / 0.08), transparent),
+      radial-gradient(ellipse 40% 40% at 20% 80%, hsl(260 65% 55% / 0.08), transparent),
       hsl(var(--background));
   }
 
   .gradient-bg-soft {
-    background: linear-gradient(180deg, hsl(var(--purple-soft)) 0%, hsl(var(--background)) 100%);
+    background: linear-gradient(180deg, hsl(240 10% 12%) 0%, hsl(var(--background)) 100%);
   }
 
   /* Buttons */
@@ -218,7 +218,7 @@
 
   .gradient-bg-subtle {
     background:
-      radial-gradient(ellipse 60% 40% at 50% 100%, hsl(260 65% 55% / 0.05), transparent),
+      radial-gradient(ellipse 60% 40% at 50% 100%, hsl(260 65% 55% / 0.12), transparent),
       hsl(var(--background));
   }
 
