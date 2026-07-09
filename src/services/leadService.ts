@@ -76,16 +76,15 @@ const sendConfirmationEmail = async (lead: Lead) => {
       import.meta.env.VITE_EMAILJS_TEMPLATE_INQUIRY,
       {
         to_email: lead.email,
-        to_name: lead.full_name,
         from_name: "KLENTEC Team",
-        subject: "Thanks for reaching out! 🚀",
-        message: `Hi ${lead.full_name},\n\nThank you for your interest in KLENTEC! We've received your inquiry about ${lead.service_interest}.\n\nOur team will review your request and get back to you within 2 hours.\n\nBest regards,\nKLENTEC Team`,
-      }
+        to_name: lead.full_name,
+        from_email: "hello@klentec.com",
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     );
     console.log("Confirmation email sent");
   } catch (err) {
     console.error("Failed to send confirmation email:", err);
-    // Don't throw - lead is still saved even if email fails
   }
 };
 
@@ -98,16 +97,17 @@ const sendAdminNotification = async (lead: Lead) => {
       import.meta.env.VITE_EMAILJS_SERVICE_ADMIN,
       import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN,
       {
-        to_email: "uday@klentec.com",
+        to_email: "udaysingh@klentec.com",
         from_name: "KLENTEC Lead System",
-        subject: `🔥 New Lead: ${lead.full_name}`,
+        from_email: "hello@klentec.com",
         lead_name: lead.full_name,
         lead_email: lead.email,
         lead_phone: lead.phone || "N/A",
         lead_company: lead.company || "Not provided",
         lead_service: lead.service_interest,
         lead_message: lead.message,
-      }
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     );
     console.log("Admin notification sent");
   } catch (err) {
