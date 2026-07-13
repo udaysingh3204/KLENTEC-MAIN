@@ -53,11 +53,10 @@ export const submitLead = async (leadData: Lead) => {
     const leadId = data?.[0]?.id;
     console.log("Lead saved:", leadId);
 
-    // 2. Send confirmation email to user
-    await sendConfirmationEmail(leadData);
-
-    // 3. Send admin notification
-    await sendAdminNotification(leadData);
+    // Emails disabled for now - will be re-enabled after debugging
+    // TODO: Re-enable email automation later
+    // await sendConfirmationEmail(leadData);
+    // await sendAdminNotification(leadData);
 
     return { success: true, leadId };
   } catch (err) {
