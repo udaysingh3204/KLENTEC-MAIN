@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import logoBlack from "@/assets/logo-black.png";
+import logoWhite from "@/assets/logo-white.png";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -18,7 +18,7 @@ const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" 
 const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
   <div className="relative">
     {/* Main logo — scales down on scroll */}
-    <img src={logoBlack} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-28"} w-auto`} />
+    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-9" : "h-16"} w-auto`} />
 
     {/* Orbiting dots - hidden on scroll for cleaner navbar */}
     {!scrolled && [0, 1, 2, 3, 4, 5].map((i) => (
