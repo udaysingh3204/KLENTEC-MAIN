@@ -173,7 +173,7 @@ const AdminDashboardHome = () => {
           >
             <p className="text-sm font-medium text-white/80 mb-2">Total Reviews</p>
             <p className="text-4xl font-bold">{stats.totalReviews}</p>
-            <p className="text-xs text-white/60 mt-2">Average: {stats.avgRating.toFixed(1)}/5</p>
+            <p className="text-xs text-white/60 mt-2">Average: {Number(stats.avgRating).toFixed(1)}/5</p>
           </motion.div>
 
           <motion.div
