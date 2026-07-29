@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import PublicLayout from "@/components/PublicLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminReviews from "./pages/AdminReviews";
 
 // Public pages
 import HomePage from "./pages/HomePage";
@@ -18,6 +19,7 @@ import TeamPage from "./pages/TeamPage";
 import CareersPage from "./pages/CareersPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
+import TestimonialsPage from "./pages/TestimonialsPage";
 import NotFound from "./pages/NotFound";
 
 // Service pages
@@ -48,8 +50,9 @@ const App = () => (
             <Route path="/blog"     element={<BlogPage />} />
             <Route path="/team"     element={<TeamPage />} />
             <Route path="/careers"  element={<CareersPage />} />
-            <Route path="/privacy"  element={<PrivacyPage />} />
-            <Route path="/terms"    element={<TermsPage />} />
+            <Route path="/privacy"      element={<PrivacyPage />} />
+            <Route path="/terms"        element={<TermsPage />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
 
             {/* Service Pages */}
             <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
@@ -63,6 +66,7 @@ const App = () => (
 
           {/* ── Admin Dashboard (protected) ── */}
           <Route path="/admin/leads" element={<AdminDashboard />} />
+          <Route path="/admin/reviews" element={<AdminReviews />} />
 
           {/* ── 404 ── */}
           <Route path="*" element={<NotFound />} />
