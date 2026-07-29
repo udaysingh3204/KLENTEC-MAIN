@@ -3,6 +3,7 @@ import EnterpriseHeroSection from "@/components/home/EnterpriseHeroSection";
 import SocialProofBanner from "@/components/home/SocialProofBanner";
 import EnterpriseServicesShowcase from "@/components/home/EnterpriseServicesShowcase";
 import StrategicCTASection from "@/components/home/StrategicCTASection";
+import { TestimonialsPreview } from "@/components/TestimonialsPreview";
 
 // Existing sections (legacy - can be optimized later)
 import LogoMarquee from "@/components/home/LogoMarquee";
@@ -39,6 +40,9 @@ const HomePage = () => (
 
     {/* Lead generation section */}
     <StrategicCTASection />
+
+    {/* Real Client Testimonials */}
+    <TestimonialsPreview />
 
     {/* Existing sections */}
     <GrowthAuditSection />
