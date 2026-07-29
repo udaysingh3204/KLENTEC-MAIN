@@ -7,6 +7,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import PublicLayout from "@/components/PublicLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminReviews from "./pages/AdminReviews";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboardHome from "./pages/AdminDashboardHome";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 // Public pages
 import HomePage from "./pages/HomePage";
@@ -64,9 +67,34 @@ const App = () => (
             <Route path="/services/24-hour-web-dev" element={<FastTrackWebDevPage />} />
           </Route>
 
+          {/* ── Admin Authentication ── */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
           {/* ── Admin Dashboard (protected) ── */}
-          <Route path="/admin/leads" element={<AdminDashboard />} />
-          <Route path="/admin/reviews" element={<AdminReviews />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboardHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/leads"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/reviews"
+            element={
+              <ProtectedRoute>
+                <AdminReviews />
+              </ProtectedRoute>
+            }
+          />
 
           {/* ── 404 ── */}
           <Route path="*" element={<NotFound />} />

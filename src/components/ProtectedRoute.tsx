@@ -1,32 +1,30 @@
-import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
-import type { UserRole } from '@/lib/types'
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { getCurrentAdmin } from "@/services/adminAuthService";
 
-interface Props {
-  role: UserRole
-}
+export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
-const ProtectedRoute = ({ role }: Props) => {
-  const { user, profile, loading } = useAuth()
+  useEffect(() => {
+    const checkAuth = async () => {
+      const user = await getCurrentAdmin();
+      setIsAuthenticated(!!user);
+    };
 
-  if (loading) {
+    checkAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-          <p className="text-sm text-muted-foreground">Loading…</p>
-        </div>
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <div className="text-slate-400">Loading...</div>
       </div>
-    )
+    );
   }
 
-  if (!user) return <Navigate to="/login" replace />
-
-  if (profile && profile.role !== role) {
-    return <Navigate to={profile.role === 'admin' ? '/admin' : '/client'} replace />
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
   }
 
-  return <Outlet />
-}
-
-export default ProtectedRoute
+  return <>{children}</>;
+};
