@@ -13,7 +13,7 @@ const TermsPage = () => {
           >
             Terms & Conditions
           </motion.h1>
-          <p className="text-lg text-slate-300">Last updated: July 2, 2026</p>
+          <p className="text-lg text-slate-300">Last updated: July 2, 2024</p>
         </div>
       </section>
 
@@ -113,9 +113,9 @@ const TermsPage = () => {
                 <h2 className="text-2xl font-bold text-white mb-4">11. Contact Information</h2>
                 <p>If you have any questions about these Terms & Conditions, please contact us at:</p>
                 <div className="mt-4 text-slate-300">
-                  <p><strong>Email:</strong> legal@klentec.com</p>
+                  <p><strong>Email:</strong> info@klentec.com</p>
                   <p><strong>Phone:</strong> +91 9557 630336</p>
-                  <p><strong>Address:</strong> KLENTEC, India</p>
+                  <p><strong>Address:</strong> KLENTEC, Noida, Uttar Pradesh, India</p>
                 </div>
               </div>
 

@@ -29,7 +29,7 @@ const footerSections = [
       { label: "Blog", to: "/blog" },
       { label: "Testimonials", to: "/testimonials" },
       { label: "Case Studies", to: "/work" },
-      { label: "FAQ", to: "/#faq" },
+      { label: "FAQ", to: "/faq" },
     ],
   },
   {
@@ -55,18 +55,18 @@ const socialLinks = [
     label: "Instagram",
     color: "hover:text-pink-500",
   },
-  {
-    icon: Twitter,
-    href: "https://twitter.com/klentec",
-    label: "Twitter",
-    color: "hover:text-sky-500",
-  },
-  {
-    icon: Github,
-    href: "https://github.com/klentec",
-    label: "GitHub",
-    color: "hover:text-slate-400",
-  },
+  // {
+  //   icon: Twitter,
+  //   href: "https://twitter.com/klentec",
+  //   label: "Twitter",
+  //   color: "hover:text-sky-500",
+  // },
+  // {
+  //   icon: Github,
+  //   href: "https://github.com/klentec",
+  //   label: "GitHub",
+  //   color: "hover:text-slate-400",
+  // },
 ];
 
 const contactInfo = [
@@ -85,7 +85,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Office",
-    value: "India",
+    value: "Noida, Uttar Pradesh, India",
   },
 ];
 

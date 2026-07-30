@@ -23,6 +23,7 @@ import CareersPage from "./pages/CareersPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
+import FAQPage from "./pages/FAQPage";
 import NotFound from "./pages/NotFound";
 
 // Service pages
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="/privacy"      element={<PrivacyPage />} />
             <Route path="/terms"        element={<TermsPage />} />
             <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route path="/faq"          element={<FAQPage />} />
 
             {/* Service Pages */}
             <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
