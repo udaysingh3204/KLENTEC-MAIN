@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { submitLead } from "@/services/leadService";
+import { getCTAData, getFormPreFill, clearCTAData } from "@/services/ctaService";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,20 @@ const ContactPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Handle CTA pre-fill on mount
+  useEffect(() => {
+    const ctaData = getCTAData();
+    if (ctaData) {
+      const preFill = getFormPreFill(ctaData.type);
+      setFormData((prev) => ({
+        ...prev,
+        service: preFill.serviceInterest || prev.service,
+        message: preFill.message || prev.message,
+      }));
+      clearCTAData();
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
