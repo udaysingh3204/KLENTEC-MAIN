@@ -5,6 +5,7 @@ import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 const FastTrackWebDevPage = () => {
   const features = [
@@ -76,7 +77,8 @@ const FastTrackWebDevPage = () => {
   const tiers = [
     {
       name: "Starter Speed",
-      price: "₹6,249",
+      price: "₹7,811",
+      originalPrice: "₹6,249",
       period: "one-time",
       description: "Landing page + lead capture",
       features: [
@@ -92,7 +94,8 @@ const FastTrackWebDevPage = () => {
     },
     {
       name: "Enterprise Speed",
-      price: "₹12,499",
+      price: "₹15,624",
+      originalPrice: "₹12,499",
       period: "one-time",
       description: "Full 5-page business website",
       features: [
@@ -110,7 +113,8 @@ const FastTrackWebDevPage = () => {
     },
     {
       name: "Growth Accelerator",
-      price: "₹24,999",
+      price: "₹31,249",
+      originalPrice: "₹24,999",
       period: "one-time",
       description: "Complete digital ecosystem",
       features: [

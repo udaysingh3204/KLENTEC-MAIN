@@ -88,7 +88,7 @@ const FAQPage = () => {
         {
           id: "q11",
           q: "How much do your services cost?",
-          a: "Pricing varies based on project scope. Our 24-Hour Web Dev starts at ₹12,499. We offer flexible packages for different budgets. Contact us for a custom quote.",
+          a: "Pricing varies based on project scope. Our 24-Hour Web Dev starts at ₹7,811. We offer flexible packages for different budgets. Contact us for a custom quote.",
         },
         {
           id: "q12",
