@@ -2,6 +2,7 @@
 import EnterpriseHeroSection from "@/components/home/EnterpriseHeroSection";
 import SocialProofBanner from "@/components/home/SocialProofBanner";
 import EnterpriseServicesShowcase from "@/components/home/EnterpriseServicesShowcase";
+import PricingShowcase from "@/components/home/PricingShowcase";
 import StrategicCTASection from "@/components/home/StrategicCTASection";
 import { TestimonialsPreview } from "@/components/TestimonialsPreview";
 
@@ -26,6 +27,7 @@ const HomePage = () => (
     <EnterpriseHeroSection />
     <SocialProofBanner />
     <EnterpriseServicesShowcase />
+    <PricingShowcase />
 
     {/* Supporting sections */}
     <ProblemSection />
