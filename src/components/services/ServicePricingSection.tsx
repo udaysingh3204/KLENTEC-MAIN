@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { PriceDisplay } from "@/components/PriceDisplay";
 
 interface PricingTier {
   name: string;
   price: string;
+  originalPrice?: string;
+  showDiscount?: boolean;
   period: string;
   description: string;
   features: string[];
@@ -81,12 +84,22 @@ const ServicePricingSection = ({
 
                 {/* Price */}
                 <div className="mb-8">
-                  <div className={`text-4xl font-bold mb-1 ${
-                    tier.highlighted ? "text-white" : "text-white"
-                  }`}>
-                    {tier.price}
-                  </div>
-                  <div className={`text-sm ${
+                  {tier.showDiscount && tier.originalPrice ? (
+                    <PriceDisplay
+                      originalPrice={tier.originalPrice}
+                      newPrice={tier.price}
+                      label="Limited Time Offer"
+                      showBadge={true}
+                      size="md"
+                    />
+                  ) : (
+                    <div className={`text-4xl font-bold mb-1 ${
+                      tier.highlighted ? "text-white" : "text-white"
+                    }`}>
+                      {tier.price}
+                    </div>
+                  )}
+                  <div className={`text-sm mt-2 ${
                     tier.highlighted ? "text-white/80" : "text-slate-400"
                   }`}>
                     {tier.period}
