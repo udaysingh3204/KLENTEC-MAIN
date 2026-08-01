@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
+import { CTAButton } from "@/components/CTAButton";
 import { Link } from "react-router-dom";
 
 const PricingShowcase = () => {
@@ -171,19 +172,17 @@ const PricingShowcase = () => {
                 </ul>
 
                 {/* CTA Button */}
-                <Link to={tier.link} className="block">
-                  <Button
-                    size="lg"
-                    className={`w-full font-semibold group ${
-                      tier.popular
-                        ? "bg-white text-purple-600 hover:bg-slate-100"
-                        : "bg-slate-800 text-white hover:bg-slate-700 border border-slate-700"
-                    }`}
-                  >
-                    Get Started
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+                <CTAButton
+                  type="lead-form"
+                  label="Get Started"
+                  source={tier.title}
+                  variant={tier.popular ? "primary" : "secondary"}
+                  className={`w-full justify-center text-base py-3 ${
+                    tier.popular
+                      ? "bg-white text-purple-600 hover:bg-slate-100"
+                      : ""
+                  }`}
+                />
               </div>
             </motion.div>
           ))}

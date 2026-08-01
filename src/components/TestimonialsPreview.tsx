@@ -4,6 +4,7 @@ import { Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getReviews, getReviewStats } from "@/services/reviewService";
 import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
 
 interface Review {
   id?: string;
@@ -170,11 +171,13 @@ export const TestimonialsPreview = () => {
                 />
               </Button>
             </Link>
-            <Link to="/contact">
-              <Button className="border border-slate-600 text-slate-300 hover:border-purple-500 hover:text-purple-400 font-semibold px-8 py-3 rounded-lg transition-all">
-                Get Started
-              </Button>
-            </Link>
+            <CTAButton
+              type="lead-form"
+              label="Get Started"
+              source="Testimonials Preview"
+              variant="outline"
+              className="px-8 py-3"
+            />
           </div>
         </motion.div>
       </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
+import { CTAButton } from "@/components/CTAButton";
 
 interface PricingTier {
   name: string;
@@ -123,17 +124,17 @@ const ServicePricingSection = ({
                 </ul>
 
                 {/* CTA */}
-                <Button
-                  size="lg"
-                  className={`w-full font-semibold ${
+                <CTAButton
+                  type="lead-form"
+                  label={tier.cta}
+                  source={tier.name}
+                  variant={tier.highlighted ? "primary" : "secondary"}
+                  className={`w-full justify-center text-base py-3 ${
                     tier.highlighted
-                      ? "bg-white text-slate-900 hover:bg-slate-100"
-                      : "bg-slate-800 text-white hover:bg-slate-700 border border-slate-700"
+                      ? "bg-white text-purple-600 hover:bg-slate-100"
+                      : ""
                   }`}
-                >
-                  {tier.cta}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                />
               </div>
             </motion.div>
           ))}

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Clock, Zap, TrendingUp, CheckCircle } from "lucide-react";
+import { CTAButton } from "@/components/CTAButton";
 
 const StrategicCTASection = () => {
   const ctaOptions = [
@@ -104,17 +105,33 @@ const StrategicCTASection = () => {
                 </ul>
 
                 {/* CTA Button */}
-                <Button
-                  size="lg"
-                  className={`w-full font-semibold ${
-                    option.primary
-                      ? "bg-white text-purple-600 hover:bg-slate-100"
-                      : "bg-purple-600 text-white hover:bg-purple-700"
-                  }`}
-                  asChild
-                >
-                  <a href={option.href}>{option.cta}</a>
-                </Button>
+                {option.primary ? (
+                  <CTAButton
+                    type="strategy-call"
+                    label={option.cta}
+                    source="Homepage CTA"
+                    variant="primary"
+                    className="w-full justify-center text-base py-3 bg-white text-purple-600 hover:bg-slate-100"
+                  />
+                ) : option.href.includes("wa.me") ? (
+                  <Button
+                    size="lg"
+                    className="w-full font-semibold bg-purple-600 text-white hover:bg-purple-700"
+                    asChild
+                  >
+                    <a href={option.href} target="_blank" rel="noopener noreferrer">
+                      {option.cta}
+                    </a>
+                  </Button>
+                ) : (
+                  <CTAButton
+                    type="growth-audit"
+                    label={option.cta}
+                    source="Homepage CTA"
+                    variant="secondary"
+                    className="w-full justify-center text-base py-3"
+                  />
+                )}
               </motion.div>
             );
           })}

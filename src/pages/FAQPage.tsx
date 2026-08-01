@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CTAButton } from "@/components/CTAButton";
 
 interface FAQItem {
   category: string;
@@ -274,11 +275,13 @@ const FAQPage = () => {
               Our team is ready to help. Schedule a free consultation or reach out directly.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/contact">
-                <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-3 rounded-lg">
-                  Contact Us
-                </Button>
-              </a>
+              <CTAButton
+                type="lead-form"
+                label="Contact Us"
+                source="FAQ Page"
+                variant="primary"
+                className="px-8 py-3 text-base"
+              />
               <a href="tel:+919557630336">
                 <Button
                   variant="outline"
