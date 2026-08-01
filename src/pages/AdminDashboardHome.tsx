@@ -6,6 +6,8 @@ import { adminSignOut, getCurrentAdmin } from "@/services/adminAuthService";
 import { getLeads } from "@/services/leadService";
 import { getReviews, getReviewStats } from "@/services/reviewService";
 import { Button } from "@/components/ui/button";
+import { AnalyticsOverview } from "@/components/admin/AnalyticsOverview";
+import { LeadSourceChart } from "@/components/admin/LeadSourceChart";
 
 interface AdminStats {
   totalLeads: number;
@@ -153,8 +155,25 @@ const AdminDashboardHome = () => {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-6 py-12">
+        {/* Enhanced Analytics */}
+        <AnalyticsOverview
+          totalLeads={stats.totalLeads}
+          totalReviews={stats.totalReviews}
+          avgRating={stats.avgRating}
+        />
+
+        {/* Lead Source Analysis */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-12"
+        >
+          <LeadSourceChart />
+        </motion.div>
+
         {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 mt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
