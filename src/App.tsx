@@ -4,37 +4,49 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { RegionalProvider } from "@/contexts/RegionalContext";
+import { lazy, Suspense } from "react";
 
 import PublicLayout from "@/components/PublicLayout";
-import AdminDashboard from "./pages/AdminDashboard";
-import AdminReviews from "./pages/AdminReviews";
-import AdminLogin from "./pages/AdminLogin";
-import AdminDashboardHome from "./pages/AdminDashboardHome";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
-// Public pages
+// Critical pages (loaded immediately)
 import HomePage from "./pages/HomePage";
-import ServicesPage from "./pages/ServicesPage";
-import WorkPage from "./pages/WorkPage";
-import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import BlogPage from "./pages/BlogPage";
-import TeamPage from "./pages/TeamPage";
-import CareersPage from "./pages/CareersPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import TermsPage from "./pages/TermsPage";
-import TestimonialsPage from "./pages/TestimonialsPage";
-import FAQPage from "./pages/FAQPage";
+import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
 
-// Service pages
-import DigitalMarketingPage from "./pages/services/DigitalMarketingPage";
-import WebDevelopmentPage from "./pages/services/WebDevelopmentPage";
-import DesignBrandingPage from "./pages/services/DesignBrandingPage";
-import AutomationPage from "./pages/services/AutomationPage";
-import StrategyPage from "./pages/services/StrategyPage";
-import ManagedServicesPage from "./pages/services/ManagedServicesPage";
-import FastTrackWebDevPage from "./pages/services/FastTrackWebDevPage";
+// Lazy-loaded pages (loaded on demand)
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const WorkPage = lazy(() => import("./pages/WorkPage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const TeamPage = lazy(() => import("./pages/TeamPage"));
+const CareersPage = lazy(() => import("./pages/CareersPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
+const TestimonialsPage = lazy(() => import("./pages/TestimonialsPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
+
+// Admin pages (lazy loaded)
+const AdminDashboardHome = lazy(() => import("./pages/AdminDashboardHome"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const AdminReviews = lazy(() => import("./pages/AdminReviews"));
+
+// Service pages (lazy loaded)
+const DigitalMarketingPage = lazy(() => import("./pages/services/DigitalMarketingPage"));
+const WebDevelopmentPage = lazy(() => import("./pages/services/WebDevelopmentPage"));
+const DesignBrandingPage = lazy(() => import("./pages/services/DesignBrandingPage"));
+const AutomationPage = lazy(() => import("./pages/services/AutomationPage"));
+const StrategyPage = lazy(() => import("./pages/services/StrategyPage"));
+const ManagedServicesPage = lazy(() => import("./pages/services/ManagedServicesPage"));
+const FastTrackWebDevPage = lazy(() => import("./pages/services/FastTrackWebDevPage"));
+
+// Loading fallback
+const PageLoader = () => (
+  <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+    <div className="text-slate-400">Loading...</div>
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -49,26 +61,26 @@ const App = () => (
           {/* ── Public marketing site (Navbar + Footer) ── */}
           <Route element={<PublicLayout />}>
             <Route path="/"         element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/work"     element={<WorkPage />} />
-            <Route path="/about"    element={<AboutPage />} />
+            <Route path="/services" element={<Suspense fallback={<PageLoader />}><ServicesPage /></Suspense>} />
+            <Route path="/work"     element={<Suspense fallback={<PageLoader />}><WorkPage /></Suspense>} />
+            <Route path="/about"    element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
             <Route path="/contact"  element={<ContactPage />} />
-            <Route path="/blog"     element={<BlogPage />} />
-            <Route path="/team"     element={<TeamPage />} />
-            <Route path="/careers"  element={<CareersPage />} />
-            <Route path="/privacy"      element={<PrivacyPage />} />
-            <Route path="/terms"        element={<TermsPage />} />
-            <Route path="/testimonials" element={<TestimonialsPage />} />
-            <Route path="/faq"          element={<FAQPage />} />
+            <Route path="/blog"     element={<Suspense fallback={<PageLoader />}><BlogPage /></Suspense>} />
+            <Route path="/team"     element={<Suspense fallback={<PageLoader />}><TeamPage /></Suspense>} />
+            <Route path="/careers"  element={<Suspense fallback={<PageLoader />}><CareersPage /></Suspense>} />
+            <Route path="/privacy"      element={<Suspense fallback={<PageLoader />}><PrivacyPage /></Suspense>} />
+            <Route path="/terms"        element={<Suspense fallback={<PageLoader />}><TermsPage /></Suspense>} />
+            <Route path="/testimonials" element={<Suspense fallback={<PageLoader />}><TestimonialsPage /></Suspense>} />
+            <Route path="/faq"          element={<Suspense fallback={<PageLoader />}><FAQPage /></Suspense>} />
 
             {/* Service Pages */}
-            <Route path="/services/digital-marketing" element={<DigitalMarketingPage />} />
-            <Route path="/services/web-development" element={<WebDevelopmentPage />} />
-            <Route path="/services/design-branding" element={<DesignBrandingPage />} />
-            <Route path="/services/automation" element={<AutomationPage />} />
-            <Route path="/services/strategy" element={<StrategyPage />} />
-            <Route path="/services/managed-services" element={<ManagedServicesPage />} />
-            <Route path="/services/24-hour-web-dev" element={<FastTrackWebDevPage />} />
+            <Route path="/services/digital-marketing" element={<Suspense fallback={<PageLoader />}><DigitalMarketingPage /></Suspense>} />
+            <Route path="/services/web-development" element={<Suspense fallback={<PageLoader />}><WebDevelopmentPage /></Suspense>} />
+            <Route path="/services/design-branding" element={<Suspense fallback={<PageLoader />}><DesignBrandingPage /></Suspense>} />
+            <Route path="/services/automation" element={<Suspense fallback={<PageLoader />}><AutomationPage /></Suspense>} />
+            <Route path="/services/strategy" element={<Suspense fallback={<PageLoader />}><StrategyPage /></Suspense>} />
+            <Route path="/services/managed-services" element={<Suspense fallback={<PageLoader />}><ManagedServicesPage /></Suspense>} />
+            <Route path="/services/24-hour-web-dev" element={<Suspense fallback={<PageLoader />}><FastTrackWebDevPage /></Suspense>} />
           </Route>
 
           {/* ── Admin Authentication ── */}
@@ -79,7 +91,9 @@ const App = () => (
             path="/admin"
             element={
               <ProtectedRoute>
-                <AdminDashboardHome />
+                <Suspense fallback={<PageLoader />}>
+                  <AdminDashboardHome />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -87,7 +101,9 @@ const App = () => (
             path="/admin/leads"
             element={
               <ProtectedRoute>
-                <AdminDashboard />
+                <Suspense fallback={<PageLoader />}>
+                  <AdminDashboard />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -95,7 +111,9 @@ const App = () => (
             path="/admin/reviews"
             element={
               <ProtectedRoute>
-                <AdminReviews />
+                <Suspense fallback={<PageLoader />}>
+                  <AdminReviews />
+                </Suspense>
               </ProtectedRoute>
             }
           />
