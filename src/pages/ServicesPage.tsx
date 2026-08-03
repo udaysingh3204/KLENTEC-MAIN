@@ -16,8 +16,9 @@ import {
   Zap,
   Rocket,
 } from "lucide-react";
+import { useRegionalPrice } from "@/hooks/useRegionalPrice";
 
-type Row = { name: string; price: string };
+type Row = { name: string; serviceId: string };
 type Group = { title: string; rows: Row[] };
 type Category = {
   id: string;
@@ -38,36 +39,36 @@ const categories: Category[] = [
       {
         title: "Logo & Identity",
         rows: [
-          { name: "Basic Logo Design", price: "₹6,249" },
-          { name: "Premium Logo Design", price: "₹15,000+" },
-          { name: "Luxury Brand Identity", price: "₹31,250+" },
-          { name: "Brand Guidelines Book", price: "₹18,750+" },
-          { name: "Brand Naming & Strategy", price: "₹25,000+" },
+          { name: "Basic Logo Design", serviceId: "logo-basic" },
+          { name: "Premium Logo Design", serviceId: "logo-premium" },
+          { name: "Luxury Brand Identity", serviceId: "logo-luxury" },
+          { name: "Brand Guidelines Book", serviceId: "branding-guidelines" },
+          { name: "Brand Naming & Strategy", serviceId: "brand-naming" },
         ],
       },
       {
         title: "Marketing Design",
         rows: [
-          { name: "Social Media Post Design", price: "₹749/post" },
-          { name: "Premium Creative Design", price: "₹1,500/post" },
-          { name: "Carousel Design", price: "₹3,125+" },
-          { name: "Story Design", price: "₹438/story" },
-          { name: "Flyer / Poster Design", price: "₹1,500+" },
-          { name: "Brochure Design", price: "₹9,375+" },
-          { name: "Catalogue Design", price: "₹6,250+" },
-          { name: "Pitch Deck Design", price: "₹12,500+" },
-          { name: "Packaging Design", price: "₹6,250+" },
+          { name: "Social Media Post Design", serviceId: "social-post" },
+          { name: "Premium Creative Design", serviceId: "social-post-premium" },
+          { name: "Carousel Design", serviceId: "carousel-design" },
+          { name: "Story Design", serviceId: "story-design" },
+          { name: "Flyer / Poster Design", serviceId: "flyer-poster" },
+          { name: "Brochure Design", serviceId: "brochure" },
+          { name: "Catalogue Design", serviceId: "catalogue" },
+          { name: "Pitch Deck Design", serviceId: "pitch-deck" },
+          { name: "Packaging Design", serviceId: "packaging" },
         ],
       },
       {
         title: "Business Essentials",
         rows: [
-          { name: "Business Card Design", price: "₹1,249" },
-          { name: "Letterhead Design", price: "₹999" },
-          { name: "Email Signature Design", price: "₹1,249" },
-          { name: "ID Card Design", price: "₹999" },
-          { name: "Invoice Design", price: "₹1,875+" },
-          { name: "Company Profile Design", price: "₹15,000+" },
+          { name: "Business Card Design", serviceId: "business-card" },
+          { name: "Letterhead Design", serviceId: "letterhead" },
+          { name: "Email Signature Design", serviceId: "email-signature" },
+          { name: "ID Card Design", serviceId: "id-card" },
+          { name: "Invoice Design", serviceId: "invoice-design" },
+          { name: "Company Profile Design", serviceId: "company-profile" },
         ],
       },
     ],
@@ -81,22 +82,22 @@ const categories: Category[] = [
       {
         title: "Monthly Social Media Plans",
         rows: [
-          { name: "Starter Plan", price: "₹9,999/month" },
-          { name: "Growth Plan", price: "₹18,749/month" },
-          { name: "Business Plan", price: "₹37,499/month" },
-          { name: "Scale-Up Plan", price: "₹74,999/month" },
-          { name: "Enterprise Plan", price: "₹1.25L+/month" },
+          { name: "Starter Plan", serviceId: "social-starter" },
+          { name: "Growth Plan", serviceId: "social-growth" },
+          { name: "Business Plan", serviceId: "social-business" },
+          { name: "Scale-Up Plan", serviceId: "social-scaleup" },
+          { name: "Enterprise Plan", serviceId: "social-enterprise" },
         ],
       },
       {
         title: "Performance Marketing",
         rows: [
-          { name: "Meta Ads Management", price: "₹18,750+/month" },
-          { name: "Google Ads Management", price: "₹25,000+/month" },
-          { name: "Lead Generation Campaigns", price: "₹31,250+/month" },
-          { name: "E-commerce Ads Scaling", price: "₹43,750+/month" },
-          { name: "Conversion Funnel Setup", price: "₹37,500+" },
-          { name: "Retargeting Campaigns", price: "₹18,750+" },
+          { name: "Meta Ads Management", serviceId: "meta-ads" },
+          { name: "Google Ads Management", serviceId: "google-ads" },
+          { name: "Lead Generation Campaigns", serviceId: "lead-generation" },
+          { name: "E-commerce Ads Scaling", serviceId: "ecom-ads" },
+          { name: "Conversion Funnel Setup", serviceId: "conversion-funnel" },
+          { name: "Retargeting Campaigns", serviceId: "retargeting" },
         ],
       },
     ],
@@ -124,34 +125,34 @@ const categories: Category[] = [
       {
         title: "Production Services",
         rows: [
-          { name: "Reel Shoot", price: "₹7,500/day" },
-          { name: "Promo Video Production", price: "₹15,000/day" },
-          { name: "Corporate Shoot", price: "₹22,500/day" },
-          { name: "Event Coverage", price: "₹18,750/day" },
-          { name: "Podcast Production", price: "₹25,000+" },
-          { name: "Music Video Production", price: "₹62,500+" },
-          { name: "Documentary Production", price: "₹43,750+" },
+          { name: "Reel Shoot", serviceId: "reel-shoot" },
+          { name: "Promo Video Production", serviceId: "promo-video" },
+          { name: "Corporate Shoot", serviceId: "corporate-shoot" },
+          { name: "Event Coverage", serviceId: "event-coverage" },
+          { name: "Podcast Production", serviceId: "podcast" },
+          { name: "Music Video Production", serviceId: "music-video" },
+          { name: "Documentary Production", serviceId: "documentary" },
         ],
       },
       {
         title: "Editing Services",
         rows: [
-          { name: "Reel Editing", price: "₹1,875+" },
-          { name: "YouTube Video Editing", price: "₹5,000+" },
-          { name: "Corporate Editing", price: "₹12,500+" },
-          { name: "Motion Graphics", price: "₹10,000+" },
-          { name: "VFX Editing", price: "₹18,750+" },
-          { name: "Thumbnail Design", price: "₹1,249+" },
+          { name: "Reel Editing", serviceId: "reel-editing" },
+          { name: "YouTube Video Editing", serviceId: "youtube-editing" },
+          { name: "Corporate Editing", serviceId: "corporate-editing" },
+          { name: "Motion Graphics", serviceId: "motion-graphics" },
+          { name: "VFX Editing", serviceId: "vfx-editing" },
+          { name: "Thumbnail Design", serviceId: "thumbnail" },
         ],
       },
       {
         title: "Production Add-ons",
         rows: [
-          { name: "Drone Shoot", price: "₹9,375/day" },
-          { name: "Insta360 Shoot", price: "₹6,250/day" },
-          { name: "Voiceover", price: "₹4,375+" },
-          { name: "Scriptwriting", price: "₹9,375+" },
-          { name: "Studio Setup", price: "₹18,750/day" },
+          { name: "Drone Shoot", serviceId: "drone-shoot" },
+          { name: "Insta360 Shoot", serviceId: "insta360-shoot" },
+          { name: "Voiceover", serviceId: "voiceover" },
+          { name: "Scriptwriting", serviceId: "scriptwriting" },
+          { name: "Studio Setup", serviceId: "studio-setup" },
         ],
       },
     ],
@@ -165,32 +166,32 @@ const categories: Category[] = [
       {
         title: "Business Websites",
         rows: [
-          { name: "Landing Page Website", price: "₹18,750+" },
-          { name: "Business Website", price: "₹43,750+" },
-          { name: "Corporate Website", price: "₹93,750+" },
-          { name: "Portfolio Website", price: "₹25,000+" },
-          { name: "News / Blog Website", price: "₹50,000+" },
+          { name: "Landing Page Website", serviceId: "landing-page" },
+          { name: "Business Website", serviceId: "business-website" },
+          { name: "Corporate Website", serviceId: "corporate-website" },
+          { name: "Portfolio Website", serviceId: "portfolio-website" },
+          { name: "News / Blog Website", serviceId: "blog-website" },
         ],
       },
       {
         title: "E-Commerce Development",
         rows: [
-          { name: "Shopify Store", price: "₹56,250+" },
-          { name: "WooCommerce Store", price: "₹68,750+" },
-          { name: "Custom E-commerce Platform", price: "₹2.5L+" },
-          { name: "Marketplace Development", price: "₹5L+" },
-          { name: "Quick Commerce Platform", price: "₹6.25L+" },
+          { name: "Shopify Store", serviceId: "shopify-store" },
+          { name: "WooCommerce Store", serviceId: "woocommerce-store" },
+          { name: "Custom E-commerce Platform", serviceId: "custom-ecom" },
+          { name: "Marketplace Development", serviceId: "marketplace" },
+          { name: "Quick Commerce Platform", serviceId: "quick-commerce" },
         ],
       },
       {
         title: "Premium Web Development",
         rows: [
-          { name: "React.js Website", price: "₹75,000+" },
-          { name: "Next.js Platform", price: "₹1.25L+" },
-          { name: "MERN Stack Application", price: "₹2.5L+" },
-          { name: "SaaS MVP Development", price: "₹5L+" },
-          { name: "Custom Admin Dashboard", price: "₹93,750+" },
-          { name: "CRM / ERP System", price: "₹3.75L+" },
+          { name: "React.js Website", serviceId: "react-website" },
+          { name: "Next.js Platform", serviceId: "nextjs-platform" },
+          { name: "MERN Stack Application", serviceId: "mern-app" },
+          { name: "SaaS MVP Development", serviceId: "saas-mvp" },
+          { name: "Custom Admin Dashboard", serviceId: "admin-dashboard" },
+          { name: "CRM / ERP System", serviceId: "crm-erp" },
         ],
       },
     ],
@@ -204,14 +205,14 @@ const categories: Category[] = [
       {
         title: "App Development",
         rows: [
-          { name: "Android App Development", price: "₹1.25L+" },
-          { name: "iOS App Development", price: "₹1.875L+" },
-          { name: "Flutter App Development", price: "₹1.875L+" },
-          { name: "React Native App", price: "₹1.875L+" },
-          { name: "Food Delivery App", price: "₹5L+" },
-          { name: "Booking App", price: "₹3.75L+" },
-          { name: "E-commerce App", price: "₹4.375L+" },
-          { name: "Custom Startup App", price: "₹7.5L+" },
+          { name: "Android App Development", serviceId: "android-app" },
+          { name: "iOS App Development", serviceId: "ios-app" },
+          { name: "Flutter App Development", serviceId: "flutter-app" },
+          { name: "React Native App", serviceId: "react-native" },
+          { name: "Food Delivery App", serviceId: "food-delivery" },
+          { name: "Booking App", serviceId: "booking-app" },
+          { name: "E-commerce App", serviceId: "ecom-app" },
+          { name: "Custom Startup App", serviceId: "startup-app" },
         ],
       },
     ],
@@ -225,22 +226,22 @@ const categories: Category[] = [
       {
         title: "AI Solutions",
         rows: [
-          { name: "AI Chatbot Development", price: "₹62,500+" },
-          { name: "GPT Integration", price: "₹43,750+" },
-          { name: "AI Customer Support System", price: "₹1.25L+" },
-          { name: "AI Workflow Automation", price: "₹93,750+" },
-          { name: "AI SaaS Development", price: "₹7.5L+" },
-          { name: "AI Recommendation System", price: "₹2.5L+" },
+          { name: "AI Chatbot Development", serviceId: "ai-chatbot" },
+          { name: "GPT Integration", serviceId: "gpt-integration" },
+          { name: "AI Customer Support System", serviceId: "ai-support" },
+          { name: "AI Workflow Automation", serviceId: "ai-workflow" },
+          { name: "AI SaaS Development", serviceId: "ai-saas" },
+          { name: "AI Recommendation System", serviceId: "ai-recommendation" },
         ],
       },
       {
         title: "Automation Services",
         rows: [
-          { name: "WhatsApp Automation", price: "₹31,250+" },
-          { name: "CRM Automation", price: "₹50,000+" },
-          { name: "Email Automation Funnel", price: "₹43,750+" },
-          { name: "Lead Management Automation", price: "₹62,500+" },
-          { name: "Business Workflow Automation", price: "₹1.25L+" },
+          { name: "WhatsApp Automation", serviceId: "whatsapp-automation" },
+          { name: "CRM Automation", serviceId: "crm-automation" },
+          { name: "Email Automation Funnel", serviceId: "email-automation" },
+          { name: "Lead Management Automation", serviceId: "lead-automation" },
+          { name: "Business Workflow Automation", serviceId: "workflow-automation" },
         ],
       },
     ],
@@ -254,23 +255,23 @@ const categories: Category[] = [
       {
         title: "Payment & Banking",
         rows: [
-          { name: "Razorpay Integration", price: "₹18,750+" },
-          { name: "Cashfree Integration", price: "₹22,500+" },
-          { name: "PhonePe Payment Integration", price: "₹25,000+" },
-          { name: "Subscription Billing System", price: "₹1.25L+" },
-          { name: "Wallet System Development", price: "₹2.5L+" },
-          { name: "Payout System Development", price: "₹3.125L+" },
+          { name: "Razorpay Integration", serviceId: "razorpay-integration" },
+          { name: "Cashfree Integration", serviceId: "cashfree-integration" },
+          { name: "PhonePe Payment Integration", serviceId: "phonepe-integration" },
+          { name: "Subscription Billing System", serviceId: "subscription-billing" },
+          { name: "Wallet System Development", serviceId: "wallet-system" },
+          { name: "Payout System Development", serviceId: "payout-system" },
         ],
       },
       {
         title: "Fintech Platforms",
         rows: [
-          { name: "GST Billing Software", price: "₹1.25L+" },
-          { name: "Invoice Management Platform", price: "₹1.875L+" },
-          { name: "Fintech Dashboard", price: "₹3.75L+" },
-          { name: "Banking API Integration", price: "₹2.5L+" },
-          { name: "KYC Verification Integration", price: "₹62,500+" },
-          { name: "Loan Management System", price: "₹5L+" },
+          { name: "GST Billing Software", serviceId: "gst-billing" },
+          { name: "Invoice Management Platform", serviceId: "invoice-platform" },
+          { name: "Fintech Dashboard", serviceId: "fintech-dashboard" },
+          { name: "Banking API Integration", serviceId: "banking-api" },
+          { name: "KYC Verification Integration", serviceId: "kyc-verification" },
+          { name: "Loan Management System", serviceId: "loan-management" },
         ],
       },
     ],
@@ -284,20 +285,20 @@ const categories: Category[] = [
       {
         title: "Marketplace Setup",
         rows: [
-          { name: "Amazon Seller Setup", price: "₹12,500+" },
-          { name: "Flipkart Seller Setup", price: "₹12,500+" },
-          { name: "Myntra Setup", price: "₹22,500+" },
-          { name: "Meesho Setup", price: "₹9,375+" },
-          { name: "Blinkit / Zepto Setup", price: "₹31,250+" },
+          { name: "Amazon Seller Setup", serviceId: "amazon-setup" },
+          { name: "Flipkart Seller Setup", serviceId: "flipkart-setup" },
+          { name: "Myntra Setup", serviceId: "myntra-setup" },
+          { name: "Meesho Setup", serviceId: "meesho-setup" },
+          { name: "Blinkit / Zepto Setup", serviceId: "blinkit-setup" },
         ],
       },
       {
         title: "Marketplace Management",
         rows: [
-          { name: "Product Upload", price: "₹94/product" },
-          { name: "Marketplace Management", price: "₹18,750+/month" },
-          { name: "Quick Commerce Management", price: "₹50,000+/month" },
-          { name: "Inventory Automation", price: "₹25,000+" },
+          { name: "Product Upload", serviceId: "product-upload" },
+          { name: "Marketplace Management", serviceId: "marketplace-mgmt" },
+          { name: "Quick Commerce Management", serviceId: "quick-commerce-mgmt" },
+          { name: "Inventory Automation", serviceId: "inventory-automation" },
         ],
       },
     ],
@@ -311,12 +312,12 @@ const categories: Category[] = [
       {
         title: "SEO Services",
         rows: [
-          { name: "Basic SEO", price: "₹12,500+/month" },
-          { name: "Advanced SEO", price: "₹37,500+/month" },
-          { name: "Enterprise SEO", price: "₹93,750+/month" },
-          { name: "Technical SEO Audit", price: "₹25,000+" },
-          { name: "Backlink Building", price: "₹18,750+" },
-          { name: "Local SEO", price: "₹22,500+/month" },
+          { name: "Basic SEO", serviceId: "seo-basic" },
+          { name: "Advanced SEO", serviceId: "seo-advanced" },
+          { name: "Enterprise SEO", serviceId: "seo-enterprise" },
+          { name: "Technical SEO Audit", serviceId: "seo-audit" },
+          { name: "Backlink Building", serviceId: "backlink-building" },
+          { name: "Local SEO", serviceId: "local-seo" },
         ],
       },
     ],
@@ -330,12 +331,12 @@ const categories: Category[] = [
       {
         title: "Communication Solutions",
         rows: [
-          { name: "WhatsApp API Setup", price: "₹18,750+" },
-          { name: "Bulk WhatsApp Marketing", price: "₹25,000+/month" },
-          { name: "Email Marketing Setup", price: "₹12,500+" },
-          { name: "Email Automation Funnel", price: "₹43,750+" },
-          { name: "SMS Gateway Integration", price: "₹18,750+" },
-          { name: "CRM Integration", price: "₹62,500+" },
+          { name: "WhatsApp API Setup", serviceId: "whatsapp-api" },
+          { name: "Bulk WhatsApp Marketing", serviceId: "whatsapp-marketing" },
+          { name: "Email Marketing Setup", serviceId: "email-marketing" },
+          { name: "Email Automation Funnel", serviceId: "email-funnel" },
+          { name: "SMS Gateway Integration", serviceId: "sms-gateway" },
+          { name: "CRM Integration", serviceId: "crm-integration" },
         ],
       },
     ],
@@ -349,12 +350,12 @@ const categories: Category[] = [
       {
         title: "Hosting & Infrastructure",
         rows: [
-          { name: "Shared Hosting Setup", price: "₹6,250/year" },
-          { name: "VPS Hosting Setup", price: "₹25,000+" },
-          { name: "AWS Deployment", price: "₹43,750+" },
-          { name: "Docker Deployment", price: "₹31,250+" },
-          { name: "CI/CD Pipeline Setup", price: "₹37,500+" },
-          { name: "Server Optimization", price: "₹25,000+" },
+          { name: "Shared Hosting Setup", serviceId: "shared-hosting" },
+          { name: "VPS Hosting Setup", serviceId: "vps-hosting" },
+          { name: "AWS Deployment", serviceId: "aws-deployment" },
+          { name: "Docker Deployment", serviceId: "docker-deployment" },
+          { name: "CI/CD Pipeline Setup", serviceId: "cicd-pipeline" },
+          { name: "Server Optimization", serviceId: "server-optimization" },
         ],
       },
     ],
@@ -368,12 +369,12 @@ const categories: Category[] = [
       {
         title: "Backend Solutions",
         rows: [
-          { name: "REST API Development", price: "₹31,250+" },
-          { name: "GraphQL API Development", price: "₹50,000+" },
-          { name: "Backend Architecture Setup", price: "₹93,750+" },
-          { name: "Microservices Architecture", price: "₹2.5L+" },
-          { name: "Firebase Integration", price: "₹18,750+" },
-          { name: "PostgreSQL / MongoDB Setup", price: "₹25,000+" },
+          { name: "REST API Development", serviceId: "rest-api" },
+          { name: "GraphQL API Development", serviceId: "graphql-api" },
+          { name: "Backend Architecture Setup", serviceId: "backend-architecture" },
+          { name: "Microservices Architecture", serviceId: "microservices" },
+          { name: "Firebase Integration", serviceId: "firebase-integration" },
+          { name: "PostgreSQL / MongoDB Setup", serviceId: "database-setup" },
         ],
       },
     ],
@@ -387,13 +388,13 @@ const categories: Category[] = [
       {
         title: "Add-ons",
         rows: [
-          { name: "Domain & Hosting Setup", price: "₹9,375+" },
-          { name: "Speed Optimization", price: "₹18,750+" },
-          { name: "Website Security Hardening", price: "₹25,000+" },
-          { name: "API Integrations", price: "₹25,000+" },
-          { name: "Analytics Dashboard", price: "₹1.25L+" },
-          { name: "Admin Panel Development", price: "₹62,500+" },
-          { name: "Third-Party Integrations", price: "₹31,250+" },
+          { name: "Domain & Hosting Setup", serviceId: "domain-hosting" },
+          { name: "Speed Optimization", serviceId: "speed-optimization" },
+          { name: "Website Security Hardening", serviceId: "security-hardening" },
+          { name: "API Integrations", serviceId: "api-integrations" },
+          { name: "Analytics Dashboard", serviceId: "analytics-dashboard" },
+          { name: "Admin Panel Development", serviceId: "admin-panel" },
+          { name: "Third-Party Integrations", serviceId: "third-party-integration" },
         ],
       },
     ],
@@ -407,21 +408,40 @@ const categories: Category[] = [
       {
         title: "Packages",
         rows: [
-          { name: "Startup Launch Package", price: "₹2.5L+" },
-          { name: "D2C Brand Launch Package", price: "₹3.75L+" },
-          { name: "Restaurant Digital Package", price: "₹1.25L+" },
-          { name: "Influencer Growth Package", price: "₹93,750+" },
-          { name: "SaaS Startup Package", price: "₹8.75L+" },
-          { name: "Full Digital Transformation", price: "₹18.75L+" },
+          { name: "Startup Launch Package", serviceId: "startup-package" },
+          { name: "D2C Brand Launch Package", serviceId: "d2c-package" },
+          { name: "Restaurant Digital Package", serviceId: "restaurant-package" },
+          { name: "Influencer Growth Package", serviceId: "influencer-package" },
+          { name: "SaaS Startup Package", serviceId: "saas-package" },
+          { name: "Full Digital Transformation", serviceId: "digital-transformation" },
         ],
       },
     ],
   },
 ];
 
-const ServicesPage = () => (
-  <main>
-    {/* Hero */}
+const PriceCell = ({ serviceId }: { serviceId: string }) => {
+  const { getFormattedPrice } = useRegionalPrice();
+
+  let suffix = "";
+  if (serviceId.includes("post")) suffix = "/post";
+  else if (serviceId.includes("story")) suffix = "/story";
+  else if (serviceId.includes("day")) suffix = "/day";
+  else if (serviceId.includes("year")) suffix = "/year";
+  else if (serviceId.includes("month") || serviceId === "social-starter" || serviceId === "social-growth" || serviceId === "social-business" || serviceId === "social-scaleup" || serviceId === "social-enterprise") suffix = "/month";
+
+  return (
+    <span className="text-sm font-semibold text-primary whitespace-nowrap">
+      {getFormattedPrice(serviceId)}{suffix}
+    </span>
+  );
+};
+
+const ServicesPage = () => {
+  const { selectedRegion } = useRegionalPrice();
+
+  return (
+    <main>{/* Hero */}
     <section className="relative gradient-bg-hero pt-32 pb-16">
       <div className="container mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -592,7 +612,7 @@ const ServicesPage = () => (
                     {g.rows.map((r) => (
                       <li key={r.name} className="flex items-center justify-between py-3 gap-4">
                         <span className="text-sm text-foreground">{r.name}</span>
-                        <span className="text-sm font-semibold text-primary whitespace-nowrap">{r.price}</span>
+                        <PriceCell serviceId={r.serviceId} />
                       </li>
                     ))}
                   </ul>
@@ -661,7 +681,8 @@ const ServicesPage = () => (
         </motion.div>
       </div>
     </section>
-  </main>
-);
+    </main>
+  );
+};
 
 export default ServicesPage;
