@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
+import { CurrencySelector } from "@/components/CurrencySelector";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -122,6 +123,7 @@ const Navbar = () => {
 
         {/* Desktop — CTA Section */}
         <div className="hidden md:flex items-center gap-4">
+          <CurrencySelector />
           <Link to="/contact" className="btn-dreamy text-sm">
             Book Free Strategy Call
           </Link>
@@ -169,8 +171,11 @@ const Navbar = () => {
                 ⚡ {specialLink.label}
               </Link>
 
-              <div className="border-t border-border/30 mt-4 pt-4">
-                <Link to="/contact" className="btn-dreamy text-center w-full">
+              <div className="border-t border-border/30 mt-4 pt-4 space-y-3">
+                <div className="flex justify-center">
+                  <CurrencySelector />
+                </div>
+                <Link to="/contact" className="btn-dreamy text-center w-full block">
                   Book Free Strategy Call
                 </Link>
               </div>

@@ -4,14 +4,23 @@ import { ArrowRight, Zap } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
 import { CTAButton } from "@/components/CTAButton";
 import { Link } from "react-router-dom";
+import { useRegionalPrice } from "@/hooks/useRegionalPrice";
+import { serviceRegionalPricing } from "@/config/regionalConfig";
 
 const PricingShowcase = () => {
+  const { formatPrice, getRawPrice, selectedRegion } = useRegionalPrice();
+
+  // Get regional pricing data
+  const regionalPrices = serviceRegionalPricing[selectedRegion];
+  const webDevPrices = regionalPrices["24-hour-web-dev"];
+  const socialPrices = regionalPrices["social-media"];
+
   const pricingTiers = [
     {
       title: "24-Hour Landing Page",
       description: "Perfect for startups and quick launches",
-      originalPrice: "₹6,249",
-      newPrice: "₹7,811",
+      originalPrice: formatPrice(Math.floor(webDevPrices.starter / 1.25)),
+      newPrice: formatPrice(webDevPrices.starter),
       includes: [
         "1-2 section landing page",
         "Hero + CTA sections",
@@ -26,8 +35,8 @@ const PricingShowcase = () => {
     {
       title: "Enterprise Speed Website",
       description: "Complete business website in 24 hours",
-      originalPrice: "₹12,499",
-      newPrice: "₹15,624",
+      originalPrice: formatPrice(Math.floor(webDevPrices.professional / 1.25)),
+      newPrice: formatPrice(webDevPrices.professional),
       includes: [
         "5 complete pages",
         "Hero + Services + Team + Blog + Contact",
@@ -43,8 +52,8 @@ const PricingShowcase = () => {
     {
       title: "Growth Accelerator Package",
       description: "Full digital ecosystem for scaling",
-      originalPrice: "₹24,999",
-      newPrice: "₹31,249",
+      originalPrice: formatPrice(Math.floor(webDevPrices.enterprise / 1.25)),
+      newPrice: formatPrice(webDevPrices.enterprise),
       includes: [
         "8+ branded pages",
         "E-commerce ready",
@@ -61,8 +70,8 @@ const PricingShowcase = () => {
     {
       title: "Digital Marketing Plan",
       description: "Strategic marketing to drive leads",
-      originalPrice: "₹7,999/month",
-      newPrice: "₹9,999/month",
+      originalPrice: formatPrice(Math.floor(socialPrices.starter / 1.25)) + "/month",
+      newPrice: formatPrice(socialPrices.starter) + "/month",
       includes: [
         "Content strategy",
         "Reels & shorts creation",
