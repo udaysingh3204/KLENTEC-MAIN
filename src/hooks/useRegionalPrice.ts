@@ -21,8 +21,13 @@ export const useRegionalPrice = () => {
     serviceId: string,
     tier: "starter" | "professional" | "enterprise"
   ): string => {
-    const price = getServicePrice(serviceId, tier, selectedRegion);
-    return formatPrice(price);
+    try {
+      const price = getServicePrice(serviceId, tier, selectedRegion);
+      return formatPrice(price || 0);
+    } catch (error) {
+      console.warn(`Error formatting service price for ${serviceId}:`, error);
+      return formatPrice(0);
+    }
   };
 
   /**
@@ -37,7 +42,12 @@ export const useRegionalPrice = () => {
    * Get raw price (for calculations) - tiered
    */
   const getRawPrice = (serviceId: string, tier: "starter" | "professional" | "enterprise"): number => {
-    return getServicePrice(serviceId, tier, selectedRegion);
+    try {
+      return getServicePrice(serviceId, tier, selectedRegion) || 0;
+    } catch (error) {
+      console.warn(`Error getting raw price for ${serviceId}:`, error);
+      return 0;
+    }
   };
 
   /**

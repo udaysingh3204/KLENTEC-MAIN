@@ -826,7 +826,7 @@ export const getServicePrice = (
 
     // If service data is an object with tier, return tier price
     if (typeof serviceData === 'object' && serviceData !== null) {
-      const price = serviceData[tier];
+      const price = (serviceData as any)[tier];
       if (typeof price === 'number') return price;
     }
 
