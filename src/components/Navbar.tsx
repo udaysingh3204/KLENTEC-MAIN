@@ -18,9 +18,9 @@ const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" 
 
 /* Animated orbiting dots around logo */
 const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
-  <div className="relative">
+  <div className="relative flex items-center justify-center">
     {/* Main logo — scales down on scroll */}
-    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-9" : "h-16"} w-auto`} />
+    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-24"} w-auto`} />
 
     {/* Orbiting dots - hidden on scroll for cleaner navbar */}
     {!scrolled && [0, 1, 2, 3, 4, 5].map((i) => (
@@ -28,11 +28,11 @@ const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
         key={i}
         className="absolute top-1/2 left-1/2 orbit-dot"
         style={{
-          "--orbit-radius": `${40 + i * 8}px`,
+          "--orbit-radius": `${50 + i * 10}px`,
           "--orbit-duration": `${6 + i * 2}s`,
           animationDelay: `${i * -1.2}s`,
-          width: `${4 + (i % 3)}px`,
-          height: `${4 + (i % 3)}px`,
+          width: `${5 + (i % 3)}px`,
+          height: `${5 + (i % 3)}px`,
         } as React.CSSProperties}
       >
         <span
@@ -49,9 +49,9 @@ const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
     {/* Static glow dots - hidden on scroll */}
     {!scrolled && (
       <>
-        <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary/20 pulse-dot" style={{ animationDelay: "0s" }} />
-        <span className="absolute -bottom-1 -left-2 w-1.5 h-1.5 rounded-full bg-primary/15 pulse-dot" style={{ animationDelay: "1s" }} />
-        <span className="absolute top-1/2 -right-3 w-1 h-1 rounded-full bg-primary/25 pulse-dot" style={{ animationDelay: "2s" }} />
+        <span className="absolute -top-2 -right-2 w-3 h-3 rounded-full bg-primary/20 pulse-dot" style={{ animationDelay: "0s" }} />
+        <span className="absolute -bottom-2 -left-3 w-2.5 h-2.5 rounded-full bg-primary/15 pulse-dot" style={{ animationDelay: "1s" }} />
+        <span className="absolute top-1/2 -right-4 w-1.5 h-1.5 rounded-full bg-primary/25 pulse-dot" style={{ animationDelay: "2s" }} />
       </>
     )}
   </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
         scrolled ? "glass-nav shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-20 px-6">
+      <div className={`container mx-auto flex items-center justify-between px-6 transition-all duration-300 ${scrolled ? "h-16" : "h-28"}`}>
         <Link to="/" className="flex items-center">
           <LogoPattern scrolled={scrolled} />
         </Link>
