@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
 import { CTAButton } from "@/components/CTAButton";
+import { BuyServiceButton } from "@/components/BuyServiceButton";
 
 interface PricingTier {
   name: string;
@@ -14,18 +15,22 @@ interface PricingTier {
   features: string[];
   highlighted?: boolean;
   cta: string;
+  serviceId?: string;
+  numericPrice?: number;
 }
 
 interface ServicePricingSectionProps {
   tiers: PricingTier[];
   title?: string;
   color: string;
+  serviceName?: string;
 }
 
 const ServicePricingSection = ({
   tiers,
   title = "Flexible Pricing",
   color,
+  serviceName = "Service",
 }: ServicePricingSectionProps) => {
   return (
     <section className="py-20 bg-slate-950">
@@ -124,17 +129,32 @@ const ServicePricingSection = ({
                 </ul>
 
                 {/* CTA */}
-                <CTAButton
-                  type="lead-form"
-                  label={tier.cta}
-                  source={tier.name}
-                  variant={tier.highlighted ? "primary" : "secondary"}
-                  className={`w-full justify-center text-base py-3 ${
-                    tier.highlighted
-                      ? "bg-white text-purple-600 hover:bg-slate-100"
-                      : ""
-                  }`}
-                />
+                {tier.serviceId && tier.numericPrice ? (
+                  <BuyServiceButton
+                    serviceId={tier.serviceId}
+                    serviceName={tier.name}
+                    amount={tier.numericPrice}
+                    label={tier.cta}
+                    variant={tier.highlighted ? "primary" : "secondary"}
+                    className={`w-full justify-center text-base py-3 ${
+                      tier.highlighted
+                        ? "bg-white text-purple-600 hover:bg-slate-100"
+                        : ""
+                    }`}
+                  />
+                ) : (
+                  <CTAButton
+                    type="lead-form"
+                    label={tier.cta}
+                    source={tier.name}
+                    variant={tier.highlighted ? "primary" : "secondary"}
+                    className={`w-full justify-center text-base py-3 ${
+                      tier.highlighted
+                        ? "bg-white text-purple-600 hover:bg-slate-100"
+                        : ""
+                    }`}
+                  />
+                )}
               </div>
             </motion.div>
           ))}

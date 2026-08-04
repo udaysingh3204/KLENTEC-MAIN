@@ -92,6 +92,8 @@ const FastTrackWebDevPage = () => {
       ],
       highlighted: false,
       cta: "Get Landing Page",
+      serviceId: "24hr-web-starter",
+      numericPrice: 7811,
     },
     {
       name: "Enterprise Speed",
@@ -112,6 +114,8 @@ const FastTrackWebDevPage = () => {
       ],
       highlighted: true,
       cta: "Launch Enterprise Website",
+      serviceId: "24hr-web-enterprise",
+      numericPrice: 15624,
     },
     {
       name: "Growth Accelerator",
@@ -133,6 +137,8 @@ const FastTrackWebDevPage = () => {
       ],
       highlighted: false,
       cta: "Build Growth System",
+      serviceId: "24hr-web-growth",
+      numericPrice: 31249,
     },
   ];
 
@@ -276,6 +282,7 @@ const FastTrackWebDevPage = () => {
         title="Enterprise Speed Pricing"
         tiers={tiers}
         color="from-blue-500 to-cyan-500"
+        serviceName="Enterprise Website in 24 Hours"
       />
 
       <ServiceResultsSection
