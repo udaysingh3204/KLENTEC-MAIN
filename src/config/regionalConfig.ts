@@ -816,9 +816,25 @@ export const getServicePrice = (
   tier: "starter" | "professional" | "enterprise",
   region: Region
 ): number => {
-  const price = serviceRegionalPricing[region]?.[serviceId]?.[tier];
-  if (typeof price === 'number') return price;
-  return 0;
+  try {
+    const serviceData = serviceRegionalPricing[region]?.[serviceId];
+
+    // If service data is a number (non-tiered), return it
+    if (typeof serviceData === 'number') {
+      return serviceData;
+    }
+
+    // If service data is an object with tier, return tier price
+    if (typeof serviceData === 'object' && serviceData !== null) {
+      const price = serviceData[tier];
+      if (typeof price === 'number') return price;
+    }
+
+    return 0;
+  } catch (error) {
+    console.warn(`Error getting price for service ${serviceId}:`, error);
+    return 0;
+  }
 };
 
 /**
