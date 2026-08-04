@@ -12,15 +12,18 @@ const PricingShowcase = () => {
 
   // Get regional pricing data
   const regionalPrices = serviceRegionalPricing[selectedRegion];
-  const webDevPrices = regionalPrices["24-hour-web-dev"];
-  const socialPrices = regionalPrices["social-media"];
+
+  // Use actual service keys from the config
+  const starterPrice = regionalPrices["landing-page"] || 18750;
+  const enterprisePrice = regionalPrices["business-website"] || 43750;
+  const socialPrice = regionalPrices["social-starter"] || 9999;
 
   const pricingTiers = [
     {
       title: "24-Hour Landing Page",
       description: "Perfect for startups and quick launches",
-      originalPrice: formatPrice(Math.floor(webDevPrices.starter / 1.25)),
-      newPrice: formatPrice(webDevPrices.starter),
+      originalPrice: formatPrice(Math.floor(starterPrice / 1.25)),
+      newPrice: formatPrice(starterPrice),
       includes: [
         "1-2 section landing page",
         "Hero + CTA sections",
@@ -35,8 +38,8 @@ const PricingShowcase = () => {
     {
       title: "Enterprise Speed Website",
       description: "Complete business website in 24 hours",
-      originalPrice: formatPrice(Math.floor(webDevPrices.professional / 1.25)),
-      newPrice: formatPrice(webDevPrices.professional),
+      originalPrice: formatPrice(Math.floor(enterprisePrice / 1.25)),
+      newPrice: formatPrice(enterprisePrice),
       includes: [
         "5 complete pages",
         "Hero + Services + Team + Blog + Contact",
@@ -52,8 +55,8 @@ const PricingShowcase = () => {
     {
       title: "Growth Accelerator Package",
       description: "Full digital ecosystem for scaling",
-      originalPrice: formatPrice(Math.floor(webDevPrices.enterprise / 1.25)),
-      newPrice: formatPrice(webDevPrices.enterprise),
+      originalPrice: formatPrice(Math.floor((regionalPrices["ecom-ads"] || 43750) / 1.25)),
+      newPrice: formatPrice(regionalPrices["ecom-ads"] || 43750),
       includes: [
         "8+ branded pages",
         "E-commerce ready",
@@ -70,8 +73,8 @@ const PricingShowcase = () => {
     {
       title: "Digital Marketing Plan",
       description: "Strategic marketing to drive leads",
-      originalPrice: formatPrice(Math.floor(socialPrices.starter / 1.25)) + "/month",
-      newPrice: formatPrice(socialPrices.starter) + "/month",
+      originalPrice: formatPrice(Math.floor(socialPrice / 1.25)) + "/month",
+      newPrice: formatPrice(socialPrice) + "/month",
       includes: [
         "Content strategy",
         "Reels & shorts creation",
