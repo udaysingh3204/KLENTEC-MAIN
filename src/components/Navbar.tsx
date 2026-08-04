@@ -143,42 +143,56 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card/95 backdrop-blur-xl border-t border-border/30 overflow-hidden"
+            className="md:hidden bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 overflow-visible"
           >
-            <div className="flex flex-col gap-1 p-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`text-sm font-medium py-3 px-5 rounded-2xl transition-colors ${
-                    location.pathname === link.to
-                      ? "text-primary bg-accent"
-                      : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="flex flex-col gap-0 p-4">
+              {/* Navigation Links */}
+              <nav className="space-y-2 mb-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`block w-full text-left py-3 px-4 rounded-lg text-sm font-medium transition-all ${
+                      location.pathname === link.to
+                        ? "bg-purple-600/30 text-purple-300 border border-purple-600/50"
+                        : "text-slate-300 hover:bg-slate-800/50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
 
+              {/* Special 24-Hour Web Dev Link */}
               <Link
                 to={specialLink.to}
-                className={`text-sm font-semibold py-3 px-5 rounded-2xl transition-colors ${
+                className={`block w-full text-center py-3 px-4 rounded-lg text-sm font-semibold mb-4 transition-all ${
                   location.pathname === specialLink.to
-                    ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white"
-                    : "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
+                    ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg"
+                    : "bg-blue-600/30 text-blue-300 border border-blue-600/50"
                 }`}
               >
                 ⚡ {specialLink.label}
               </Link>
 
-              <div className="border-t border-border/30 mt-4 pt-4 space-y-3">
-                <div className="flex justify-center">
+              {/* Divider */}
+              <div className="h-px bg-slate-800 my-4" />
+
+              {/* Region Selector - Full Width on Mobile */}
+              <div className="mb-3">
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-1">Region & Currency</p>
+                <div className="w-full">
                   <CurrencySelector />
                 </div>
-                <Link to="/contact" className="btn-dreamy text-center w-full block">
-                  Book Free Strategy Call
-                </Link>
               </div>
+
+              {/* CTA Button */}
+              <Link
+                to="/contact"
+                className="block w-full text-center py-3 px-4 rounded-lg text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transition-all"
+              >
+                Book Free Strategy Call
+              </Link>
             </div>
           </motion.div>
         )}
