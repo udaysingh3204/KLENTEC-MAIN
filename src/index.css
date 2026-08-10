@@ -135,6 +135,19 @@
     @apply px-8 py-4 rounded-2xl font-semibold text-sm border border-border/60 bg-card/50 backdrop-blur-sm text-foreground hover:bg-card hover:border-primary/20 transition-all duration-300;
   }
 
+  /* Compact CTA for tight spaces like the navbar */
+  .btn-nav {
+    @apply px-5 py-2.5 rounded-full font-semibold text-sm whitespace-nowrap transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--purple-mid)), hsl(var(--purple-dark)));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 2px 12px hsl(260 65% 55% / 0.25);
+  }
+
+  .btn-nav:hover {
+    box-shadow: 0 4px 20px hsl(260 65% 55% / 0.35);
+    transform: translateY(-1px);
+  }
+
   /* Sections */
   .section-padding {
     @apply py-24 md:py-32 px-6 md:px-8;

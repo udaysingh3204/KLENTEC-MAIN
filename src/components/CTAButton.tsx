@@ -25,18 +25,20 @@ export const CTAButton = ({
     handleCTA(type, source);
   };
 
-  const baseClass = `flex items-center gap-2 ${className}`;
-
   const variantClass = {
-    primary: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold",
-    secondary: "bg-slate-800 hover:bg-slate-700 text-white font-semibold",
-    outline: "border border-slate-600 text-slate-300 hover:border-purple-500 hover:text-purple-400",
+    primary:
+      "h-auto rounded-2xl px-8 py-4 font-semibold text-primary-foreground bg-gradient-to-br from-[hsl(var(--purple-mid))] to-[hsl(var(--purple-dark))] hover:brightness-110 shadow-[0_4px_20px_hsl(260_65%_55%/0.25)]",
+    secondary: "h-auto rounded-2xl px-8 py-4 font-semibold bg-secondary hover:bg-secondary/80 text-secondary-foreground",
+    outline: "h-auto rounded-2xl px-8 py-4 font-semibold border border-border/60 bg-transparent text-muted-foreground hover:border-primary/40 hover:text-primary",
   };
+
+  // Variant classes first, custom `className` last so caller overrides win the twMerge conflict resolution.
+  const finalClass = `flex items-center gap-2 ${variantClass[variant]} ${className}`;
 
   return (
     <Button
       onClick={handleClick}
-      className={`${baseClass} ${variantClass[variant]}`}
+      className={finalClass}
     >
       {label}
       {icon && <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />}

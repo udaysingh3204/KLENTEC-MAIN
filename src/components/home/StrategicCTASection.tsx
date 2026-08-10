@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Clock, Zap, TrendingUp, CheckCircle } from "lucide-react";
 import { CTAButton } from "@/components/CTAButton";
@@ -35,19 +34,20 @@ const StrategicCTASection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding">
+      <div className="container mx-auto">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground">
             Ready to Scale Your Business?
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             Choose the option that works best for you. All start with zero
             commitment and zero credit card required.
           </p>
@@ -62,28 +62,23 @@ const StrategicCTASection = () => {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`rounded-xl p-8 transition-all hover:scale-105 ${
+                className={
                   option.primary
-                    ? "bg-gradient-to-br from-purple-600 to-pink-600 shadow-lg shadow-purple-500/20"
-                    : "bg-slate-900 border border-slate-800 hover:border-purple-500/50"
-                }`}
+                    ? "rounded-3xl p-8 bg-gradient-to-br from-[hsl(var(--purple-mid))] to-[hsl(var(--purple-dark))] shadow-[0_8px_40px_hsl(260_65%_55%/0.25)]"
+                    : "card-dreamy p-8"
+                }
               >
-                <Icon
-                  className={`w-10 h-10 mb-4 ${
-                    option.primary ? "text-white" : "text-purple-400"
-                  }`}
-                />
+                <div className={`icon-dreamy mb-4 ${option.primary ? "bg-white/15" : ""}`}>
+                  <Icon className={`w-6 h-6 ${option.primary ? "text-white" : "text-primary"}`} />
+                </div>
 
-                <h3 className={`text-xl font-bold mb-2 ${
-                  option.primary ? "text-white" : "text-white"
-                }`}>
+                <h3 className={`text-xl font-display font-semibold mb-2 ${option.primary ? "text-white" : "text-foreground"}`}>
                   {option.title}
                 </h3>
 
-                <p className={`text-sm mb-6 ${
-                  option.primary ? "text-white/90" : "text-slate-400"
-                }`}>
+                <p className={`text-sm mb-6 ${option.primary ? "text-white/85" : "text-muted-foreground"}`}>
                   {option.description}
                 </p>
 
@@ -92,11 +87,7 @@ const StrategicCTASection = () => {
                   {option.benefits.map((benefit, i) => (
                     <li
                       key={i}
-                      className={`flex items-center gap-2 text-sm ${
-                        option.primary
-                          ? "text-white/90"
-                          : "text-slate-300"
-                      }`}
+                      className={`flex items-center gap-2 text-sm ${option.primary ? "text-white/90" : "text-muted-foreground"}`}
                     >
                       <CheckCircle className="w-4 h-4 flex-shrink-0" />
                       {benefit}
@@ -111,18 +102,17 @@ const StrategicCTASection = () => {
                     label={option.cta}
                     source="Homepage CTA"
                     variant="primary"
-                    className="w-full justify-center text-base py-3 bg-white text-purple-600 hover:bg-slate-100"
+                    className="w-full justify-center text-base py-3 bg-none bg-white text-[hsl(var(--purple-dark))] hover:bg-white/90"
                   />
                 ) : option.href.includes("wa.me") ? (
-                  <Button
-                    size="lg"
-                    className="w-full font-semibold bg-purple-600 text-white hover:bg-purple-700"
-                    asChild
+                  <a
+                    href={option.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost w-full flex items-center justify-center"
                   >
-                    <a href={option.href} target="_blank" rel="noopener noreferrer">
-                      {option.cta}
-                    </a>
-                  </Button>
+                    {option.cta}
+                  </a>
                 ) : (
                   <CTAButton
                     type="growth-audit"
@@ -141,12 +131,13 @@ const StrategicCTASection = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center text-slate-400 text-sm"
+          className="text-center text-muted-foreground text-sm"
         >
           <p>
-            🎯 <span className="text-white font-semibold">Join 150+ brands</span> that trust
-            us with their growth. <span className="text-white">Average response time: 2 hours</span>
+            🎯 <span className="text-foreground font-semibold">Join 150+ brands</span> that trust
+            us with their growth. <span className="text-foreground">Average response time: 2 hours</span>
           </p>
         </motion.div>
       </div>

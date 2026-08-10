@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
-import { CurrencySelector } from "@/components/CurrencySelector";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -87,12 +86,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`text-sm font-medium tracking-wide transition-all duration-300 hover:text-primary relative ${
+              className={`text-sm font-medium tracking-wide whitespace-nowrap transition-all duration-300 hover:text-primary relative ${
                 location.pathname === link.to
                   ? "text-primary"
                   : "text-muted-foreground"
@@ -111,7 +110,7 @@ const Navbar = () => {
           {/* Special 24-Hour Web Dev Link */}
           <Link
             to={specialLink.to}
-            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ${
+            className={`px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-300 ${
               location.pathname === specialLink.to
                 ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg"
                 : "bg-blue-600/20 text-blue-400 hover:bg-blue-600/30"
@@ -122,16 +121,15 @@ const Navbar = () => {
         </div>
 
         {/* Desktop — CTA Section */}
-        <div className="hidden md:flex items-center gap-4">
-          <CurrencySelector />
-          <Link to="/contact" className="btn-dreamy text-sm">
-            Book Free Strategy Call
+        <div className="hidden lg:flex items-center">
+          <Link to="/contact" className="btn-nav">
+            Book a Call
           </Link>
         </div>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground p-2"
+          className="lg:hidden text-foreground p-2"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -143,7 +141,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 overflow-visible"
+            className="lg:hidden bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 overflow-visible"
           >
             <div className="flex flex-col gap-0 p-4">
               {/* Navigation Links */}
@@ -177,14 +175,6 @@ const Navbar = () => {
 
               {/* Divider */}
               <div className="h-px bg-slate-800 my-4" />
-
-              {/* Region Selector - Full Width on Mobile */}
-              <div className="mb-3">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-1">Region & Currency</p>
-                <div className="w-full">
-                  <CurrencySelector />
-                </div>
-              </div>
 
               {/* CTA Button */}
               <Link
