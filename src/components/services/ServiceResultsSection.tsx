@@ -37,19 +37,20 @@ const ServiceResultsSection = ({
   };
 
   return (
-    <section className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding">
+      <div className="container mx-auto">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground mb-4">
             {title}
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {subtitle}
           </p>
         </motion.div>
@@ -67,7 +68,7 @@ const ServiceResultsSection = ({
               key={index}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
-              className={`relative rounded-xl p-8 overflow-hidden bg-gradient-to-br ${color} hover:shadow-2xl transition`}
+              className={`relative rounded-3xl p-8 overflow-hidden bg-gradient-to-br ${color} hover:shadow-2xl transition`}
             >
               {/* Background accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16" />
@@ -76,7 +77,7 @@ const ServiceResultsSection = ({
                 {/* Header */}
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-display font-semibold text-white">
                       {result.company}
                     </h3>
                     <p className="text-sm text-white/80">
@@ -88,7 +89,7 @@ const ServiceResultsSection = ({
 
                 {/* Main metric */}
                 <div className="mb-6">
-                  <div className="text-4xl font-bold text-white mb-2">
+                  <div className="text-4xl font-display font-bold text-white mb-2">
                     {result.value}
                   </div>
                   <p className="text-white/90 text-sm font-semibold">
@@ -112,10 +113,11 @@ const ServiceResultsSection = ({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-16 bg-slate-950 border border-slate-800 rounded-xl p-8 text-center"
+          className="mt-16 card-dreamy p-8 text-center"
         >
-          <p className="text-slate-400 text-sm mb-4">
+          <p className="text-muted-foreground text-sm mb-4">
             Average results across all clients using this service
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -126,10 +128,10 @@ const ServiceResultsSection = ({
             ].map((stat, index) => (
               <div key={index}>
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-white mb-1">
+                <div className="text-2xl font-display font-bold text-foreground mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-slate-400">
+                <div className="text-sm text-muted-foreground">
                   {stat.label}
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRegionalPrice } from "@/hooks/useRegionalPrice";
 import { ShoppingCart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BuyServiceButtonProps {
   serviceId: string;
@@ -32,15 +33,20 @@ export const BuyServiceButton = ({
   };
 
   const variantClasses = {
-    primary: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white",
-    secondary: "bg-slate-800 hover:bg-slate-700 text-white",
-    outline: "border border-slate-600 text-slate-300 hover:border-purple-500 hover:text-purple-400",
+    primary:
+      "bg-gradient-to-br from-[hsl(var(--purple-mid))] to-[hsl(var(--purple-dark))] hover:brightness-110 text-primary-foreground",
+    secondary: "bg-secondary hover:bg-secondary/80 text-secondary-foreground",
+    outline: "border border-border/60 bg-transparent text-muted-foreground hover:border-primary/40 hover:text-primary",
   };
 
   return (
     <button
       onClick={handleClick}
-      className={`flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-lg transition-all ${variantClasses[variant]} ${className}`}
+      className={cn(
+        "flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-2xl transition-all",
+        variantClasses[variant],
+        className,
+      )}
     >
       <ShoppingCart size={18} />
       <span>{label}</span>

@@ -21,19 +21,20 @@ const ServiceProcessSection = ({
   color,
 }: ServiceProcessSectionProps) => {
   return (
-    <section className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding">
+      <div className="container mx-auto">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground mb-4">
             {title}
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Here's how we deliver exceptional results for your business.
           </p>
         </motion.div>
@@ -41,7 +42,7 @@ const ServiceProcessSection = ({
         {/* Process steps */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-700 via-slate-600 to-slate-700 transform -translate-x-1/2" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-border/40 transform -translate-x-1/2" />
 
           <div className="space-y-12 lg:space-y-0">
             {steps.map((step, index) => (
@@ -49,6 +50,7 @@ const ServiceProcessSection = ({
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className={`lg:grid lg:grid-cols-2 lg:gap-8 relative ${
                   index % 2 === 0 ? "lg:text-right" : "lg:text-left"
@@ -62,21 +64,21 @@ const ServiceProcessSection = ({
                 >
                   <motion.div
                     whileHover={{ x: index % 2 === 0 ? -10 : 10 }}
-                    className="bg-slate-800 border border-slate-700 rounded-xl p-8 hover:border-slate-600 transition"
+                    className="card-dreamy p-8"
                   >
                     {/* Step number and title */}
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${color} flex items-center justify-center flex-shrink-0`}>
-                        <span className="text-2xl font-bold text-white">
+                        <span className="text-2xl font-display font-bold text-white">
                           {step.number}
                         </span>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white">
+                        <h3 className="text-xl font-display font-semibold text-foreground">
                           {step.title}
                         </h3>
                         {step.duration && (
-                          <p className="text-sm text-slate-400">
+                          <p className="text-sm text-muted-foreground">
                             {step.duration}
                           </p>
                         )}
@@ -84,7 +86,7 @@ const ServiceProcessSection = ({
                     </div>
 
                     {/* Description */}
-                    <p className="text-slate-300 leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed">
                       {step.description}
                     </p>
                   </motion.div>
@@ -96,13 +98,13 @@ const ServiceProcessSection = ({
                     index % 2 === 0 ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
-                  <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${color} ring-4 ring-slate-900 absolute left-1/2 transform -translate-x-1/2 z-10`} />
+                  <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${color} ring-4 ring-background absolute left-1/2 transform -translate-x-1/2 z-10`} />
                 </div>
 
                 {/* Arrow for mobile */}
                 {index < steps.length - 1 && (
                   <div className="lg:hidden flex justify-center py-4">
-                    <ArrowRight className="w-6 h-6 text-slate-600 rotate-90" />
+                    <ArrowRight className="w-6 h-6 text-muted-foreground/50 rotate-90" />
                   </div>
                 )}
               </motion.div>

@@ -36,14 +36,14 @@ const ServiceHeroSection = ({
           transition={{ duration: 0.6 }}
         >
           {/* Subtitle */}
-          <div className="inline-block px-4 py-2 bg-white/10 border border-white/20 rounded-full">
-            <span className="text-sm font-semibold text-white uppercase tracking-wide">
+          <div className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full">
+            <span className="text-xs font-semibold text-white uppercase tracking-[0.2em]">
               {subtitle}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-5xl sm:text-6xl font-display font-bold text-white leading-tight">
             {title}
           </h1>
 
@@ -61,7 +61,7 @@ const ServiceHeroSection = ({
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               {benefits.map((benefit, index) => (
-                <div key={index} className="bg-white/10 border border-white/20 rounded-lg p-4">
+                <div key={index} className="bg-white/10 border border-white/20 rounded-2xl p-4">
                   <p className="text-white font-semibold text-sm">{benefit}</p>
                 </div>
               ))}
@@ -77,7 +77,7 @@ const ServiceHeroSection = ({
           >
             <Button
               size="lg"
-              className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-6 rounded-lg group"
+              className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-6 rounded-2xl group"
             >
               {ctaText}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
