@@ -22,6 +22,7 @@ const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 const TeamPage = lazy(() => import("./pages/TeamPage"));
 const CareersPage = lazy(() => import("./pages/CareersPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
@@ -70,6 +71,7 @@ const App = () => (
             <Route path="/about"    element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
             <Route path="/contact"  element={<ContactPage />} />
             <Route path="/blog"     element={<Suspense fallback={<PageLoader />}><BlogPage /></Suspense>} />
+            <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}><BlogPostPage /></Suspense>} />
             <Route path="/team"     element={<Suspense fallback={<PageLoader />}><TeamPage /></Suspense>} />
             <Route path="/careers"  element={<Suspense fallback={<PageLoader />}><CareersPage /></Suspense>} />
             <Route path="/privacy"      element={<Suspense fallback={<PageLoader />}><PrivacyPage /></Suspense>} />

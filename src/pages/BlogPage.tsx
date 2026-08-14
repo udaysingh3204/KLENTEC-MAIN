@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
+import { BlogCard } from "@/components/BlogCard";
 
 const BlogPage = () => {
   return (
@@ -36,45 +37,8 @@ const BlogPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.5 }}
-                className="card-dreamy overflow-hidden cursor-pointer group"
               >
-                {/* Image Placeholder */}
-                <div
-                  className="h-44 flex items-center justify-center text-5xl"
-                  style={{ background: "linear-gradient(135deg, hsl(var(--purple-soft)), hsl(260 80% 94%))" }}
-                >
-                  {post.image}
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <span className="badge-pill mb-3 inline-block normal-case tracking-normal">
-                    {post.category}
-                  </span>
-
-                  <h3 className="text-lg font-display font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4 pb-4 border-b border-border/40">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {post.date}
-                    </span>
-                    <span>{post.readTime}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">
-                      by <span className="text-foreground font-semibold">{post.author}</span>
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
+                <BlogCard post={post} />
               </motion.div>
             ))}
           </div>
