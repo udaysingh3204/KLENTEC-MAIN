@@ -10,12 +10,12 @@ import PublicLayout from "@/components/PublicLayout";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 // Critical pages (loaded immediately)
-import HomePage from "./pages/HomePage";
-import ContactPage from "./pages/ContactPage";
-import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
 
 // Lazy-loaded pages (loaded on demand)
+const HomePage = lazy(() => import("./pages/HomePage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage"));
@@ -63,13 +63,13 @@ const App = () => (
         <Routes>
           {/* ── Public marketing site (Navbar + Footer) ── */}
           <Route element={<PublicLayout />}>
-            <Route path="/"                    element={<HomePage />} />
+            <Route path="/"                    element={<Suspense fallback={<PageLoader />}><HomePage /></Suspense>} />
             <Route path="/services"            element={<Suspense fallback={<PageLoader />}><ServicesPage /></Suspense>} />
             <Route path="/checkout"            element={<Suspense fallback={<PageLoader />}><CheckoutPage /></Suspense>} />
             <Route path="/payment/success"     element={<Suspense fallback={<PageLoader />}><PaymentSuccessPage /></Suspense>} />
             <Route path="/work"                element={<Suspense fallback={<PageLoader />}><WorkPage /></Suspense>} />
             <Route path="/about"    element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
-            <Route path="/contact"  element={<ContactPage />} />
+            <Route path="/contact"  element={<Suspense fallback={<PageLoader />}><ContactPage /></Suspense>} />
             <Route path="/blog"     element={<Suspense fallback={<PageLoader />}><BlogPage /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<PageLoader />}><BlogPostPage /></Suspense>} />
             <Route path="/team"     element={<Suspense fallback={<PageLoader />}><TeamPage /></Suspense>} />
@@ -90,7 +90,7 @@ const App = () => (
           </Route>
 
           {/* ── Admin Authentication ── */}
-          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<Suspense fallback={<PageLoader />}><AdminLogin /></Suspense>} />
 
           {/* ── Admin Dashboard (protected) ── */}
           <Route
