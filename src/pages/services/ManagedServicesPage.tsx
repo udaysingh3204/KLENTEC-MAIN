@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const ManagedServicesPage = () => {
   const features = [
@@ -72,54 +71,6 @@ const ManagedServicesPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Essential",
-      price: "₹80,000",
-      period: "/month",
-      description: "Core managed services",
-      features: [
-        "Campaign management",
-        "Weekly reporting",
-        "Basic content support",
-        "Email support",
-      ],
-      highlighted: false,
-      cta: "Get Started",
-    },
-    {
-      name: "Professional",
-      price: "₹180,000",
-      period: "/month",
-      description: "Most popular plan",
-      features: [
-        "Full campaign management",
-        "Content production (4 pieces/month)",
-        "Technical maintenance",
-        "Weekly strategy calls",
-        "Priority support (24h response)",
-      ],
-      highlighted: true,
-      cta: "Get Managed",
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "pricing",
-      description: "Complete management",
-      features: [
-        "Multiple channel management",
-        "Unlimited content production",
-        "24/7 technical support",
-        "Dedicated account team",
-        "Monthly executive reviews",
-        "Custom integrations",
-      ],
-      highlighted: false,
-      cta: "Schedule Call",
-    },
-  ];
-
   const results = [
     {
       company: "RetailMax",
@@ -172,7 +123,7 @@ const ManagedServicesPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Ongoing Management for Consistent Growth"
         subtitle="Managed Services"
@@ -193,12 +144,6 @@ const ManagedServicesPage = () => {
         color="from-violet-500 to-purple-500"
       />
 
-      <ServicePricingSection
-        title="Managed Services Pricing"
-        tiers={tiers}
-        color="from-violet-500 to-purple-500"
-      />
-
       <ServiceResultsSection
         title="Long-Term Partnership Success"
         subtitle="Clients we've worked with for years"
@@ -206,31 +151,7 @@ const ManagedServicesPage = () => {
         color="from-violet-500 to-purple-500"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready for Partnership?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let us manage the details while you focus on growing your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 text-white"
-            >
-              Start Managed Services
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Features
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Managed Services" color="from-violet-500 to-purple-500" />
     </main>
   );
 };

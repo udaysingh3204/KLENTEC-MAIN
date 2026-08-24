@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const StrategyPage = () => {
   const features = [
@@ -72,53 +71,6 @@ const StrategyPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Audit",
-      price: "₹60,000",
-      period: "one-time",
-      description: "Strategic assessment",
-      features: [
-        "Comprehensive business audit",
-        "Competitive analysis",
-        "Strengths & weaknesses report",
-        "Recommendations document",
-      ],
-      highlighted: false,
-      cta: "Order Audit",
-    },
-    {
-      name: "Strategy",
-      price: "₹200,000",
-      period: "one-time",
-      description: "Full strategic plan",
-      features: [
-        "Complete business strategy",
-        "Growth roadmap (12 months)",
-        "Competitive positioning",
-        "Implementation timeline",
-        "Executive presentation",
-      ],
-      highlighted: true,
-      cta: "Develop Strategy",
-    },
-    {
-      name: "Enterprise",
-      price: "₹150,000",
-      period: "/month",
-      description: "Ongoing strategic guidance",
-      features: [
-        "Quarterly strategy reviews",
-        "Ongoing consulting support",
-        "Executive team coaching",
-        "KPI monitoring & reporting",
-        "Dedicated strategy advisor",
-      ],
-      highlighted: false,
-      cta: "Get Strategic Partner",
-    },
-  ];
-
   const results = [
     {
       company: "TechNova",
@@ -171,7 +123,7 @@ const StrategyPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Strategic Guidance for Digital Excellence"
         subtitle="Strategy & Consulting"
@@ -192,12 +144,6 @@ const StrategyPage = () => {
         color="from-emerald-500 to-teal-500"
       />
 
-      <ServicePricingSection
-        title="Strategy Pricing"
-        tiers={tiers}
-        color="from-emerald-500 to-teal-500"
-      />
-
       <ServiceResultsSection
         title="Strategic Wins"
         subtitle="Helping businesses achieve breakthrough growth"
@@ -205,31 +151,7 @@ const StrategyPage = () => {
         color="from-emerald-500 to-teal-500"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let's create a strategic roadmap for sustainable growth.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white"
-            >
-              Get Strategic Audit
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Case Studies
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Strategy & Consulting" color="from-emerald-500 to-teal-500" />
     </main>
   );
 };

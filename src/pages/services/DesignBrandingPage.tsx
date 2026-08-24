@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const DesignBrandingPage = () => {
   const features = [
@@ -78,53 +77,6 @@ const DesignBrandingPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Refresh",
-      price: "₹80,000",
-      period: "one-time",
-      description: "Logo & visual refresh",
-      features: [
-        "Logo redesign",
-        "Color palette update",
-        "Basic guidelines",
-        "Web mockup included",
-      ],
-      highlighted: false,
-      cta: "Get Started",
-    },
-    {
-      name: "Complete Brand",
-      price: "₹250,000",
-      period: "one-time",
-      description: "Full brand identity",
-      features: [
-        "Complete brand strategy",
-        "Visual identity system",
-        "Web & mobile design",
-        "Brand guidelines",
-        "Marketing collateral",
-      ],
-      highlighted: true,
-      cta: "Create Brand",
-    },
-    {
-      name: "Enterprise",
-      price: "₹500,000+",
-      period: "one-time",
-      description: "Comprehensive brand transformation",
-      features: [
-        "Full rebrand strategy",
-        "Multi-channel design",
-        "Design system creation",
-        "Implementation support",
-        "Ongoing refinement",
-      ],
-      highlighted: false,
-      cta: "Schedule Consultation",
-    },
-  ];
-
   const results = [
     {
       company: "BrandLab",
@@ -177,7 +129,7 @@ const DesignBrandingPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Create Memorable Brand Experiences"
         subtitle="Design & Branding"
@@ -198,12 +150,6 @@ const DesignBrandingPage = () => {
         color="from-pink-500 to-rose-500"
       />
 
-      <ServicePricingSection
-        title="Brand Design Pricing"
-        tiers={tiers}
-        color="from-pink-500 to-rose-500"
-      />
-
       <ServiceResultsSection
         title="Brands We've Created"
         subtitle="Visual identities that drive business growth"
@@ -211,31 +157,7 @@ const DesignBrandingPage = () => {
         color="from-pink-500 to-rose-500"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready for a Brand Transformation?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let's create a visual identity that sets you apart.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white"
-            >
-              Create Brand
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Portfolio
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Design & Branding" color="from-pink-500 to-rose-500" />
     </main>
   );
 };

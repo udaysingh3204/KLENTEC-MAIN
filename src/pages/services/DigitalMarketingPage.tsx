@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const DigitalMarketingPage = () => {
   const features = [
@@ -114,57 +113,6 @@ const DigitalMarketingPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Starter",
-      price: "₹40,000",
-      period: "/month",
-      description: "Perfect for startups and small businesses",
-      features: [
-        "One primary channel (PPC, SEO, or Social)",
-        "Up to 2 campaigns/projects per month",
-        "Basic reporting (monthly)",
-        "Email support",
-        "Setup & onboarding included",
-      ],
-      highlighted: false,
-      cta: "Get Started",
-    },
-    {
-      name: "Professional",
-      price: "₹120,000",
-      period: "/month",
-      description: "Most popular for growing businesses",
-      features: [
-        "3-4 marketing channels",
-        "5+ campaigns/projects per month",
-        "Weekly reporting & optimization",
-        "Dedicated account manager",
-        "Priority support (24/48 hours)",
-        "Strategic monthly calls",
-      ],
-      highlighted: true,
-      cta: "Start Free Audit",
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "pricing",
-      description: "Full-service for serious growth",
-      features: [
-        "All 5 marketing channels",
-        "Unlimited campaigns/projects",
-        "Real-time dashboard & reporting",
-        "Dedicated marketing team",
-        "24/7 priority support",
-        "Quarterly strategy sessions",
-        "Custom integrations & tooling",
-      ],
-      highlighted: false,
-      cta: "Schedule Call",
-    },
-  ];
-
   const results = [
     {
       company: "RetailMax",
@@ -217,7 +165,7 @@ const DigitalMarketingPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Drive Revenue Growth Through Digital Marketing"
         subtitle="Digital Marketing"
@@ -238,12 +186,6 @@ const DigitalMarketingPage = () => {
         color="from-blue-500 to-cyan-500"
       />
 
-      <ServicePricingSection
-        title="Digital Marketing Pricing"
-        tiers={tiers}
-        color="from-blue-500 to-cyan-500"
-      />
-
       <ServiceResultsSection
         title="Client Success Stories"
         subtitle="Real results from businesses like yours"
@@ -251,32 +193,7 @@ const DigitalMarketingPage = () => {
         color="from-blue-500 to-cyan-500"
       />
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Scale Your Revenue?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let's create a custom digital marketing strategy that works for your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white"
-            >
-              Book Free Audit
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Case Studies
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Digital Marketing" color="from-blue-500 to-cyan-500" />
     </main>
   );
 };

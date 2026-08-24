@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const AutomationPage = () => {
   const features = [
@@ -72,53 +71,6 @@ const AutomationPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Starter",
-      price: "₹50,000",
-      period: "/month",
-      description: "Essential automation",
-      features: [
-        "1-2 automation workflows",
-        "CRM setup (basic)",
-        "Email automation",
-        "Monthly optimization",
-      ],
-      highlighted: false,
-      cta: "Get Started",
-    },
-    {
-      name: "Professional",
-      price: "₹120,000",
-      period: "/month",
-      description: "Comprehensive automation",
-      features: [
-        "5+ automation workflows",
-        "CRM + WhatsApp integration",
-        "Lead scoring & nurturing",
-        "Weekly optimization calls",
-        "Dedicated automation manager",
-      ],
-      highlighted: true,
-      cta: "Automate Now",
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "pricing",
-      description: "Full automation suite",
-      features: [
-        "Unlimited workflows",
-        "Multi-system integration",
-        "Custom API development",
-        "24/7 monitoring & support",
-        "Dedicated automation team",
-      ],
-      highlighted: false,
-      cta: "Schedule Call",
-    },
-  ];
-
   const results = [
     {
       company: "FreshStart",
@@ -171,7 +123,7 @@ const AutomationPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Automate Repetitive Tasks, Focus on Growth"
         subtitle="Automation & Integration"
@@ -192,12 +144,6 @@ const AutomationPage = () => {
         color="from-orange-500 to-red-500"
       />
 
-      <ServicePricingSection
-        title="Automation Pricing"
-        tiers={tiers}
-        color="from-orange-500 to-red-500"
-      />
-
       <ServiceResultsSection
         title="Automation Success Stories"
         subtitle="Teams working smarter, not harder"
@@ -205,31 +151,7 @@ const AutomationPage = () => {
         color="from-orange-500 to-red-500"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Automate?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let's eliminate manual work and scale your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
-            >
-              Start Automation
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Integrations
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Automation" color="from-orange-500 to-red-500" />
     </main>
   );
 };

@@ -16,7 +16,6 @@ const PricingShowcase = () => {
   // Use actual service keys from the config
   const starterPrice = regionalPrices["landing-page"] || 18750;
   const enterprisePrice = regionalPrices["business-website"] || 43750;
-  const socialPrice = regionalPrices["social-starter"] || 9999;
 
   const pricingTiers = [
     {
@@ -73,8 +72,7 @@ const PricingShowcase = () => {
     {
       title: "Digital Marketing Plan",
       description: "Strategic marketing to drive leads",
-      originalPrice: formatPrice(Math.floor(socialPrice / 1.25)) + "/month",
-      newPrice: formatPrice(socialPrice) + "/month",
+      customQuote: true,
       includes: [
         "Content strategy",
         "Reels & shorts creation",
@@ -158,13 +156,24 @@ const PricingShowcase = () => {
 
                   {/* Pricing */}
                   <div className="mb-6 pt-4 border-t border-border/40">
-                    <PriceDisplay
-                      originalPrice={tier.originalPrice}
-                      newPrice={tier.newPrice}
-                      label="Limited Time"
-                      showBadge={true}
-                      size="md"
-                    />
+                    {tier.customQuote ? (
+                      <div>
+                        <span className="badge-pill mb-3 inline-block normal-case tracking-normal">
+                          Custom Pricing
+                        </span>
+                        <p className="text-2xl font-display font-bold text-foreground">
+                          Scoped to your goals
+                        </p>
+                      </div>
+                    ) : (
+                      <PriceDisplay
+                        originalPrice={tier.originalPrice}
+                        newPrice={tier.newPrice}
+                        label="Limited Time"
+                        showBadge={true}
+                        size="md"
+                      />
+                    )}
                   </div>
 
                   {/* Features list */}
@@ -184,7 +193,7 @@ const PricingShowcase = () => {
                   {/* CTA Button */}
                   <CTAButton
                     type="lead-form"
-                    label="Get Started"
+                    label={tier.customQuote ? "Get a Custom Quote" : "Get Started"}
                     source={tier.title}
                     variant={tier.popular ? "primary" : "secondary"}
                     className="w-full justify-center text-base py-3"

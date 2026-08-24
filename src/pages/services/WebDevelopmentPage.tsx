@@ -1,9 +1,8 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const WebDevelopmentPage = () => {
   const features = [
@@ -78,54 +77,6 @@ const WebDevelopmentPage = () => {
     },
   ];
 
-  const tiers = [
-    {
-      name: "Starter",
-      price: "₹150,000",
-      period: "one-time",
-      description: "Simple websites and MVPs",
-      features: [
-        "5-10 page website",
-        "Contact form & basic CMS",
-        "Mobile responsive",
-        "SSL certificate",
-        "30-day support",
-      ],
-      highlighted: false,
-      cta: "Get Quote",
-    },
-    {
-      name: "Professional",
-      price: "₹350,000",
-      period: "one-time",
-      description: "Most popular for growing businesses",
-      features: [
-        "Custom React application",
-        "Database & API development",
-        "Advanced features & integrations",
-        "Performance optimization",
-        "3 months support included",
-      ],
-      highlighted: true,
-      cta: "Start Project",
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      period: "pricing",
-      description: "Complex platforms & scale",
-      features: [
-        "Multi-component app",
-        "Advanced architecture",
-        "Real-time features",
-        "Dedicated developer team",
-        "12 months support & maintenance",
-      ],
-      highlighted: false,
-      cta: "Schedule Call",
-    },
-  ];
-
   const results = [
     {
       company: "TechNova",
@@ -178,7 +129,7 @@ const WebDevelopmentPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <ServiceHeroSection
         title="Build Scalable, High-Performance Web Applications"
         subtitle="Web Development"
@@ -199,12 +150,6 @@ const WebDevelopmentPage = () => {
         color="from-indigo-500 to-purple-500"
       />
 
-      <ServicePricingSection
-        title="Web Development Pricing"
-        tiers={tiers}
-        color="from-indigo-500 to-purple-500"
-      />
-
       <ServiceResultsSection
         title="Projects We've Delivered"
         subtitle="Real applications serving thousands of users"
@@ -212,31 +157,7 @@ const WebDevelopmentPage = () => {
         color="from-indigo-500 to-purple-500"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Ready to Build?
-          </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            Let's create a web application that scales with your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white"
-            >
-              Start Project
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
-            >
-              View Technologies
-            </Button>
-          </div>
-        </div>
-      </section>
+      <ServiceQuoteCTASection serviceName="Web Development" color="from-indigo-500 to-purple-500" />
     </main>
   );
 };
