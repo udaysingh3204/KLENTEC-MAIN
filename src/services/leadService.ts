@@ -53,10 +53,9 @@ export const submitLead = async (leadData: Lead) => {
     const leadId = data?.[0]?.id;
     console.log("Lead saved:", leadId);
 
-    // Emails disabled for now - will be re-enabled after debugging
-    // TODO: Re-enable email automation later
-    // await sendConfirmationEmail(leadData);
-    // await sendAdminNotification(leadData);
+    // Fire both emails in parallel; each catches its own errors internally
+    // so a delivery failure never blocks the lead from being recorded as submitted.
+    await Promise.all([sendConfirmationEmail(leadData), sendAdminNotification(leadData)]);
 
     return { success: true, leadId };
   } catch (err) {
