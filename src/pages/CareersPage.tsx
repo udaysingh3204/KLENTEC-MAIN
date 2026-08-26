@@ -164,7 +164,7 @@ const CareersPage = () => {
       <TeamHeroSection
         title="Join KLENTEC - We're Hiring"
         subtitle="Careers"
-        description="Help us deliver exceptional digital marketing results for 150+ brands. Work with a small, senior team on high-impact projects with real clients."
+        description="Help us deliver digital marketing results for 150+ brands. Work with a small, senior team on high-impact projects with real clients."
         stats={[
           { label: "Open Roles", value: "6+" },
           { label: "Remote", value: "100%" },

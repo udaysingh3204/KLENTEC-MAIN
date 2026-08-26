@@ -35,7 +35,7 @@ const ServiceProcessSection = ({
             {title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Here's how we deliver exceptional results for your business.
+            A clear, structured path from kickoff to launch — no guesswork, no surprises.
           </p>
         </motion.div>
 

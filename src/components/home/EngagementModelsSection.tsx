@@ -124,7 +124,7 @@ const EngagementModelsSection = () => (
             Built With Modern <span className="gradient-text">Technology</span>
           </h2>
           <p className="mt-4 text-base text-muted-foreground max-w-2xl mx-auto">
-            We use cutting-edge tools and frameworks to build scalable, maintainable solutions that grow with your business.
+            The same stack used by high-growth product teams — no legacy code, no shortcuts that become your problem later.
           </p>
         </motion.div>
 

@@ -119,7 +119,7 @@ const TeamPage = () => {
       <TeamHeroSection
         title="Meet The Team Behind KLENTEC"
         subtitle="Our People"
-        description="A small team of senior strategists, designers, and developers obsessed with delivering exceptional results for our clients. Each team member brings 6-12 years of specialized expertise."
+        description="A small team of senior strategists, designers, and developers who've helped 150+ brands scale. Each team member brings 6-12 years of specialized expertise."
         stats={[
           { label: "Team Size", value: "6+" },
           { label: "Avg Experience", value: "8.5yr" },

@@ -61,7 +61,7 @@ const TeamMembersGrid = ({
               {title}
             </h2>
             <p className="text-lg text-slate-400">
-              Talented individuals working together to deliver exceptional results.
+              Senior specialists in strategy, design, and development — not generalists learning on your dime.
             </p>
           </motion.div>
         )}

@@ -191,25 +191,6 @@
     @apply border-t border-border/30;
   }
 
-  /* Floating dots pattern animation */
-  @keyframes orbit {
-    0% { transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
-    100% { transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
-  }
-
-  .orbit-dot {
-    animation: orbit var(--orbit-duration, 8s) linear infinite;
-  }
-
-  @keyframes pulse-soft {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.2); }
-  }
-
-  .pulse-dot {
-    animation: pulse-soft 3s ease-in-out infinite;
-  }
-
   @keyframes drift {
     0%, 100% { transform: translateY(0) translateX(0); }
     25% { transform: translateY(-8px) translateX(4px); }

@@ -20,7 +20,7 @@ const team = [
   { name: "Uday Singh", role: "Founder & Growth Strategist", bio: "12+ years in digital marketing and growth. Built multiple 6-figure businesses from scratch. Obsessed with data-driven strategies and revenue impact.", expertise: ["Growth Strategy", "Product Scaling", "Revenue Optimization"] },
   { name: "Alex Chen", role: "Head of Development", bio: "Full-stack engineer with 8+ years experience. Previously led tech at a venture-backed SaaS. Builds systems that scale with your business.", expertise: ["Full-Stack Development", "System Architecture", "Performance"] },
   { name: "Sarah Martinez", role: "Marketing & Funnel Specialist", bio: "Former CMO at 3 successful startups. Expert in funnel optimization, conversion psychology, and customer acquisition. Loves turning browsers into buyers.", expertise: ["Funnel Optimization", "CRO", "Content Strategy"] },
-  { name: "James Park", role: "AI & Automation Lead", bio: "AI researcher turned practitioner. Implements cutting-edge automation that reduces manual work by 60-80%. Passionate about sustainable growth systems.", expertise: ["AI Integration", "Marketing Automation", "Process Optimization"] },
+  { name: "James Park", role: "AI & Automation Lead", bio: "AI researcher turned practitioner. Builds automation systems that reduce manual work by 60-80%. Passionate about sustainable growth systems.", expertise: ["AI Integration", "Marketing Automation", "Process Optimization"] },
   { name: "Emma Thompson", role: "Design & Brand Director", bio: "Award-winning designer with 10+ years in SaaS and e-commerce. Believes great design is invisible because it just works. Designs for conversions, not awards.", expertise: ["Brand Strategy", "UI/UX Design", "Design Systems"] },
   { name: "Michael Rodriguez", role: "Account Management & Ops", bio: "Customer success obsessed. Previously scaled support at a 100-person company. Ensures every client feels like a partner, not a number.", expertise: ["Client Success", "Project Management", "Operations"] },
 ];
@@ -64,7 +64,7 @@ const AboutPage = () => (
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { icon: Crosshair, title: "Mission", desc: "To help ambitious brands scale using powerful digital systems." },
+            { icon: Crosshair, title: "Mission", desc: "To help ambitious brands scale using systems that compound — not one-off campaigns." },
             { icon: Eye, title: "Vision", desc: "To become a global growth partner for startups and modern businesses." },
             { icon: Zap, title: "Approach", desc: "We don't believe in guesswork. We test, optimize, and scale what works." },
           ].map((item, i) => (

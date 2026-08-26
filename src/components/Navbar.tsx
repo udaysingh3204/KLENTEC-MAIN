@@ -15,45 +15,12 @@ const navLinks = [
 
 const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" };
 
-/* Animated orbiting dots around logo */
 const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
-  <div className="relative flex items-center justify-center">
-    {/* Main logo — scales down on scroll */}
-    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-28"} w-auto`} />
-
-    {/* Orbiting dots - hidden on scroll for cleaner navbar */}
-    {!scrolled && [0, 1, 2, 3, 4, 5].map((i) => (
-      <span
-        key={i}
-        className="absolute top-1/2 left-1/2 orbit-dot"
-        style={{
-          "--orbit-radius": `${50 + i * 10}px`,
-          "--orbit-duration": `${6 + i * 2}s`,
-          animationDelay: `${i * -1.2}s`,
-          width: `${5 + (i % 3)}px`,
-          height: `${5 + (i % 3)}px`,
-        } as React.CSSProperties}
-      >
-        <span
-          className="block rounded-full bg-primary/30 pulse-dot"
-          style={{
-            width: "100%",
-            height: "100%",
-            animationDelay: `${i * 0.5}s`,
-          }}
-        />
-      </span>
-    ))}
-
-    {/* Static glow dots - hidden on scroll */}
-    {!scrolled && (
-      <>
-        <span className="absolute -top-2 -right-2 w-3 h-3 rounded-full bg-primary/20 pulse-dot" style={{ animationDelay: "0s" }} />
-        <span className="absolute -bottom-2 -left-3 w-2.5 h-2.5 rounded-full bg-primary/15 pulse-dot" style={{ animationDelay: "1s" }} />
-        <span className="absolute top-1/2 -right-4 w-1.5 h-1.5 rounded-full bg-primary/25 pulse-dot" style={{ animationDelay: "2s" }} />
-      </>
-    )}
-  </div>
+  <img
+    src={logoWhite}
+    alt="KLENTEC"
+    className={`transition-all duration-300 ${scrolled ? "h-10" : "h-28"} w-auto`}
+  />
 );
 
 const Navbar = () => {
