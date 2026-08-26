@@ -15,8 +15,8 @@ import {
   Database,
   Zap,
   Rocket,
+  Check,
 } from "lucide-react";
-import { useRegionalPrice } from "@/hooks/useRegionalPrice";
 
 type Row = { name: string; serviceId: string };
 type Group = { title: string; rows: Row[] };
@@ -420,37 +420,18 @@ const categories: Category[] = [
   },
 ];
 
-const PriceCell = ({ serviceId }: { serviceId: string }) => {
-  const { getFormattedPrice } = useRegionalPrice();
-
-  let suffix = "";
-  if (serviceId.includes("post")) suffix = "/post";
-  else if (serviceId.includes("story")) suffix = "/story";
-  else if (serviceId.includes("day")) suffix = "/day";
-  else if (serviceId.includes("year")) suffix = "/year";
-  else if (serviceId.includes("month") || serviceId === "social-starter" || serviceId === "social-growth" || serviceId === "social-business" || serviceId === "social-scaleup" || serviceId === "social-enterprise") suffix = "/month";
-
-  return (
-    <span className="text-sm font-semibold text-primary whitespace-nowrap">
-      {getFormattedPrice(serviceId)}{suffix}
-    </span>
-  );
-};
-
 const ServicesPage = () => {
-  const { selectedRegion } = useRegionalPrice();
-
   return (
     <main>{/* Hero */}
     <section className="relative gradient-bg-hero pt-32 pb-16">
       <div className="container mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <span className="badge-dreamy mb-6 inline-block">🚀 Services & Pricing</span>
+          <span className="badge-dreamy mb-6 inline-block">🚀 Services</span>
           <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-balance">
             Everything You Need to <span className="gradient-text">Scale & Dominate</span>
           </h1>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Whether you need a brand from scratch, a fully-automated funnel, or a custom SaaS platform — we've got you covered. <strong className="text-foreground">All-inclusive packages with transparent pricing and zero surprises.</strong>
+            Whether you need a brand from scratch, a fully-automated funnel, or a custom SaaS platform — we've got you covered. <strong className="text-foreground">Every engagement is scoped to your goals, not a generic template.</strong>
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-medium">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
@@ -460,7 +441,7 @@ const ServicesPage = () => {
               ✓ 4.2x Avg ROI
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ Fixed-Price Packages
+              ✓ Custom-Scoped Proposals
             </div>
           </div>
         </motion.div>
@@ -496,8 +477,8 @@ const ServicesPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-3xl font-display font-bold gradient-text mb-2">Fixed Pricing</p>
-            <p className="text-sm text-muted-foreground">No hidden fees. No surprises. Transparent, all-inclusive packages.</p>
+            <p className="text-3xl font-display font-bold gradient-text mb-2">Scoped Proposals</p>
+            <p className="text-sm text-muted-foreground">No generic packages. Every quote is built around your actual project.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -610,9 +591,9 @@ const ServicesPage = () => {
                   <h3 className="text-lg font-display font-bold mb-5 text-foreground">{g.title}</h3>
                   <ul className="divide-y divide-border/40">
                     {g.rows.map((r) => (
-                      <li key={r.name} className="flex items-center justify-between py-3 gap-4">
+                      <li key={r.name} className="flex items-center gap-3 py-3">
+                        <Check className="w-4 h-4 text-primary shrink-0" />
                         <span className="text-sm text-foreground">{r.name}</span>
-                        <PriceCell serviceId={r.serviceId} />
                       </li>
                     ))}
                   </ul>
@@ -657,7 +638,7 @@ const ServicesPage = () => {
             Don't See Exactly What You Need? <span className="gradient-text">Let's Build It Together.</span>
           </h2>
           <p className="mt-6 text-muted-foreground text-base leading-relaxed">
-            Our pricing covers 90% of common projects. But if you need something custom — whether it's a unique SaaS platform, a complex automation system, or a full digital transformation — we'll work with you to create the perfect solution.
+            The list above covers 90% of common projects. But if you need something custom — whether it's a unique SaaS platform, a complex automation system, or a full digital transformation — we'll work with you to create the perfect solution.
           </p>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 text-sm font-medium text-muted-foreground mb-10">
