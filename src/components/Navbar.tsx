@@ -19,7 +19,7 @@ const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" 
 const LogoPattern = ({ scrolled }: { scrolled: boolean }) => (
   <div className="relative flex items-center justify-center">
     {/* Main logo — scales down on scroll */}
-    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-24"} w-auto`} />
+    <img src={logoWhite} alt="KLENTEC" className={`relative z-10 transition-all duration-300 ${scrolled ? "h-10" : "h-28"} w-auto`} />
 
     {/* Orbiting dots - hidden on scroll for cleaner navbar */}
     {!scrolled && [0, 1, 2, 3, 4, 5].map((i) => (
@@ -80,9 +80,19 @@ const Navbar = () => {
         scrolled ? "glass-nav shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className={`container mx-auto flex items-center justify-between px-6 transition-all duration-300 ${scrolled ? "h-16" : "h-28"}`}>
-        <Link to="/" className="flex items-center">
+      <div className={`container mx-auto flex items-center justify-between px-6 transition-all duration-300 ${scrolled ? "h-16" : "h-32"}`}>
+        <Link to="/" className="flex items-center gap-3">
           <LogoPattern scrolled={scrolled} />
+          {!scrolled && (
+            <span className="hidden sm:flex items-center gap-3 pl-1">
+              <span className="w-px h-8 bg-border/50" />
+              <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground leading-snug whitespace-nowrap">
+                We Build
+                <br />
+                Digital Machines
+              </span>
+            </span>
+          )}
         </Link>
 
         {/* Desktop */}
