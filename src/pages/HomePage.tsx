@@ -16,7 +16,6 @@ import MetricsSection from "@/components/home/MetricsSection";
 import CaseStudiesSection from "@/components/home/CaseStudiesSection";
 import ComparisonSection from "@/components/home/ComparisonSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
 import GrowthAuditSection from "@/components/home/GrowthAuditSection";
 import BlogPreviewSection from "@/components/home/BlogPreviewSection";
 import FAQSection from "@/components/home/FAQSection";
@@ -39,7 +38,6 @@ const HomePage = () => (
     <CaseStudiesSection />
     <ComparisonSection />
     <IndustriesSection />
-    <TestimonialsSection />
 
     {/* Lead generation section */}
     <StrategicCTASection />
