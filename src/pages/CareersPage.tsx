@@ -160,18 +160,19 @@ const CareersPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
       <TeamHeroSection
         title="Join KLENTEC - We're Hiring"
         subtitle="Careers"
         description="Help us deliver digital marketing results for 150+ brands. Work with a small, senior team on high-impact projects with real clients."
         stats={[
-          { label: "Open Roles", value: "6+" },
+          { label: "Open Roles", value: `${jobListings.length}+` },
           { label: "Remote", value: "100%" },
           { label: "Growth Focused", value: "✓" },
           { label: "Impact Driven", value: "✓" },
         ]}
         gradient="from-green-600 to-emerald-600"
+        showCta={false}
       />
 
       <JobListingsSection
@@ -188,18 +189,18 @@ const CareersPage = () => {
       />
 
       {/* Benefits Section */}
-      <section className="py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section-padding">
+        <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground mb-4">
               Benefits & Perks
             </h2>
-            <p className="text-lg text-slate-400">
+            <p className="text-lg text-muted-foreground">
               We take care of our team
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 emoji: "🏠",
@@ -234,13 +235,13 @@ const CareersPage = () => {
             ].map((perk, i) => (
               <div
                 key={i}
-                className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center hover:border-green-500/30 transition"
+                className="card-dreamy p-8 text-center"
               >
                 <div className="text-4xl mb-4">{perk.emoji}</div>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl font-display font-semibold text-foreground mb-2">
                   {perk.title}
                 </h3>
-                <p className="text-slate-400">{perk.description}</p>
+                <p className="text-muted-foreground">{perk.description}</p>
               </div>
             ))}
           </div>
@@ -248,9 +249,9 @@ const CareersPage = () => {
       </section>
 
       {/* Hiring Process Section */}
-      <section className="py-20 bg-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white text-center mb-16">
+      <section className="section-padding">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground text-center mb-16">
             Our Hiring Process
           </h2>
 
@@ -284,24 +285,24 @@ const CareersPage = () => {
             ].map((item, i) => (
               <div key={i} className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-br from-green-500 to-emerald-500 text-white font-bold">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 text-white font-display font-bold">
                     {item.step}
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">
+                  <h3 className="text-xl font-display font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-400">{item.description}</p>
+                  <p className="text-muted-foreground">{item.description}</p>
                 </div>
               </div>
             ))}
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-slate-400 mb-6">
+            <p className="text-muted-foreground mb-6">
               Interested? Apply now or send us your resume at{" "}
-              <a href="mailto:careers@klentec.com" className="text-green-400 hover:text-green-300">
+              <a href="mailto:careers@klentec.com" className="text-primary hover:underline">
                 careers@klentec.com
               </a>
             </p>

@@ -8,6 +8,9 @@ interface TeamHeroProps {
   description: string;
   stats?: { label: string; value: string }[];
   gradient: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  showCta?: boolean;
 }
 
 const TeamHeroSection = ({
@@ -16,6 +19,9 @@ const TeamHeroSection = ({
   description,
   stats = [],
   gradient,
+  ctaLabel = "Join Our Team",
+  ctaHref = "/careers",
+  showCta = true,
 }: TeamHeroProps) => {
   return (
     <section className={`relative min-h-[550px] flex items-center justify-center overflow-hidden bg-gradient-to-br ${gradient}`}>
@@ -63,20 +69,22 @@ const TeamHeroSection = ({
             </motion.div>
           )}
 
-          <motion.div
-            className="pt-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <Link
-              to="/careers"
-              className="inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 rounded-2xl group transition-all"
+          {showCta && (
+            <motion.div
+              className="pt-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Join Our Team
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
-            </Link>
-          </motion.div>
+              <Link
+                to={ctaHref}
+                className="inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 rounded-2xl group transition-all"
+              >
+                {ctaLabel}
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
+              </Link>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

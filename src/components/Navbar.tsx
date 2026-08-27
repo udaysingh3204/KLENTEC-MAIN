@@ -1,16 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import logoWhite from "@/assets/logo-white.png";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Work", to: "/work" },
-  { label: "About", to: "/about" },
   { label: "Testimonials", to: "/testimonials" },
   { label: "Contact", to: "/contact" },
+];
+
+const companyLinks = [
+  { label: "About", to: "/about" },
+  { label: "Team", to: "/team" },
+  { label: "Careers", to: "/careers" },
 ];
 
 const specialLink = { label: "24-Hour Web Dev", to: "/services/24-hour-web-dev" };
@@ -51,7 +62,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3">
           <LogoPattern scrolled={scrolled} />
           {!scrolled && (
-            <span className="hidden sm:flex items-center gap-3 pl-1">
+            <span className="hidden xl:flex items-center gap-3 pl-1">
               <span className="w-px h-8 bg-border/50" />
               <span className="text-[11px] font-semibold tracking-[0.15em] uppercase text-muted-foreground leading-snug whitespace-nowrap">
                 We Build
@@ -64,7 +75,55 @@ const Navbar = () => {
 
         {/* Desktop */}
         <div className="hidden lg:flex items-center gap-7">
-          {navLinks.map((link) => (
+          {navLinks.slice(0, 3).map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`text-sm font-medium tracking-wide whitespace-nowrap transition-all duration-300 hover:text-primary relative ${
+                location.pathname === link.to
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              }`}
+            >
+              {link.label}
+              {location.pathname === link.to && (
+                <motion.span
+                  layoutId="nav-indicator"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-primary"
+                />
+              )}
+            </Link>
+          ))}
+
+          {/* Company dropdown: About / Team / Careers */}
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={`flex items-center gap-1 text-sm font-medium tracking-wide whitespace-nowrap transition-all duration-300 hover:text-primary outline-none relative ${
+                companyLinks.some((l) => l.to === location.pathname)
+                  ? "text-primary"
+                  : "text-muted-foreground"
+              }`}
+            >
+              Company
+              <ChevronDown className="w-3.5 h-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="min-w-[10rem] bg-card border-border/50">
+              {companyLinks.map((link) => (
+                <DropdownMenuItem key={link.to} asChild>
+                  <Link
+                    to={link.to}
+                    className={`cursor-pointer text-sm ${
+                      location.pathname === link.to ? "text-primary" : "text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {navLinks.slice(3).map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -123,7 +182,38 @@ const Navbar = () => {
             <div className="flex flex-col gap-0 p-4">
               {/* Navigation Links */}
               <nav className="space-y-2 mb-4">
-                {navLinks.map((link) => (
+                {navLinks.slice(0, 3).map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`block w-full text-left py-3 px-4 rounded-lg text-sm font-medium transition-all ${
+                      location.pathname === link.to
+                        ? "bg-purple-600/30 text-purple-300 border border-purple-600/50"
+                        : "text-slate-300 hover:bg-slate-800/50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+
+                <p className="text-[11px] font-semibold tracking-widest uppercase text-slate-500 px-4 pt-2 pb-1">
+                  Company
+                </p>
+                {companyLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`block w-full text-left py-3 px-4 rounded-lg text-sm font-medium transition-all ${
+                      location.pathname === link.to
+                        ? "bg-purple-600/30 text-purple-300 border border-purple-600/50"
+                        : "text-slate-300 hover:bg-slate-800/50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+
+                {navLinks.slice(3).map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
