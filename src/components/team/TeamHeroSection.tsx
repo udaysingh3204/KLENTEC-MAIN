@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 interface TeamHeroProps {
   title: string;
@@ -37,7 +37,7 @@ const TeamHeroSection = ({
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl font-bold text-white leading-tight">
+          <h1 className="text-5xl sm:text-6xl font-display font-bold text-white leading-tight">
             {title}
           </h1>
 
@@ -69,13 +69,13 @@ const TeamHeroSection = ({
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <Button
-              size="lg"
-              className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-6 rounded-lg group"
+            <Link
+              to="/careers"
+              className="inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 rounded-2xl group transition-all"
             >
               Join Our Team
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
-            </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

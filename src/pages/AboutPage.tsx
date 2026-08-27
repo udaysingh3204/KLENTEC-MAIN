@@ -10,19 +10,10 @@ const fadeUp = {
 };
 
 const timeline = [
-  { year: "2022", title: "Founded by Frustrated Founders", desc: "KLENTEC started when our team grew tired of agencies that talked big but delivered small. We decided to build something different — a growth partner obsessed with client results, not billable hours. First client generated 240% lead growth in 90 days." },
-  { year: "2023", title: "Scaled from 3 to 15 People", desc: "After early success, we expanded our team strategically. Delivered 80+ projects across SaaS, e-commerce, and services. Hit $2M+ in verified client revenue generation. Built our proprietary growth framework." },
-  { year: "2024", title: "AI Automation Era", desc: "Integrated AI across our operations: automated funnel analysis, predictive conversion optimization, content generation, and strategy recommendations. Clients started seeing results 50% faster. Now managing 150+ active client accounts." },
-  { year: "2025", title: "Global Growth Partner Status", desc: "Working with ambitious brands across US, EU, Asia-Pacific regions. Achieved 95% client retention rate. Pioneered results-based pricing model. 8+ industries, from fintech to healthcare. On track for $5M+ in client revenue impact this year." },
-];
-
-const team = [
-  { name: "Uday Singh", role: "Founder & Growth Strategist", bio: "12+ years in digital marketing and growth. Built multiple 6-figure businesses from scratch. Obsessed with data-driven strategies and revenue impact.", expertise: ["Growth Strategy", "Product Scaling", "Revenue Optimization"] },
-  { name: "Alex Chen", role: "Head of Development", bio: "Full-stack engineer with 8+ years experience. Previously led tech at a venture-backed SaaS. Builds systems that scale with your business.", expertise: ["Full-Stack Development", "System Architecture", "Performance"] },
-  { name: "Sarah Martinez", role: "Marketing & Funnel Specialist", bio: "Former CMO at 3 successful startups. Expert in funnel optimization, conversion psychology, and customer acquisition. Loves turning browsers into buyers.", expertise: ["Funnel Optimization", "CRO", "Content Strategy"] },
-  { name: "James Park", role: "AI & Automation Lead", bio: "AI researcher turned practitioner. Builds automation systems that reduce manual work by 60-80%. Passionate about sustainable growth systems.", expertise: ["AI Integration", "Marketing Automation", "Process Optimization"] },
-  { name: "Emma Thompson", role: "Design & Brand Director", bio: "Award-winning designer with 10+ years in SaaS and e-commerce. Believes great design is invisible because it just works. Designs for conversions, not awards.", expertise: ["Brand Strategy", "UI/UX Design", "Design Systems"] },
-  { name: "Michael Rodriguez", role: "Account Management & Ops", bio: "Customer success obsessed. Previously scaled support at a 100-person company. Ensures every client feels like a partner, not a number.", expertise: ["Client Success", "Project Management", "Operations"] },
+  { year: "2022", title: "Founded", desc: "KLENTEC started because our founder was tired of agencies that talked big but delivered small. We set out to build something different — a growth partner obsessed with client results, not billable hours." },
+  { year: "2023", title: "Building the Playbook", desc: "Expanded capabilities across design, development, and performance marketing — refining a repeatable growth framework with every new client engagement." },
+  { year: "2024", title: "AI Automation Era", desc: "Integrated AI across our operations — automated funnel analysis, predictive conversion optimization, and strategy recommendations — to move faster without cutting corners." },
+  { year: "2025", title: "Global Growth Partner", desc: "Now working with ambitious brands across multiple regions and industries, with a 95% client retention rate and a results-based approach to pricing." },
 ];
 
 const AboutPage = () => (
@@ -50,7 +41,7 @@ const AboutPage = () => (
           </div>
           <div>
             <h2 className="text-2xl font-display font-bold text-foreground mb-4">Then Something Changed</h2>
-            <p>Instead of blaming the agencies, Uday decided to build the agency he needed. He brought together experts: a phenomenal developer, a growth hacker who'd scaled three startups, a designer obsessed with conversions, and an AI specialist. Together, they created KLENTEC — not as a traditional agency, but as a growth partner.</p>
+            <p>Instead of blaming the agencies, Uday decided to build the agency he needed — one where design, development, and marketing all worked toward the same number: client revenue. That became KLENTEC — not a traditional agency, but a growth partner.</p>
           </div>
           <div>
             <h2 className="text-2xl font-display font-bold text-foreground mb-4">Why We're Different</h2>
@@ -116,35 +107,19 @@ const AboutPage = () => (
     <section className="section-padding gradient-bg-subtle">
       <div className="container mx-auto">
         <motion.h2 {...fadeUp} className="text-3xl md:text-4xl font-display font-bold text-center mb-14">
-          Meet the <span className="gradient-text">Team</span>
+          Led by the <span className="gradient-text">Founder</span>
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member, i) => (
-            <motion.div
-              key={member.name}
-              {...fadeUp}
-              transition={{ duration: 0.4, delay: i * 0.08 }}
-              className="card-elevated p-8"
-            >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <Users className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-lg font-display font-bold text-foreground mb-1">{member.name}</h3>
-              <p className="text-sm text-primary font-semibold mb-3">{member.role}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{member.bio}</p>
-              <div className="pt-5 border-t border-border">
-                <p className="text-xs text-foreground font-semibold mb-2">Expertise:</p>
-                <div className="flex flex-wrap gap-2">
-                  {member.expertise.map((exp) => (
-                    <span key={exp} className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary">
-                      {exp}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div {...fadeUp} className="max-w-xl mx-auto card-elevated p-10 text-center">
+          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+            <Users className="w-8 h-8 text-primary" />
+          </div>
+          <h3 className="text-xl font-display font-bold text-foreground mb-1">Uday Singh</h3>
+          <p className="text-sm text-primary font-semibold mb-4">Founder & Growth Strategist</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Leads strategy and client growth at KLENTEC, working hands-on with every
+            engagement from first call to launch.
+          </p>
+        </motion.div>
       </div>
     </section>
 
@@ -155,9 +130,9 @@ const AboutPage = () => (
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
           {[
-            { label: "Client Revenue Generated", value: "$50M+" },
-            { label: "Projects Delivered", value: "250+" },
-            { label: "Team Members", value: "15+" },
+            { label: "Happy Clients", value: "150+" },
+            { label: "Avg. ROAS", value: "4.2x" },
+            { label: "Years of Experience", value: "10+" },
             { label: "Client Retention Rate", value: "95%" },
           ].map((stat, i) => (
             <motion.div

@@ -19,12 +19,14 @@ interface TeamMember {
 interface TeamMembersGridProps {
   members: TeamMember[];
   title?: string;
+  subtitle?: string;
   columns?: 1 | 2 | 3 | 4;
 }
 
 const TeamMembersGrid = ({
   members,
   title = "Meet Our Team",
+  subtitle = "Senior specialists in strategy, design, and development — not generalists learning on your dime.",
   columns = 3,
 }: TeamMembersGridProps) => {
   const containerVariants = {
@@ -48,26 +50,25 @@ const TeamMembersGrid = ({
   };
 
   return (
-    <section className="py-20 bg-slate-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding">
+      <div className="container mx-auto">
         {title && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               {title}
             </h2>
-            <p className="text-lg text-slate-400">
-              Senior specialists in strategy, design, and development — not generalists learning on your dime.
-            </p>
+            <p className="text-lg text-muted-foreground">{subtitle}</p>
           </motion.div>
         )}
 
         <motion.div
-          className={`grid grid-cols-1 ${gridColsClass[columns]} gap-8`}
+          className={`grid grid-cols-1 ${gridColsClass[columns]} gap-8 ${columns === 1 ? "max-w-md mx-auto" : ""}`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -78,45 +79,45 @@ const TeamMembersGrid = ({
               key={member.id}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden hover:border-slate-700 transition group"
+              className="card-dreamy overflow-hidden group"
             >
-              {/* Image placeholder */}
-              <div className="relative h-48 bg-gradient-to-br from-purple-500 via-pink-500 to-slate-700 flex items-center justify-center overflow-hidden">
-                <div className="text-6xl font-bold text-white/20 group-hover:scale-110 transition">
+              <div
+                className="relative h-48 flex items-center justify-center overflow-hidden"
+                style={{ background: "linear-gradient(135deg, hsl(var(--purple-soft)), hsl(260 80% 94%))" }}
+              >
+                <div className="text-6xl font-display font-bold text-primary/30 group-hover:scale-110 transition">
                   {member.name.charAt(0)}
                 </div>
               </div>
 
-              {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-1">
+                <h3 className="text-xl font-display font-bold text-foreground mb-1">
                   {member.name}
                 </h3>
-                <p className="text-purple-400 font-semibold text-sm mb-1">
+                <p className="text-primary font-semibold text-sm mb-1">
                   {member.role}
                 </p>
-                <p className="text-slate-400 text-sm mb-3">
+                <p className="text-muted-foreground text-sm mb-3">
                   {member.specialty}
                 </p>
 
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {member.bio}
                 </p>
 
-                <div className="flex items-center gap-2 text-xs text-slate-400 mb-4">
-                  <span className="w-2 h-2 bg-green-400 rounded-full" />
+                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
+                  <span className="w-2 h-2 bg-primary rounded-full" />
                   {member.yearsExperience}+ years experience
                 </div>
 
-                {/* Social links */}
                 {member.social && (
-                  <div className="flex items-center gap-3 pt-4 border-t border-slate-800">
+                  <div className="flex items-center gap-3 pt-4 border-t border-border/40">
                     {member.social.linkedin && (
                       <a
                         href={member.social.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-blue-400 transition"
+                        className="text-muted-foreground hover:text-primary transition"
                         title="LinkedIn"
                       >
                         <Linkedin className="w-4 h-4" />
@@ -125,7 +126,7 @@ const TeamMembersGrid = ({
                     {member.social.email && (
                       <a
                         href={`mailto:${member.social.email}`}
-                        className="text-slate-400 hover:text-purple-400 transition"
+                        className="text-muted-foreground hover:text-primary transition"
                         title="Email"
                       >
                         <Mail className="w-4 h-4" />
@@ -136,7 +137,7 @@ const TeamMembersGrid = ({
                         href={member.social.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-slate-400 hover:text-slate-200 transition"
+                        className="text-muted-foreground hover:text-primary transition"
                         title="GitHub"
                       >
                         <Github className="w-4 h-4" />
