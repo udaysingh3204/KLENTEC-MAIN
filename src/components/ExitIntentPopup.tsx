@@ -128,29 +128,15 @@ const ExitIntentPopup = () => {
                     </span>
                   </h2>
 
-                  {/* Testimonial */}
-                  <div className="mb-8 p-5 rounded-2xl bg-white/8 border border-white/15">
-                    <p className="text-sm leading-relaxed italic text-white/90 mb-4">
-                      "KLENTEC transformed our brand visibility in 60 days. Their team understood our goals and delivered beyond expectations."
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400" />
-                      <div>
-                        <p className="text-sm font-semibold text-white">Rahul Sharma</p>
-                        <p className="text-xs text-white/60">Founder, TechNova</p>
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Trust badges */}
                   <div className="space-y-2 pt-4 border-t border-white/15">
                     <div className="flex items-center gap-2 text-xs text-white/80">
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                      NDA signed before every project
+                      No credit card required
                     </div>
                     <div className="flex items-center gap-2 text-xs text-white/80">
                       <MessageCircle className="w-4 h-4 text-blue-400" />
-                      Response within 4 business hours
+                      Average response time: 2 hours
                     </div>
                   </div>
                 </div>
@@ -232,7 +218,7 @@ const ExitIntentPopup = () => {
                     <div className="flex items-center gap-2 text-xs text-slate-500 bg-amber-50 px-3 py-2 rounded-lg border border-amber-100">
                       <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
                       <span>
-                        <strong>Fast response</strong> — NDA-protected • Zero spam
+                        <strong>Fast response</strong> — no obligation, zero spam
                       </span>
                     </div>
 

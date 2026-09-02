@@ -34,6 +34,7 @@ const FAQPage = lazy(() => import("./pages/FAQPage"));
 const AdminDashboardHome = lazy(() => import("./pages/AdminDashboardHome"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const AdminReviews = lazy(() => import("./pages/AdminReviews"));
+const AdminInquiries = lazy(() => import("./pages/admin/InquiriesPage"));
 
 // Service pages (lazy loaded)
 const DigitalMarketingPage = lazy(() => import("./pages/services/DigitalMarketingPage"));
@@ -119,6 +120,18 @@ const App = () => (
               <ProtectedRoute>
                 <Suspense fallback={<PageLoader />}>
                   <AdminReviews />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/inquiries"
+            element={
+              <ProtectedRoute>
+                <Suspense fallback={<PageLoader />}>
+                  <div className="min-h-screen bg-slate-50 p-6 lg:p-8">
+                    <AdminInquiries />
+                  </div>
                 </Suspense>
               </ProtectedRoute>
             }

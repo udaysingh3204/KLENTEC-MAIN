@@ -3,7 +3,7 @@ import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServicePricingSection from "@/components/services/ServicePricingSection";
 import ServiceResultsSection from "@/components/services/ServiceResultsSection";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PriceDisplay } from "@/components/PriceDisplay";
 
@@ -301,19 +301,18 @@ const FastTrackWebDevPage = () => {
             No more waiting for agencies. No more $50K projects that take 3 months. Start today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white"
+            <a
+              href="#pricing"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition-all"
             >
               Start 24-Hour Build
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-slate-600 text-slate-300 hover:bg-slate-900"
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold border border-slate-600 text-slate-300 hover:bg-slate-900 transition-all"
             >
               Schedule Strategy Call
-            </Button>
+            </Link>
           </div>
         </div>
       </section>

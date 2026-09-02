@@ -37,7 +37,7 @@ const footerSections = [
     links: [
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms & Conditions", to: "/terms" },
-      { label: "Security", to: "#" },
+      { label: "Security", to: "/privacy#security" },
     ],
   },
 ];

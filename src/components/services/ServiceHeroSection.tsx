@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 interface ServiceHeroProps {
@@ -9,6 +9,7 @@ interface ServiceHeroProps {
   icon?: React.ReactNode;
   benefits?: string[];
   ctaText?: string;
+  ctaHref?: string;
   gradient: string;
 }
 
@@ -18,6 +19,7 @@ const ServiceHeroSection = ({
   description,
   benefits = [],
   ctaText = "Schedule Consultation",
+  ctaHref = "/contact",
   gradient,
 }: ServiceHeroProps) => {
   return (
@@ -75,13 +77,13 @@ const ServiceHeroSection = ({
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            <Button
-              size="lg"
-              className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-6 rounded-2xl group"
+            <Link
+              to={ctaHref}
+              className="inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 rounded-2xl group transition-all"
             >
               {ctaText}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
-            </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

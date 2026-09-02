@@ -31,7 +31,7 @@ const ServicePricingSection = ({
   color,
 }: ServicePricingSectionProps) => {
   return (
-    <section className="section-padding">
+    <section id="pricing" className="section-padding scroll-mt-28">
       <div className="container mx-auto">
         {/* Section header */}
         <motion.div

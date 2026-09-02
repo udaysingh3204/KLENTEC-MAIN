@@ -61,7 +61,7 @@ const PrivacyPage = () => {
                 </ul>
               </div>
 
-              <div>
+              <div id="security" className="scroll-mt-28">
                 <h2 className="text-2xl font-bold text-white mb-4">4. Data Security</h2>
                 <p>
                   We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.
