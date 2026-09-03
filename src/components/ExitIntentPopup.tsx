@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShieldCheck, MessageCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { sendAdminNotification } from "@/services/leadService";
 
 interface ExitData {
   name: string;
@@ -63,6 +64,17 @@ const ExitIntentPopup = () => {
       services: form.need,
       status: "new",
       source: "exit-intent-popup",
+    });
+
+    // Fire-and-forget admin notification; failure is caught internally and
+    // never blocks the popup's own success state.
+    sendAdminNotification({
+      full_name: form.name,
+      email: form.email,
+      phone: form.whatsapp,
+      company: "Exit-intent popup",
+      service_interest: form.need || "Not specified",
+      message: form.need || "(No details provided — submitted via exit-intent popup)",
     });
 
     setSuccess(true);

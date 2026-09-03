@@ -87,9 +87,11 @@ const sendConfirmationEmail = async (lead: Lead) => {
 };
 
 /**
- * Send admin notification
+ * Send admin notification. Exported so other lead-capture surfaces
+ * (e.g. the exit-intent popup) can reuse it without duplicating the
+ * EmailJS wiring.
  */
-const sendAdminNotification = async (lead: Lead) => {
+export const sendAdminNotification = async (lead: Lead) => {
   try {
     await emailjs.send(
       import.meta.env.VITE_EMAILJS_SERVICE_ADMIN,
