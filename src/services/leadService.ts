@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import emailjs from "@emailjs/browser";
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -18,9 +17,6 @@ export interface Lead {
   source?: string;
   created_at?: string;
 }
-
-// Initialize EmailJS
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 /**
  * Submit lead to Supabase and trigger email automation
@@ -65,21 +61,24 @@ export const submitLead = async (leadData: Lead) => {
 };
 
 /**
- * Send welcome/confirmation email to lead
+ * Send welcome/confirmation email to lead via the /api/send-email
+ * serverless function (Resend).
  */
 const sendConfirmationEmail = async (lead: Lead) => {
   try {
-    await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_HELLO,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_INQUIRY,
-      {
-        to_email: lead.email,
-        from_name: "KLENTEC Team",
-        to_name: lead.full_name,
-        from_email: "hello@klentec.com",
-      },
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
+    const resp = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "confirmation",
+        toEmail: lead.email,
+        toName: lead.full_name,
+      }),
+    });
+    if (!resp.ok) {
+      const body = await resp.json().catch(() => ({}));
+      throw new Error(body?.error || `send-email failed: ${resp.status}`);
+    }
     console.log("Confirmation email sent");
   } catch (err) {
     console.error("Failed to send confirmation email:", err);
@@ -87,28 +86,30 @@ const sendConfirmationEmail = async (lead: Lead) => {
 };
 
 /**
- * Send admin notification. Exported so other lead-capture surfaces
- * (e.g. the exit-intent popup) can reuse it without duplicating the
- * EmailJS wiring.
+ * Send admin notification via the /api/send-email serverless function
+ * (Resend). Exported so other lead-capture surfaces (e.g. the exit-intent
+ * popup) can reuse it without duplicating the wiring.
  */
 export const sendAdminNotification = async (lead: Lead) => {
   try {
-    await emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ADMIN,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN,
-      {
-        to_email: "udaysingh@klentec.com",
-        from_name: "KLENTEC Lead System",
-        from_email: "hello@klentec.com",
-        lead_name: lead.full_name,
-        lead_email: lead.email,
-        lead_phone: lead.phone || "N/A",
-        lead_company: lead.company || "Not provided",
-        lead_service: lead.service_interest,
-        lead_message: lead.message,
-      },
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    );
+    const resp = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "admin",
+        leadName: lead.full_name,
+        leadEmail: lead.email,
+        leadPhone: lead.phone || "N/A",
+        leadCompany: lead.company || "Not provided",
+        leadService: lead.service_interest,
+        leadMessage: lead.message,
+        source: lead.source,
+      }),
+    });
+    if (!resp.ok) {
+      const body = await resp.json().catch(() => ({}));
+      throw new Error(body?.error || `send-email failed: ${resp.status}`);
+    }
     console.log("Admin notification sent");
   } catch (err) {
     console.error("Failed to send admin notification:", err);

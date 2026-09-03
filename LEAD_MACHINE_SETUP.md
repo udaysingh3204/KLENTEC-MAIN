@@ -18,12 +18,15 @@ The Lead Machine system automatically captures, manages, and nurtures leads from
 - ✅ Public anon key configured
 - **Next:** Create `leads` table (see below)
 
-### EmailJS
-- ✅ Account connected
-- ✅ Gmail service configured
-- ✅ Two email templates set up:
-  - `template_tyb8hx8` → User confirmation emails
-  - `template_7xnx955` → Admin notifications
+### Email (Resend)
+- Switched from EmailJS to Resend, sent via a small Vercel serverless
+  function (`api/send-email.js`) instead of a client-exposed public key.
+- **Requires:** a Resend account, an API key, and (optionally) a verified
+  sending domain. See `.env.example` for the exact env vars
+  (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `ADMIN_NOTIFICATION_EMAIL`).
+- Until `klentec.com` is verified in Resend, `RESEND_FROM_EMAIL` must stay
+  `onboarding@resend.dev` — Resend will reject sends from an unverified
+  custom domain.
 
 ---
 
@@ -203,10 +206,13 @@ Event: page_view, scroll, time_on_page
 4. Check Supabase Dashboard → Logs
 
 ### "Emails not being sent"
-1. Verify EmailJS keys in `.env.local`
-2. Check EmailJS Dashboard → Email Log
-3. Verify templates exist with correct IDs
+1. Verify `RESEND_API_KEY` is set in Vercel (Production + Preview)
+2. Check Resend Dashboard → Logs for the actual delivery attempt
+3. If sending from `@klentec.com`, confirm the domain is verified in
+   Resend — unverified domains are rejected
 4. Check spam folder (emails might be there)
+5. Check the Vercel function logs for `/api/send-email` for the exact
+   error message
 
 ### "Admin dashboard shows no leads"
 1. Make sure at least one lead was submitted
@@ -254,7 +260,7 @@ Track these to measure success:
 For issues:
 1. Check browser console (F12 → Console tab)
 2. Check Supabase logs (Dashboard → Logs)
-3. Check EmailJS logs (Account → Emails)
+3. Check Resend logs (Dashboard → Logs)
 4. Check Vercel deployment logs
 5. Contact Claude for help
 
