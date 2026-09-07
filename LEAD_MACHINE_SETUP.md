@@ -19,14 +19,17 @@ The Lead Machine system automatically captures, manages, and nurtures leads from
 - **Next:** Create `leads` table (see below)
 
 ### Email (Resend)
-- Switched from EmailJS to Resend, sent via a small Vercel serverless
-  function (`api/send-email.js`) instead of a client-exposed public key.
-- **Requires:** a Resend account, an API key, and (optionally) a verified
-  sending domain. See `.env.example` for the exact env vars
-  (`RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `ADMIN_NOTIFICATION_EMAIL`).
-- Until `klentec.com` is verified in Resend, `RESEND_FROM_EMAIL` must stay
-  `onboarding@resend.dev` — Resend will reject sends from an unverified
-  custom domain.
+- ✅ Live as of Sep 2026. Switched from EmailJS to Resend, sent via a
+  small Vercel serverless function (`api/send-email.js`) instead of a
+  client-exposed public key.
+- ✅ `klentec.com` verified in Resend — emails send from
+  `hello@klentec.com`, not the shared `onboarding@resend.dev` fallback.
+- ✅ Confirmed working end-to-end with live test submissions: lead saves
+  to Supabase, customer confirmation email sends, admin notification
+  sends to `ADMIN_NOTIFICATION_EMAIL`.
+- Env vars are in Vercel (Production + Preview): `RESEND_API_KEY`,
+  `RESEND_FROM_EMAIL`, `ADMIN_NOTIFICATION_EMAIL`. See `.env.example`
+  for the format.
 
 ---
 
