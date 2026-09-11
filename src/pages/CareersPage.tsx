@@ -171,7 +171,6 @@ const CareersPage = () => {
           { label: "Growth Focused", value: "✓" },
           { label: "Impact Driven", value: "✓" },
         ]}
-        gradient="from-green-600 to-emerald-600"
         showCta={false}
       />
 
@@ -179,7 +178,6 @@ const CareersPage = () => {
         title="Open Positions"
         subtitle="Find the role where you'll do your best work"
         jobs={jobListings}
-        color="from-green-500 to-emerald-500"
       />
 
       <CultureSection
@@ -285,7 +283,7 @@ const CareersPage = () => {
             ].map((item, i) => (
               <div key={i} className="flex gap-6">
                 <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 text-white font-display font-bold">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br from-[hsl(var(--purple-mid))] to-[hsl(var(--purple-dark))] text-white font-display font-bold">
                     {item.step}
                   </div>
                 </div>

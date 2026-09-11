@@ -7,7 +7,6 @@ interface TeamHeroProps {
   subtitle: string;
   description: string;
   stats?: { label: string; value: string }[];
-  gradient: string;
   ctaLabel?: string;
   ctaHref?: string;
   showCta?: boolean;
@@ -18,52 +17,39 @@ const TeamHeroSection = ({
   subtitle,
   description,
   stats = [],
-  gradient,
   ctaLabel = "Join Our Team",
   ctaHref = "/careers",
   showCta = true,
 }: TeamHeroProps) => {
   return (
-    <section className={`relative min-h-[550px] flex items-center justify-center overflow-hidden bg-gradient-to-br ${gradient}`}>
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
-        <div className="absolute bottom-10 right-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl opacity-10" />
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <section className="relative gradient-bg-hero pt-32 pb-16">
+      <div className="container mx-auto px-6 text-center">
         <motion.div
-          className="space-y-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-block px-4 py-2 bg-white/10 border border-white/20 rounded-full">
-            <span className="text-sm font-semibold text-white uppercase tracking-wide">
-              {subtitle}
-            </span>
-          </div>
+          <span className="badge-dreamy mb-6 inline-block">{subtitle}</span>
 
-          <h1 className="text-5xl sm:text-6xl font-display font-bold text-white leading-tight">
+          <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight text-balance">
             {title}
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {description}
           </p>
 
           {stats.length > 0 && (
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 py-8"
+              className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               {stats.map((stat, index) => (
-                <div key={index} className="bg-white/10 border border-white/20 rounded-lg p-4">
-                  <div className="text-2xl font-bold text-white mb-1">
-                    {stat.value}
-                  </div>
-                  <p className="text-white/80 text-xs font-medium">{stat.label}</p>
+                <div key={index} className="card-dreamy p-4">
+                  <p className="text-2xl font-display font-bold gradient-text">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -71,17 +57,14 @@ const TeamHeroSection = ({
 
           {showCta && (
             <motion.div
-              className="pt-6"
+              className="pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <Link
-                to={ctaHref}
-                className="inline-flex items-center justify-center bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8 py-4 rounded-2xl group transition-all"
-              >
+              <Link to={ctaHref} className="btn-dreamy inline-flex items-center gap-2">
                 {ctaLabel}
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
           )}

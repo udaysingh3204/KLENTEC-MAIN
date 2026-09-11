@@ -17,7 +17,6 @@ interface JobListingsSectionProps {
   jobs: JobListing[];
   title?: string;
   subtitle?: string;
-  color: string;
 }
 
 const CAREERS_EMAIL = "careers@klentec.com";
@@ -31,7 +30,6 @@ const JobListingsSection = ({
   jobs,
   title = "Open Positions",
   subtitle = "Find the role where you'll do your best work",
-  color,
 }: JobListingsSectionProps) => {
   const containerVariants = {
     hidden: { opacity: 0 },

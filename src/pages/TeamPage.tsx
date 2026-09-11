@@ -64,7 +64,6 @@ const TeamPage = () => {
           { label: "Years Experience", value: "10+" },
           { label: "Client Retention", value: "95%" },
         ]}
-        gradient="from-purple-600 to-pink-600"
       />
 
       <TeamMembersGrid
@@ -82,20 +81,17 @@ const TeamPage = () => {
 
       {/* Open Positions Section */}
       <section className="section-padding">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight text-foreground mb-6">
             We're Hiring!
           </h2>
-          <p className="text-lg text-slate-400 mb-8">
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
             Join our small, talented team and work on high-impact projects with
             real clients.
           </p>
-          <Link
-            to="/careers"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-all"
-          >
+          <Link to="/careers" className="btn-dreamy inline-flex items-center gap-2">
             View Open Positions
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
