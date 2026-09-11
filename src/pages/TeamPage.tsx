@@ -27,8 +27,8 @@ const TeamPage = () => {
     },
     {
       icon: "👥",
-      title: "Small, Senior Team",
-      description: "Real ownership from day one. No junior grunts here — everyone is experienced and empowered.",
+      title: "Real Ownership, Not Busywork",
+      description: "From founder to intern, everyone works directly on real client outcomes — not make-work.",
     },
     {
       icon: "❤️",

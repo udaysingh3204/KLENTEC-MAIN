@@ -6,8 +6,8 @@ interface JobListing {
   title: string;
   department: string;
   location: string;
-  type: "Full Time" | "Part Time" | "Contract" | "Remote";
-  level: "Junior" | "Mid" | "Senior" | "Lead";
+  type: "Full Time" | "Part Time" | "Contract" | "Remote" | "Internship";
+  level: "Junior" | "Mid" | "Senior" | "Lead" | "Intern";
   description: string;
   requirements: string[];
   nice_to_have?: string[];
@@ -99,7 +99,7 @@ const JobListingsSection = ({
 
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <span className="badge-pill normal-case tracking-normal">
-                    {job.level} Level
+                    {job.level === "Intern" ? "Internship" : `${job.level} Level`}
                   </span>
                 </div>
               </div>
