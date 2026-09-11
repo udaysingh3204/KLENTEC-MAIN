@@ -17,8 +17,6 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
-const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
-const PaymentSuccessPage = lazy(() => import("./pages/PaymentSuccessPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
@@ -66,8 +64,6 @@ const App = () => (
           <Route element={<PublicLayout />}>
             <Route path="/"                    element={<Suspense fallback={<PageLoader />}><HomePage /></Suspense>} />
             <Route path="/services"            element={<Suspense fallback={<PageLoader />}><ServicesPage /></Suspense>} />
-            <Route path="/checkout"            element={<Suspense fallback={<PageLoader />}><CheckoutPage /></Suspense>} />
-            <Route path="/payment/success"     element={<Suspense fallback={<PageLoader />}><PaymentSuccessPage /></Suspense>} />
             <Route path="/work"                element={<Suspense fallback={<PageLoader />}><WorkPage /></Suspense>} />
             <Route path="/about"    element={<Suspense fallback={<PageLoader />}><AboutPage /></Suspense>} />
             <Route path="/contact"  element={<Suspense fallback={<PageLoader />}><ContactPage /></Suspense>} />

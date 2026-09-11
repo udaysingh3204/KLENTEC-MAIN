@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import { PriceDisplay } from "@/components/PriceDisplay";
 import { CTAButton } from "@/components/CTAButton";
-import { BuyServiceButton } from "@/components/BuyServiceButton";
 
 interface PricingTier {
   name: string;
@@ -14,8 +13,6 @@ interface PricingTier {
   features: string[];
   highlighted?: boolean;
   cta: string;
-  serviceId?: string;
-  numericPrice?: number;
 }
 
 interface ServicePricingSectionProps {
@@ -129,32 +126,17 @@ const ServicePricingSection = ({
                 </ul>
 
                 {/* CTA */}
-                {tier.serviceId && tier.numericPrice ? (
-                  <BuyServiceButton
-                    serviceId={tier.serviceId}
-                    serviceName={tier.name}
-                    amount={tier.numericPrice}
-                    label={tier.cta}
-                    variant={tier.highlighted ? "primary" : "secondary"}
-                    className={`w-full justify-center text-base py-3 ${
-                      tier.highlighted
-                        ? "bg-none bg-white text-slate-900 hover:bg-slate-100"
-                        : ""
-                    }`}
-                  />
-                ) : (
-                  <CTAButton
-                    type="lead-form"
-                    label={tier.cta}
-                    source={tier.name}
-                    variant={tier.highlighted ? "primary" : "secondary"}
-                    className={`w-full justify-center text-base py-3 ${
-                      tier.highlighted
-                        ? "bg-none bg-white text-slate-900 hover:bg-slate-100"
-                        : ""
-                    }`}
-                  />
-                )}
+                <CTAButton
+                  type="lead-form"
+                  label={tier.cta}
+                  source={tier.name}
+                  variant={tier.highlighted ? "primary" : "secondary"}
+                  className={`w-full justify-center text-base py-3 ${
+                    tier.highlighted
+                      ? "bg-none bg-white text-slate-900 hover:bg-slate-100"
+                      : ""
+                  }`}
+                />
               </div>
             </motion.div>
           ))}
