@@ -1,7 +1,6 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const WebDevelopmentPage = () => {
@@ -77,57 +76,6 @@ const WebDevelopmentPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Performance",
-      value: "2.3s",
-      timeline: "6 months",
-      description: "Built full-featured SaaS platform with real-time collaboration. Page load time: 2.3s. 99.9% uptime.",
-    },
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "Conversion",
-      value: "65%",
-      timeline: "3 months",
-      description: "Complete e-commerce redesign improved conversion rate by 65% through UX optimization.",
-    },
-    {
-      company: "FinFlow",
-      industry: "Fintech",
-      metric: "Users",
-      value: "50K",
-      timeline: "8 months",
-      description: "Developed scalable fintech platform handling 50K+ monthly active users securely.",
-    },
-    {
-      company: "EduSmart",
-      industry: "EdTech",
-      metric: "Uptime",
-      value: "99.95%",
-      timeline: "ongoing",
-      description: "Learning management system supporting 100K+ students with 99.95% uptime SLA.",
-    },
-    {
-      company: "PropFlow",
-      industry: "Real Estate",
-      metric: "Speed",
-      value: "1.8s",
-      timeline: "4 months",
-      description: "Real estate marketplace redesigned for speed. 1.8s load time. 40% bounce rate reduction.",
-    },
-    {
-      company: "HealthPlus",
-      industry: "Healthcare",
-      metric: "Secure",
-      value: "HIPAA",
-      timeline: "ongoing",
-      description: "HIPAA-compliant healthcare portal with patient data protection and 24/7 availability.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-background">
       <ServiceHeroSection
@@ -147,13 +95,6 @@ const WebDevelopmentPage = () => {
       <ServiceProcessSection
         title="Our Development Process"
         steps={steps}
-        color="from-indigo-500 to-purple-500"
-      />
-
-      <ServiceResultsSection
-        title="Projects We've Delivered"
-        subtitle="Real applications serving thousands of users"
-        results={results}
         color="from-indigo-500 to-purple-500"
       />
 

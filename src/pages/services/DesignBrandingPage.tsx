@@ -1,7 +1,6 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const DesignBrandingPage = () => {
@@ -77,57 +76,6 @@ const DesignBrandingPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "BrandLab",
-      industry: "Consumer",
-      metric: "Brand Recall",
-      value: "4x",
-      timeline: "3 months",
-      description: "Complete visual identity redesign increased brand recall by 4x in post-campaign survey.",
-    },
-    {
-      company: "Maya Designs",
-      industry: "Agency",
-      metric: "Website Traffic",
-      value: "280%",
-      timeline: "6 months",
-      description: "Portfolio redesign with new branding increased agency website traffic by 280%.",
-    },
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Conversion",
-      value: "+45%",
-      timeline: "4 months",
-      description: "New UI/UX design system increased SaaS product conversions by 45%.",
-    },
-    {
-      company: "FreshStart",
-      industry: "Startup",
-      metric: "Investment",
-      value: "₹2.5Cr",
-      timeline: "presentation",
-      description: "Complete brand identity helped startup secure Series A funding with compelling pitch deck design.",
-    },
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "CTR",
-      value: "3.2x",
-      timeline: "ongoing",
-      description: "Marketing collateral redesign increased click-through rates by 3.2x across campaigns.",
-    },
-    {
-      company: "HealthPlus",
-      industry: "Healthcare",
-      metric: "Trust",
-      value: "92%",
-      timeline: "post-launch",
-      description: "Professional brand identity redesign increased patient trust and satisfaction to 92%.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-background">
       <ServiceHeroSection
@@ -147,13 +95,6 @@ const DesignBrandingPage = () => {
       <ServiceProcessSection
         title="Our Brand Design Process"
         steps={steps}
-        color="from-pink-500 to-rose-500"
-      />
-
-      <ServiceResultsSection
-        title="Brands We've Created"
-        subtitle="Visual identities that drive business growth"
-        results={results}
         color="from-pink-500 to-rose-500"
       />
 

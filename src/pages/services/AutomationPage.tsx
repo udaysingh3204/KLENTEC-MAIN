@@ -1,7 +1,6 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const AutomationPage = () => {
@@ -71,57 +70,6 @@ const AutomationPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "FreshStart",
-      industry: "Fitness",
-      metric: "Lead Response",
-      value: "68%",
-      timeline: "3 months",
-      description: "WhatsApp automation increased lead engagement from 8% to 68% with instant qualification sequences.",
-    },
-    {
-      company: "NexaComm",
-      industry: "Real Estate",
-      metric: "Lead Follow-up",
-      value: "30sec",
-      timeline: "immediate",
-      description: "Automated WhatsApp greeting + CRM integration reduced response time from 4 hours to 30 seconds.",
-    },
-    {
-      company: "ConsultPro",
-      industry: "Services",
-      metric: "Time Saved",
-      value: "40hrs/week",
-      timeline: "month 1",
-      description: "Marketing automation workflows saved 40 hours weekly on lead nurturing and follow-ups.",
-    },
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "Repeat Rate",
-      value: "42%",
-      timeline: "6 months",
-      description: "Post-purchase automation sequences increased repeat purchase rate from 12% to 42%.",
-    },
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Cost Reduction",
-      value: "₹15L/year",
-      timeline: "ongoing",
-      description: "Workflow automation reduced manual labor costs by ₹15L annually while improving accuracy.",
-    },
-    {
-      company: "FinFlow",
-      industry: "Fintech",
-      metric: "Efficiency",
-      value: "3.5x",
-      timeline: "ongoing",
-      description: "CRM + WhatsApp integration increased customer service efficiency by 3.5x.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-background">
       <ServiceHeroSection
@@ -141,13 +89,6 @@ const AutomationPage = () => {
       <ServiceProcessSection
         title="Our Automation Process"
         steps={steps}
-        color="from-orange-500 to-red-500"
-      />
-
-      <ServiceResultsSection
-        title="Automation Success Stories"
-        subtitle="Teams working smarter, not harder"
-        results={results}
         color="from-orange-500 to-red-500"
       />
 

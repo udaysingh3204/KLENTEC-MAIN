@@ -1,7 +1,6 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const ManagedServicesPage = () => {
@@ -71,57 +70,6 @@ const ManagedServicesPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "Retention",
-      value: "15+ yrs",
-      timeline: "ongoing",
-      description: "Long-term managed services partnership. Consistent 15% YoY growth maintained for 15+ years.",
-    },
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Ad Spend ROI",
-      value: "4.2x",
-      timeline: "ongoing",
-      description: "Managed campaign optimization maintained 4.2x ROAS consistently quarter after quarter.",
-    },
-    {
-      company: "FinFlow",
-      industry: "Fintech",
-      metric: "Availability",
-      value: "99.95%",
-      timeline: "ongoing",
-      description: "Managed technical services ensured 99.95% uptime with proactive monitoring.",
-    },
-    {
-      company: "HealthPlus",
-      industry: "Healthcare",
-      metric: "Reporting",
-      value: "100%",
-      timeline: "ongoing",
-      description: "Monthly reporting with actionable recommendations maintained 100% client satisfaction.",
-    },
-    {
-      company: "ConsultPro",
-      industry: "Services",
-      metric: "Growth",
-      value: "18%",
-      timeline: "annual",
-      description: "Managed services partnership delivered consistent 18% YoY revenue growth.",
-    },
-    {
-      company: "EduSmart",
-      industry: "EdTech",
-      metric: "Support",
-      value: "24/7",
-      timeline: "ongoing",
-      description: "24/7 technical support and management ensured zero service interruptions.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-background">
       <ServiceHeroSection
@@ -141,13 +89,6 @@ const ManagedServicesPage = () => {
       <ServiceProcessSection
         title="Our Managed Services Onboarding"
         steps={steps}
-        color="from-violet-500 to-purple-500"
-      />
-
-      <ServiceResultsSection
-        title="Long-Term Partnership Success"
-        subtitle="Clients we've worked with for years"
-        results={results}
         color="from-violet-500 to-purple-500"
       />
 

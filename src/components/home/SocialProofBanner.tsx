@@ -1,31 +1,40 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Shield, Award, TrendingUp } from "lucide-react";
+import { getReviewStats } from "@/services/reviewService";
 
 const SocialProofBanner = () => {
-  const logos = [
-    "TechNova",
-    "RetailMax",
-    "ConsultPro",
-    "FreshStart",
-    "HealthPlus",
-    "FinFlow",
-    "EduSmart",
-    "PropFlow",
-  ];
+  const [reviewStats, setReviewStats] = useState<{ totalReviews: number; avgRating: number | string }>({
+    totalReviews: 0,
+    avgRating: 0,
+  });
 
-  const testimonialCount = 47;
+  useEffect(() => {
+    getReviewStats()
+      .then((stats) => setReviewStats({ totalReviews: stats.totalReviews, avgRating: stats.avgRating }))
+      .catch(() => {});
+  }, []);
+
+  const badges = [
+    {
+      icon: Star,
+      label: reviewStats.totalReviews > 0 ? `${reviewStats.avgRating}/5 Rating` : "Client Reviews",
+      value:
+        reviewStats.totalReviews > 0
+          ? `${reviewStats.totalReviews} Review${reviewStats.totalReviews === 1 ? "" : "s"}`
+          : "Read what clients say",
+    },
+    { icon: TrendingUp, label: "4.2x Avg ROAS", value: "For our clients" },
+    { icon: Award, label: "150+ Clients", value: "Successfully served" },
+    { icon: Shield, label: "10+ Years", value: "Industry expertise" },
+  ];
 
   return (
     <section className="py-12 sm:py-16 border-t border-border/30">
       <div className="container mx-auto px-6">
         {/* Trust badges */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {[
-            { icon: Star, label: "4.9/5 Rating", value: `${testimonialCount} Reviews` },
-            { icon: TrendingUp, label: "4.2x Avg ROAS", value: "For our clients" },
-            { icon: Award, label: "150+ Clients", value: "Successfully served" },
-            { icon: Shield, label: "10+ Years", value: "Industry expertise" },
-          ].map((badge, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {badges.map((badge, index) => {
             const Icon = badge.icon;
             return (
               <motion.div
@@ -46,30 +55,6 @@ const SocialProofBanner = () => {
               </motion.div>
             );
           })}
-        </div>
-
-        {/* Client logos */}
-        <div>
-          <p className="text-center text-xs font-semibold text-muted-foreground mb-8 uppercase tracking-[0.2em]">
-            Trusted by ambitious brands
-          </p>
-          <motion.div
-            className="flex gap-6 justify-center items-center flex-wrap"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {logos.map((logo, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="px-6 py-3 rounded-2xl bg-card border border-border/40 hover:border-primary/30 transition-all"
-              >
-                <span className="font-semibold text-muted-foreground">{logo}</span>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
 
         {/* Divider */}

@@ -1,7 +1,6 @@
 import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
 
 const DigitalMarketingPage = () => {
@@ -113,57 +112,6 @@ const DigitalMarketingPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "Revenue Growth",
-      value: "4.2x",
-      timeline: "12 months",
-      description: "E-commerce brand increased ad ROAS from 2x to 4.2x through strategic bidding and audience refinement.",
-    },
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Organic Traffic",
-      value: "580%",
-      timeline: "12 months",
-      description: "SaaS company went from 2K to 13K monthly organic visitors through SEO and content strategy.",
-    },
-    {
-      company: "ConsultPro",
-      industry: "B2B Services",
-      metric: "Lead Cost",
-      value: "-68%",
-      timeline: "6 months",
-      description: "Consulting firm reduced cost per lead from ₹5000 to ₹1600 through audience targeting optimization.",
-    },
-    {
-      company: "FreshStart",
-      industry: "Fitness",
-      metric: "Lead Response",
-      value: "68%",
-      timeline: "3 months",
-      description: "Fitness brand improved lead engagement from 8% to 68% with automated WhatsApp follow-up sequences.",
-    },
-    {
-      company: "HealthPlus",
-      industry: "Healthcare",
-      metric: "Conversion Rate",
-      value: "3.5x",
-      timeline: "8 months",
-      description: "Healthcare provider increased consultation bookings through landing page optimization.",
-    },
-    {
-      company: "FinFlow",
-      industry: "Fintech",
-      metric: "App Downloads",
-      value: "250%",
-      timeline: "6 months",
-      description: "Fintech startup grew app downloads from 500/mo to 1,800/mo via integrated ad campaigns.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-background">
       <ServiceHeroSection
@@ -183,13 +131,6 @@ const DigitalMarketingPage = () => {
       <ServiceProcessSection
         title="Our 6-Step Digital Marketing Process"
         steps={steps}
-        color="from-blue-500 to-cyan-500"
-      />
-
-      <ServiceResultsSection
-        title="Client Success Stories"
-        subtitle="Real results from businesses like yours"
-        results={results}
         color="from-blue-500 to-cyan-500"
       />
 

@@ -2,7 +2,6 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServicePricingSection from "@/components/services/ServicePricingSection";
-import ServiceResultsSection from "@/components/services/ServiceResultsSection";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PriceDisplay } from "@/components/PriceDisplay";
@@ -136,57 +135,6 @@ const FastTrackWebDevPage = () => {
     },
   ];
 
-  const results = [
-    {
-      company: "TechNova",
-      industry: "SaaS",
-      metric: "Time to Market",
-      value: "24 hrs",
-      timeline: "launch",
-      description: "Launched product page with full lead capture in 24 hours. Started generating leads immediately.",
-    },
-    {
-      company: "RetailMax",
-      industry: "E-commerce",
-      metric: "Conversion Rate",
-      value: "+42%",
-      timeline: "30 days",
-      description: "Enterprise Speed build resulted in 42% higher conversion vs previous site due to optimized UX.",
-    },
-    {
-      company: "ConsultPro",
-      industry: "Services",
-      metric: "Leads/Month",
-      value: "180+",
-      timeline: "90 days",
-      description: "24-hour launch enabled immediate lead capture. Scaled to 180+ qualified leads in 90 days.",
-    },
-    {
-      company: "FinFlow",
-      industry: "Fintech",
-      metric: "Page Load",
-      value: "1.2s",
-      timeline: "core web",
-      description: "Performance-first build achieved 1.2s load time with Lighthouse 98 score.",
-    },
-    {
-      company: "FreshStart",
-      industry: "Startup",
-      metric: "Development Cost",
-      value: "-70%",
-      timeline: "vs agency",
-      description: "24-hour build reduced typical 3-month agency project into single day execution.",
-    },
-    {
-      company: "HealthPlus",
-      industry: "Healthcare",
-      metric: "Time Saved",
-      value: "720 hrs",
-      timeline: "vs manual",
-      description: "Eliminated months of back-and-forth revisions with sprint-based rapid delivery.",
-    },
-  ];
-
   return (
     <main className="min-h-screen bg-slate-950">
       <ServiceHeroSection
@@ -277,13 +225,6 @@ const FastTrackWebDevPage = () => {
         tiers={tiers}
         color="from-blue-500 to-cyan-500"
         serviceName="Enterprise Website in 24 Hours"
-      />
-
-      <ServiceResultsSection
-        title="Real Results. Real Speed."
-        subtitle="Companies that launched in 24 hours"
-        results={results}
-        color="from-blue-500 to-cyan-500"
       />
 
       <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
