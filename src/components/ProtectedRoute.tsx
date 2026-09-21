@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { getCurrentAdmin } from "@/services/adminAuthService";
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -26,5 +27,12 @@ export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     return <Navigate to="/admin/login" replace />;
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      {children}
+    </>
+  );
 };

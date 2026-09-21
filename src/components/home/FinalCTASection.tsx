@@ -22,15 +22,15 @@ const FinalCTASection = () => (
           <span className="gradient-text">Don't Get Left Behind.</span>
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Every month you wait is revenue you're leaving on the table. Our clients average 4.2x ROAS on ad campaigns in the first 90 days. The only question is: will you be next?
+          Every month you wait is momentum your competitors are building instead. Let's find the bottleneck and fix it.
         </p>
 
         {/* Social Proof */}
         <div className="mt-10 grid grid-cols-3 gap-4 max-w-md mx-auto mb-10">
           {[
-            { emoji: "⚡", text: "90-day results" },
-            { emoji: "📈", text: "4.2x avg ROAS" },
-            { emoji: "🎯", text: "Real results" },
+            { emoji: "⚡", text: "Fast turnaround" },
+            { emoji: "🤝", text: "Founder-led" },
+            { emoji: "🎯", text: "Custom-scoped" },
           ].map((item, i) => (
             <div key={i} className="text-center">
               <span className="text-3xl">{item.emoji}</span>

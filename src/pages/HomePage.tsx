@@ -18,9 +18,15 @@ import GrowthAuditSection from "@/components/home/GrowthAuditSection";
 import BlogPreviewSection from "@/components/home/BlogPreviewSection";
 import FAQSection from "@/components/home/FAQSection";
 import FinalCTASection from "@/components/home/FinalCTASection";
+import { SEO } from "@/components/SEO";
 
 const HomePage = () => (
   <main>
+    <SEO
+      title="KLENTEC — We Build Digital Machines"
+      description="KLENTEC helps brands scale with performance marketing, conversion-focused design, and powerful development systems."
+      path="/"
+    />
     {/* Phase 1: Enterprise Foundation */}
     <EnterpriseHeroSection />
     <SocialProofBanner />

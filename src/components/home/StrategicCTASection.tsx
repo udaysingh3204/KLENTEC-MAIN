@@ -136,8 +136,8 @@ const StrategicCTASection = () => {
           className="text-center text-muted-foreground text-sm"
         >
           <p>
-            🎯 <span className="text-foreground font-semibold">Join 150+ brands</span> that trust
-            us with their growth. <span className="text-foreground">Average response time: 2 hours</span>
+            🎯 <span className="text-foreground font-semibold">Free strategy call</span>, no obligation.{" "}
+            <span className="text-foreground">Average response time: 2 hours</span>
           </p>
         </motion.div>
       </div>

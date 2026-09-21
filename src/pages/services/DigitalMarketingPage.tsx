@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const DigitalMarketingPage = () => {
   const features = [
@@ -114,11 +115,16 @@ const DigitalMarketingPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Digital Marketing"
+        description="PPC, SEO, and social campaigns built around measurable lead and revenue growth."
+        path="/services/digital-marketing"
+      />
       <ServiceHeroSection
         title="Drive Revenue Growth Through Digital Marketing"
         subtitle="Digital Marketing"
         description="Strategic campaigns that generate qualified leads and drive revenue. From PPC to SEO, we combine data-driven insights with creative execution to deliver measurable results."
-        benefits={["4.2x Average ROAS", "580% Organic Growth", "68% Lead Response Rate"]}
+        benefits={["Data-Driven Campaigns", "SEO & Content Strategy", "Fast Lead Response"]}
         ctaText="Schedule Marketing Audit"
         gradient="from-blue-600 to-cyan-600"
       />

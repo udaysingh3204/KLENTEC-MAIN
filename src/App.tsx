@@ -1,4 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Analytics } from "@vercel/analytics/react";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -8,6 +10,8 @@ import { lazy, Suspense } from "react";
 
 import PublicLayout from "@/components/PublicLayout";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import AdminLayout from "@/components/admin/AdminLayout";
+import { CookieConsent } from "@/components/CookieConsent";
 
 // Critical pages (loaded immediately)
 import NotFound from "./pages/NotFound";
@@ -16,6 +20,7 @@ import NotFound from "./pages/NotFound";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminResetPassword = lazy(() => import("./pages/AdminResetPassword"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const WorkPage = lazy(() => import("./pages/WorkPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -29,10 +34,11 @@ const TestimonialsPage = lazy(() => import("./pages/TestimonialsPage"));
 const FAQPage = lazy(() => import("./pages/FAQPage"));
 
 // Admin pages (lazy loaded)
-const AdminDashboardHome = lazy(() => import("./pages/AdminDashboardHome"));
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const AdminReviews = lazy(() => import("./pages/AdminReviews"));
+const AdminDashboardHome = lazy(() => import("./pages/admin/DashboardHome"));
+const AdminLeads = lazy(() => import("./pages/admin/LeadsPage"));
+const AdminReviews = lazy(() => import("./pages/admin/ReviewsPage"));
 const AdminInquiries = lazy(() => import("./pages/admin/InquiriesPage"));
+const AdminDocuments = lazy(() => import("./pages/admin/DocumentsPage"));
 
 // Service pages (lazy loaded)
 const DigitalMarketingPage = lazy(() => import("./pages/services/DigitalMarketingPage"));
@@ -53,12 +59,15 @@ const PageLoader = () => (
 const queryClient = new QueryClient();
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <RegionalProvider>
         <Toaster />
         <Sonner />
+        <Analytics />
         <BrowserRouter>
+        <CookieConsent />
         <Routes>
           {/* ── Public marketing site (Navbar + Footer) ── */}
           <Route element={<PublicLayout />}>
@@ -88,50 +97,23 @@ const App = () => (
 
           {/* ── Admin Authentication ── */}
           <Route path="/admin/login" element={<Suspense fallback={<PageLoader />}><AdminLogin /></Suspense>} />
+          <Route path="/admin/reset-password" element={<Suspense fallback={<PageLoader />}><AdminResetPassword /></Suspense>} />
 
-          {/* ── Admin Dashboard (protected) ── */}
+          {/* ── Admin Dashboard (protected, shared layout) ── */}
           <Route
             path="/admin"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<PageLoader />}>
-                  <AdminDashboardHome />
-                </Suspense>
+                <AdminLayout />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path="/admin/leads"
-            element={
-              <ProtectedRoute>
-                <Suspense fallback={<PageLoader />}>
-                  <AdminDashboard />
-                </Suspense>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/reviews"
-            element={
-              <ProtectedRoute>
-                <Suspense fallback={<PageLoader />}>
-                  <AdminReviews />
-                </Suspense>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/inquiries"
-            element={
-              <ProtectedRoute>
-                <Suspense fallback={<PageLoader />}>
-                  <div className="min-h-screen bg-slate-50 p-6 lg:p-8">
-                    <AdminInquiries />
-                  </div>
-                </Suspense>
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route index element={<Suspense fallback={<PageLoader />}><AdminDashboardHome /></Suspense>} />
+            <Route path="inquiries" element={<Suspense fallback={<PageLoader />}><AdminInquiries /></Suspense>} />
+            <Route path="leads" element={<Suspense fallback={<PageLoader />}><AdminLeads /></Suspense>} />
+            <Route path="reviews" element={<Suspense fallback={<PageLoader />}><AdminReviews /></Suspense>} />
+            <Route path="documents" element={<Suspense fallback={<PageLoader />}><AdminDocuments /></Suspense>} />
+          </Route>
 
           {/* ── 404 ── */}
           <Route path="*" element={<NotFound />} />
@@ -140,6 +122,7 @@ const App = () => (
       </RegionalProvider>
     </TooltipProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

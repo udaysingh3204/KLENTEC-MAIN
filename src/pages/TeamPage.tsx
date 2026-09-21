@@ -3,16 +3,28 @@ import TeamHeroSection from "@/components/team/TeamHeroSection";
 import TeamMembersGrid from "@/components/team/TeamMembersGrid";
 import CultureSection from "@/components/team/CultureSection";
 import { ArrowRight } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 const TeamPage = () => {
   const teamMembers = [
     {
       id: "1",
       name: "Uday Singh",
-      role: "Founder & Strategy Lead",
-      specialty: "Growth Strategy & Business Development",
-      bio: "Leads strategy and client growth at KLENTEC, working hands-on with every engagement from first call to launch.",
-      yearsExperience: 10,
+      role: "Founder",
+      specialty: "Project Management, Backend & Frontend",
+      bio: "Hands-on across project management, backend, and frontend since founding KLENTEC — including Middle East projects such as Emaar and similar developments.",
+      yearsExperience: 5,
+      social: {
+        email: "hello@klentec.com",
+      },
+    },
+    {
+      id: "2",
+      name: "Vipul Kumar Singh",
+      role: "Co-Founder",
+      specialty: "Project Management",
+      bio: "Over nine years of project management experience, having worked with clients across the United States and globally.",
+      yearsExperience: 9,
       social: {
         email: "hello@klentec.com",
       },
@@ -54,23 +66,22 @@ const TeamPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Our Team"
+        description="Meet the people building KLENTEC's growth systems, design, and development work."
+        path="/team"
+      />
       <TeamHeroSection
         title="Meet The Team Behind KLENTEC"
         subtitle="Our People"
         description="Founder-led, working hands-on with a focused network of specialists to deliver every engagement."
-        stats={[
-          { label: "Happy Clients", value: "150+" },
-          { label: "Avg. ROAS", value: "4.2x" },
-          { label: "Years Experience", value: "10+" },
-          { label: "Client Retention", value: "95%" },
-        ]}
       />
 
       <TeamMembersGrid
-        title="Founder"
-        subtitle="Working hands-on with a focused network of specialists across strategy, design, and development."
+        title="Founders"
+        subtitle="Working hands-on alongside WordPress developers, designers, and DevOps engineers to deliver every engagement."
         members={teamMembers}
-        columns={1}
+        columns={2}
       />
 
       <CultureSection

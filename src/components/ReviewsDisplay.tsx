@@ -34,11 +34,11 @@ export const ReviewsDisplay = () => {
   }, [reviews.length]);
 
   if (loading) {
-    return <div className="text-center text-slate-400">Loading reviews...</div>;
+    return <div className="text-center text-muted-foreground">Loading reviews...</div>;
   }
 
   if (reviews.length === 0) {
-    return <div className="text-center text-slate-400">No reviews yet. Be the first!</div>;
+    return <div className="text-center text-muted-foreground">No reviews yet. Be the first!</div>;
   }
 
   const currentReview = reviews[currentIndex];
@@ -46,25 +46,25 @@ export const ReviewsDisplay = () => {
   return (
     <div className="space-y-12">
       {/* Stats Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-around gap-8 py-8 px-6 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700">
+      <div className="flex flex-col md:flex-row items-center justify-around gap-8 py-8 px-6 card-dreamy">
         <div className="text-center">
-          <div className="text-4xl font-bold text-white">{stats.totalReviews}+</div>
-          <div className="text-slate-400 text-sm">Happy Clients</div>
+          <div className="text-4xl font-display font-bold text-foreground">{stats.totalReviews}</div>
+          <div className="text-muted-foreground text-sm">Total Reviews</div>
         </div>
         <div className="text-center">
           <div className="flex items-center justify-center gap-2">
-            <div className="text-3xl font-bold text-yellow-400">{stats.avgRating}</div>
+            <div className="text-3xl font-display font-bold text-amber-500">{stats.avgRating}</div>
             <div className="flex">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
                   size={20}
-                  className={i < Math.round(stats.avgRating as unknown as number) ? "fill-yellow-400 text-yellow-400" : "text-slate-600"}
+                  className={i < Math.round(stats.avgRating as unknown as number) ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}
                 />
               ))}
             </div>
           </div>
-          <div className="text-slate-400 text-sm">Average Rating</div>
+          <div className="text-muted-foreground text-sm">Average Rating</div>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ export const ReviewsDisplay = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
-        className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 border border-slate-700"
+        className="card-dreamy p-8"
       >
         {/* Rating Stars */}
         <div className="flex gap-1 mb-4">
@@ -82,22 +82,22 @@ export const ReviewsDisplay = () => {
             <Star
               key={i}
               size={20}
-              className={i < currentReview.rating ? "fill-yellow-400 text-yellow-400" : "text-slate-600"}
+              className={i < currentReview.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}
             />
           ))}
         </div>
 
         {/* Review Text */}
-        <p className="text-lg text-slate-200 mb-6 italic">"{currentReview.review_text}"</p>
+        <p className="text-lg text-foreground/90 mb-6 italic">"{currentReview.review_text}"</p>
 
         {/* Author */}
         <div>
-          <p className="font-semibold text-white">{currentReview.name}</p>
-          <p className="text-slate-400 text-sm">{currentReview.email}</p>
+          <p className="font-semibold text-foreground">{currentReview.name}</p>
+          <p className="text-muted-foreground text-sm">{currentReview.email}</p>
         </div>
 
         {/* Date */}
-        <p className="text-xs text-slate-500 mt-4">
+        <p className="text-xs text-muted-foreground/70 mt-4">
           {new Date(currentReview.created_at || "").toLocaleDateString()}
         </p>
       </motion.div>
@@ -109,7 +109,7 @@ export const ReviewsDisplay = () => {
             key={i}
             onClick={() => setCurrentIndex(i)}
             className={`h-2 rounded-full transition-all ${
-              i === currentIndex ? "bg-purple-500 w-8" : "bg-slate-600 w-2"
+              i === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30 w-2"
             }`}
           />
         ))}
@@ -117,7 +117,7 @@ export const ReviewsDisplay = () => {
 
       {/* Reviews Grid */}
       <div>
-        <h3 className="text-2xl font-bold text-white mb-8">All Reviews</h3>
+        <h3 className="text-2xl font-display font-bold text-foreground mb-8">All Reviews</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review) => (
             <motion.div
@@ -125,19 +125,19 @@ export const ReviewsDisplay = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-900 rounded-xl p-6 border border-slate-800 hover:border-purple-500 transition-all"
+              className="card-dreamy p-6 hover:border-primary/40 transition-all"
             >
               <div className="flex gap-1 mb-3">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     size={16}
-                    className={i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-slate-600"}
+                    className={i < review.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}
                   />
                 ))}
               </div>
-              <p className="text-slate-300 text-sm mb-3 line-clamp-3">{review.review_text}</p>
-              <p className="font-medium text-white text-sm">{review.name}</p>
+              <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{review.review_text}</p>
+              <p className="font-medium text-foreground text-sm">{review.name}</p>
             </motion.div>
           ))}
         </div>

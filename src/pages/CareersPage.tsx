@@ -1,6 +1,7 @@
 import TeamHeroSection from "@/components/team/TeamHeroSection";
 import JobListingsSection from "@/components/team/JobListingsSection";
 import CultureSection from "@/components/team/CultureSection";
+import { SEO } from "@/components/SEO";
 
 const CareersPage = () => {
   const jobListings = [
@@ -261,6 +262,11 @@ const CareersPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Careers"
+        description="Join KLENTEC — internship roles across marketing, development, design, and operations."
+        path="/careers"
+      />
       <TeamHeroSection
         title="Internships at KLENTEC"
         subtitle="Careers"

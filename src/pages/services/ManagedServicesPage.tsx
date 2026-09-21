@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const ManagedServicesPage = () => {
   const features = [
@@ -72,11 +73,16 @@ const ManagedServicesPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Managed Services"
+        description="Ongoing management of campaigns, content, and technical operations so you can focus on your core business."
+        path="/services/managed-services"
+      />
       <ServiceHeroSection
         title="Ongoing Management for Consistent Growth"
         subtitle="Managed Services"
         description="Professional ongoing management so you can focus on your core business. We handle campaigns, content, and technical management month after month."
-        benefits={["15+ Year Partnerships", "99.95% Uptime", "4.2x ROAS Maintained"]}
+        benefits={["Monthly Reporting", "Dedicated Support", "Continuous Optimization"]}
         ctaText="Get Managed Services"
         gradient="from-violet-600 to-purple-600"
       />

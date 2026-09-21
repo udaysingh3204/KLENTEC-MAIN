@@ -160,24 +160,6 @@ const Footer = () => {
               <p>© {currentYear} KLENTEC — Building Digital Machines</p>
             </div>
 
-            {/* Center: Stats */}
-            <div className="flex items-center gap-6 text-sm">
-              <div className="text-center">
-                <div className="font-display font-bold text-foreground">150+</div>
-                <div className="text-muted-foreground/70 text-xs">Happy Clients</div>
-              </div>
-              <div className="w-px h-6 bg-border/40"></div>
-              <div className="text-center">
-                <div className="font-display font-bold text-foreground">4.2x</div>
-                <div className="text-muted-foreground/70 text-xs">Avg. ROAS</div>
-              </div>
-              <div className="w-px h-6 bg-border/40"></div>
-              <div className="text-center">
-                <div className="font-display font-bold text-foreground">10yr+</div>
-                <div className="text-muted-foreground/70 text-xs">Experience</div>
-              </div>
-            </div>
-
             {/* Right: Social Links */}
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => {

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import {
   Palette,
   Megaphone,
@@ -422,7 +423,13 @@ const categories: Category[] = [
 
 const ServicesPage = () => {
   return (
-    <main>{/* Hero */}
+    <main>
+    <SEO
+      title="Services"
+      description="Digital marketing, web development, design & branding, automation, strategy, and managed services from KLENTEC."
+      path="/services"
+    />
+    {/* Hero */}
     <section className="relative gradient-bg-hero pt-32 pb-16">
       <div className="container mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -435,10 +442,10 @@ const ServicesPage = () => {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-medium">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ 150+ Projects Delivered
+              ✓ No Templates
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
-              ✓ 4.2x Avg ROI
+              ✓ Founder-Led Delivery
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
               ✓ Custom-Scoped Proposals

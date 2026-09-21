@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { BlogCard } from "@/components/BlogCard";
+import { SEO } from "@/components/SEO";
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -16,6 +17,7 @@ const BlogPostPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO title={post.title} description={post.excerpt} path={`/blog/${post.slug}`} />
       {/* Header */}
       <section className="relative pt-40 pb-16 section-padding">
         <div className="container mx-auto max-w-3xl">

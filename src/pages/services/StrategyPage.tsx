@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const StrategyPage = () => {
   const features = [
@@ -72,11 +73,16 @@ const StrategyPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Strategy & Consulting"
+        description="Growth strategy and digital transformation guidance for scaling businesses."
+        path="/services/strategy"
+      />
       <ServiceHeroSection
         title="Strategic Guidance for Digital Excellence"
         subtitle="Strategy & Consulting"
         description="Expert consulting to navigate digital transformation. From growth strategy to competitive positioning, we provide the roadmap for sustainable success."
-        benefits={["2.8x Revenue Growth", "3.5x YoY Increase", "280% Margin Improvement"]}
+        benefits={["Growth Strategy Roadmap", "Competitive Analysis", "Data-Driven Decisions"]}
         ctaText="Get Strategic Guidance"
         gradient="from-emerald-600 to-teal-600"
       />

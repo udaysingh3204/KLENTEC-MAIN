@@ -27,11 +27,11 @@ export const CurrencySelector = () => {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-slate-600 transition-all text-white text-sm font-medium"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-card hover:bg-muted border border-border transition-all text-foreground text-sm font-medium"
       >
         <Globe size={16} />
         <span>{currentConfig.currency}</span>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-muted-foreground">
           {currentConfig.symbol}
         </span>
       </motion.button>
@@ -44,36 +44,35 @@ export const CurrencySelector = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-0 right-0 mt-2 bg-slate-900 border border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden max-h-96"
+            className="absolute left-0 right-0 mt-2 card-dreamy overflow-hidden max-h-96 p-0 z-50"
           >
-            <div className="p-3 border-b border-slate-800 bg-slate-800/50">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <div className="p-3 border-b border-border bg-muted/50">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                 Select Your Region & Currency
               </p>
             </div>
 
-            <div className="divide-y divide-slate-800">
+            <div className="divide-y divide-border">
               {regionOptions.map(({ region, config }) => {
                 const isSelected = selectedRegion === region;
                 return (
                   <motion.button
                     key={region}
-                    whileHover={{ backgroundColor: "rgba(71, 85, 105, 0.5)" }}
                     onClick={() => handleSelect(region)}
                     className={`w-full px-4 py-3 text-left flex items-center justify-between transition-colors ${
                       isSelected
-                        ? "bg-purple-600/20 border-l-2 border-purple-600"
-                        : "hover:bg-slate-800"
+                        ? "bg-primary/10 border-l-2 border-primary"
+                        : "hover:bg-muted"
                     }`}
                   >
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-white">
+                      <p className="text-sm font-semibold text-foreground">
                         {config.name}
                       </p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-muted-foreground">
                         {config.currency} ({config.symbol})
                       </p>
-                      <p className="text-xs text-slate-500 mt-1">
+                      <p className="text-xs text-muted-foreground/70 mt-1">
                         {config.timezone} • {config.businessHours.split(" ")[0]}
                       </p>
                     </div>
@@ -81,9 +80,9 @@ export const CurrencySelector = () => {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="ml-2 p-1 bg-purple-600 rounded-full"
+                        className="ml-2 p-1 bg-primary rounded-full"
                       >
-                        <Check size={14} className="text-white" />
+                        <Check size={14} className="text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -92,9 +91,9 @@ export const CurrencySelector = () => {
             </div>
 
             {/* Footer Info */}
-            <div className="p-3 bg-slate-800/30 border-t border-slate-800">
-              <p className="text-xs text-slate-500">
-                💬 Prices are in {currentConfig.currency}. Support available {currentConfig.businessHours}
+            <div className="p-3 bg-muted/30 border-t border-border">
+              <p className="text-xs text-muted-foreground">
+                Prices are in {currentConfig.currency}. Support available {currentConfig.businessHours}
               </p>
             </div>
           </motion.div>

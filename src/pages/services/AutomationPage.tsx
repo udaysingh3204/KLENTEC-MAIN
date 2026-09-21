@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const AutomationPage = () => {
   const features = [
@@ -72,11 +73,16 @@ const AutomationPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Automation & Integration"
+        description="Eliminate manual work with intelligent automation — marketing workflows, CRM integration, and WhatsApp Business."
+        path="/services/automation"
+      />
       <ServiceHeroSection
         title="Automate Repetitive Tasks, Focus on Growth"
         subtitle="Automation & Integration"
         description="Eliminate manual work with intelligent automation. From marketing workflows to CRM integration, we build systems that scale with you."
-        benefits={["68% Lead Response", "40hrs/week Saved", "3.5x Efficiency"]}
+        benefits={["Marketing Automation", "CRM Integration", "Fewer Manual Workflows"]}
         ctaText="Automate Your Workflows"
         gradient="from-orange-600 to-red-600"
       />

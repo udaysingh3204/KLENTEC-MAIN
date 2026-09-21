@@ -24,9 +24,9 @@ const SocialProofBanner = () => {
           ? `${reviewStats.totalReviews} Review${reviewStats.totalReviews === 1 ? "" : "s"}`
           : "Read what clients say",
     },
-    { icon: TrendingUp, label: "4.2x Avg ROAS", value: "For our clients" },
-    { icon: Award, label: "150+ Clients", value: "Successfully served" },
-    { icon: Shield, label: "10+ Years", value: "Industry expertise" },
+    { icon: TrendingUp, label: "24-Hour Builds", value: "Fixed-scope delivery" },
+    { icon: Award, label: "100% Custom", value: "No templates, ever" },
+    { icon: Shield, label: "Free Strategy Call", value: "No obligation" },
   ];
 
   return (

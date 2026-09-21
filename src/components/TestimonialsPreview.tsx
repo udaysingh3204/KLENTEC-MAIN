@@ -57,7 +57,7 @@ export const TestimonialsPreview = () => {
         >
           <div className="inline-block mb-4">
             <span className="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium">
-              ⭐ Loved by 150+ Brands
+              ⭐ Client Reviews
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">

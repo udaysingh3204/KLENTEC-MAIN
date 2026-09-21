@@ -5,6 +5,7 @@ import ServicePricingSection from "@/components/services/ServicePricingSection";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PriceDisplay } from "@/components/PriceDisplay";
+import { SEO } from "@/components/SEO";
 
 const FastTrackWebDevPage = () => {
   const features = [
@@ -136,7 +137,12 @@ const FastTrackWebDevPage = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
+      <SEO
+        title="24-Hour Web Dev"
+        description="A complete, fixed-scope business website — strategy to launch in 24 hours."
+        path="/services/24-hour-web-dev"
+      />
       <ServiceHeroSection
         title="Enterprise Website in 24 Hours"
         subtitle="Enterprise Speed"
@@ -158,29 +164,29 @@ const FastTrackWebDevPage = () => {
       />
 
       {/* Unique Section: What Makes This Different */}
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section-padding gradient-bg-subtle">
+        <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4">
               Why Enterprise Speed Works
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Not a template builder. Not AI-generated junk. A real team. Real strategy. Real code. Real results.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-8 rounded-2xl bg-slate-900 border border-slate-800"
+              className="card-dreamy p-8"
             >
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent mb-3">
+              <div className="text-4xl font-display font-bold gradient-text mb-3">
                 1x
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">One Team</h3>
-              <p className="text-slate-400">
+              <h3 className="text-xl font-display font-semibold text-foreground mb-2">One Team</h3>
+              <p className="text-muted-foreground">
                 Strategist + Designer + Developer + QA working in sync. No handoffs. No delays. No communication gaps.
               </p>
             </motion.div>
@@ -190,13 +196,13 @@ const FastTrackWebDevPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="p-8 rounded-2xl bg-slate-900 border border-slate-800"
+              className="card-dreamy p-8"
             >
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent mb-3">
+              <div className="text-4xl font-display font-bold gradient-text mb-3">
                 100%
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Custom Code</h3>
-              <p className="text-slate-400">
+              <h3 className="text-xl font-display font-semibold text-foreground mb-2">Custom Code</h3>
+              <p className="text-muted-foreground">
                 Enterprise-grade React + TypeScript. Production-ready. Scalable. Not a Wix clone or WordPress theme hack.
               </p>
             </motion.div>
@@ -206,13 +212,13 @@ const FastTrackWebDevPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="p-8 rounded-2xl bg-slate-900 border border-slate-800"
+              className="card-dreamy p-8"
             >
-              <div className="text-4xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent mb-3">
+              <div className="text-4xl font-display font-bold gradient-text mb-3">
                 ✓
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Conversion-First</h3>
-              <p className="text-slate-400">
+              <h3 className="text-xl font-display font-semibold text-foreground mb-2">Conversion-First</h3>
+              <p className="text-muted-foreground">
                 Every pixel designed for leads. Multiple CTAs. Email capture. WhatsApp integration. Built-in analytics.
               </p>
             </motion.div>
@@ -227,24 +233,24 @@ const FastTrackWebDevPage = () => {
         serviceName="Enterprise Website in 24 Hours"
       />
 
-      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+      <section className="section-padding">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6">
             Ready to Launch in 24 Hours?
           </h2>
-          <p className="text-lg text-slate-400 mb-8">
-            No more waiting for agencies. No more $50K projects that take 3 months. Start today.
+          <p className="text-lg text-muted-foreground mb-8">
+            No more waiting for agencies. No more months-long projects. Start today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition-all"
+              className="btn-primary-gradient inline-flex items-center justify-center px-8 py-3"
             >
               Start 24-Hour Build
             </a>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center px-8 py-3 rounded-lg font-semibold border border-slate-600 text-slate-300 hover:bg-slate-900 transition-all"
+              className="btn-ghost inline-flex items-center justify-center px-8 py-3"
             >
               Schedule Strategy Call
             </Link>

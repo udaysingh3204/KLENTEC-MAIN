@@ -7,37 +7,37 @@ const industries = [
     icon: ShoppingCart,
     label: "E-commerce",
     description: "Conversion optimization, funnel design, checkout acceleration, inventory automation, marketing automation",
-    result: "4.2x ROAS avg"
+    result: "Conversion-focused"
   },
   {
     icon: Building2,
     label: "Real Estate",
     description: "CRM automation, lead scoring, property showcase optimization, agent tools, automated follow-ups",
-    result: "150+ agents"
+    result: "CRM & lead tools"
   },
   {
     icon: GraduationCap,
     label: "EdTech & Courses",
     description: "Course platform design, enrollment funnel, student engagement, completion optimization, community tools",
-    result: "285% enrollment growth"
+    result: "Enrollment-focused"
   },
   {
     icon: HeartPulse,
     label: "Healthcare & Telemedicine",
     description: "Patient acquisition, appointment scheduling, HIPAA-compliant systems, telehealth platform optimization",
-    result: "2.8x patient growth"
+    result: "Compliant by design"
   },
   {
     icon: Store,
     label: "Local & SMB",
     description: "Local SEO, Google Business optimization, community marketing, location-based ads, reputation management",
-    result: "5x lead growth"
+    result: "Local-first strategy"
   },
   {
     icon: Rocket,
     label: "Startups & SaaS",
     description: "Product launches, go-to-market strategy, investor pitch decks, founding team support, rapid scaling",
-    result: "$500K+ raised"
+    result: "Launch-ready builds"
   },
 ];
 
@@ -51,7 +51,7 @@ const fadeUp = {
 const IndustriesSection = () => (
   <section className="section-padding gradient-bg-subtle">
     <div className="container mx-auto">
-      <SectionHeading badge="Industries" title="Built for Every Ambitious Industry" subtitle="Proven expertise across verticals. Real results. Every time." />
+      <SectionHeading badge="Industries" title="Built for Every Ambitious Industry" subtitle="Strategy and execution tailored to how your specific industry actually converts." />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {industries.map((ind, i) => (
           <motion.div
@@ -80,7 +80,7 @@ const IndustriesSection = () => (
       >
         <p className="text-base font-semibold text-foreground mb-2">Not your industry listed?</p>
         <p className="text-sm text-muted-foreground">
-          We've worked with 30+ industries. If your business wants to dominate, <span className="font-semibold text-primary">we can help.</span>
+          Every industry has its own bottleneck. If yours isn't listed, <span className="font-semibold text-primary">talk to us anyway.</span>
         </p>
       </motion.div>
     </div>

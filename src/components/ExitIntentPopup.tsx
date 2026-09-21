@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShieldCheck, MessageCircle } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import { sendAdminNotification } from "@/services/leadService";
+import { submitInquiry } from "@/services/inquiryService";
+import { HoneypotField } from "@/components/HoneypotField";
 
 interface ExitData {
   name: string;
@@ -16,6 +16,7 @@ const ExitIntentPopup = () => {
   const [shown, setShown] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [form, setForm] = useState<ExitData>({ name: "", email: "", whatsapp: "", need: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -54,27 +55,27 @@ const ExitIntentPopup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (honeypot) {
+      // Silently pretend success — never tip off a bot that it was caught.
+      setSuccess(true);
+      setTimeout(() => {
+        handleClose();
+        setSuccess(false);
+        setForm({ name: "", email: "", whatsapp: "", need: "" });
+      }, 2000);
+      return;
+    }
+
     setSending(true);
 
-    // Save to Supabase
-    await supabase.from("inquiries").insert({
+    await submitInquiry({
       name: form.name,
       email: form.email,
       whatsapp: form.whatsapp,
       services: form.need,
-      status: "new",
+      notes: form.need || "(No details provided — submitted via exit-intent popup)",
       source: "exit-intent-popup",
-    });
-
-    // Fire-and-forget admin notification; failure is caught internally and
-    // never blocks the popup's own success state.
-    sendAdminNotification({
-      full_name: form.name,
-      email: form.email,
-      phone: form.whatsapp,
-      company: "Exit-intent popup",
-      service_interest: form.need || "Not specified",
-      message: form.need || "(No details provided — submitted via exit-intent popup)",
     });
 
     setSuccess(true);
@@ -155,9 +156,9 @@ const ExitIntentPopup = () => {
 
                 {/* Award badges */}
                 <div className="relative z-10 flex flex-wrap gap-3 text-[10px] text-white/40 pt-6 border-t border-white/10">
-                  <span>🏆 150+ Projects</span>
-                  <span>⭐ 4.2X Avg ROAS</span>
-                  <span>📈 95% Retention</span>
+                  <span>🚀 24-Hour Builds</span>
+                  <span>⭐ 100% Custom Code</span>
+                  <span>🤝 Founder-Led</span>
                 </div>
               </div>
 
@@ -191,6 +192,7 @@ const ExitIntentPopup = () => {
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
+                    <HoneypotField value={honeypot} onChange={setHoneypot} />
                     <div className="grid grid-cols-2 gap-4">
                       <input
                         type="text"

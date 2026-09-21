@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const WebDevelopmentPage = () => {
   const features = [
@@ -78,11 +79,16 @@ const WebDevelopmentPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Web Development"
+        description="Custom web applications built to scale — React/Next.js development, integrations, and performance."
+        path="/services/web-development"
+      />
       <ServiceHeroSection
         title="Build Scalable, High-Performance Web Applications"
         subtitle="Web Development"
         description="Custom web applications built with modern technologies. From MVPs to enterprise platforms, we deliver fast, secure, and scalable solutions."
-        benefits={["65% Conversion Increase", "2.3s Load Time", "99.9% Uptime"]}
+        benefits={["Custom React/Next.js Builds", "Performance Optimized", "Scalable Architecture"]}
         ctaText="Start Your Project"
         gradient="from-indigo-600 to-purple-600"
       />

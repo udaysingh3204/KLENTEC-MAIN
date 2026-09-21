@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Crosshair, Eye, Zap, Users, Award, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -10,23 +11,28 @@ const fadeUp = {
 };
 
 const timeline = [
-  { year: "2022", title: "Founded", desc: "KLENTEC started because our founder was tired of agencies that talked big but delivered small. We set out to build something different — a growth partner obsessed with client results, not billable hours." },
-  { year: "2023", title: "Building the Playbook", desc: "Expanded capabilities across design, development, and performance marketing — refining a repeatable growth framework with every new client engagement." },
-  { year: "2024", title: "AI Automation Era", desc: "Integrated AI across our operations — automated funnel analysis, predictive conversion optimization, and strategy recommendations — to move faster without cutting corners." },
-  { year: "2025", title: "Global Growth Partner", desc: "Now working with ambitious brands across multiple regions and industries, with a 95% client retention rate and a results-based approach to pricing." },
+  { year: "2021", title: "Founded", desc: "Uday Singh founded KLENTEC, working hands-on across project management, backend, and frontend — acting as founder and execution team at once." },
+  { year: "Since", title: "Middle East Projects", desc: "Delivered projects for clients in the Middle East, including work with Emaar and similar large-scale developments." },
+  { year: "Growth", title: "Vipul Joins as Co-Founder", desc: "Vipul Kumar Singh joined as co-founder, bringing 9+ years of project management experience working with clients across the US and globally." },
+  { year: "Today", title: "A Growing Team", desc: "KLENTEC now includes WordPress developers, designers, and DevOps engineers alongside the founding team." },
 ];
 
 const AboutPage = () => (
   <main>
+    <SEO
+      title="About Us"
+      description="Meet the team behind KLENTEC — our mission, values, and approach to building digital growth systems."
+      path="/about"
+    />
     <section className="relative gradient-bg-hero pt-32 pb-20">
       <div className="container mx-auto px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <span className="badge-dreamy mb-6 inline-block">Our Story</span>
           <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight">
-            We Were Tired of <span className="gradient-text">Broken Promises</span>
+            Founder-Led, <span className="gradient-text">Hands-On</span>
           </h1>
           <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Most agencies talk growth. We deliver it. Our founding team built this because we got tired of watching agencies optimize for billable hours instead of client results. Now we're obsessed with one thing: your revenue.
+            KLENTEC started five years ago with one person doing everything — project management, backend, frontend. Today it's a small, founder-led team that still works that way: hands-on, every engagement.
           </p>
         </motion.div>
       </div>
@@ -36,16 +42,16 @@ const AboutPage = () => (
       <div className="container mx-auto max-w-3xl">
         <motion.div {...fadeUp} className="space-y-8 text-lg text-muted-foreground leading-relaxed">
           <div>
-            <h2 className="text-2xl font-display font-bold text-foreground mb-4">The KLENTEC Origin Story</h2>
-            <p>In 2022, our founder Uday was running a SaaS company getting crushed by broken marketing systems. He hired three different agencies over 18 months. All promised growth. None delivered. The first focused on vanity metrics, the second disappeared after 60 days, and the third was just expensive with no results.</p>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-4">How KLENTEC Started</h2>
+            <p>KLENTEC was founded five years ago by Uday Singh, who has acted as founder and execution team at once — hands-on across project management, backend development, and frontend development from day one. That work has included projects for clients in the Middle East, including Emaar and similar large-scale developments.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Then Something Changed</h2>
-            <p>Instead of blaming the agencies, Uday decided to build the agency he needed — one where design, development, and marketing all worked toward the same number: client revenue. That became KLENTEC — not a traditional agency, but a growth partner.</p>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Our Co-Founder</h2>
+            <p>Vipul Kumar Singh joined as co-founder, bringing over nine years of project management experience. He's handled projects for clients across the United States and globally, adding the delivery discipline that comes from running large engagements end to end.</p>
           </div>
           <div>
-            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Why We're Different</h2>
-            <p>We don't optimize for billable hours. We optimize for client revenue. We don't do "design for design's sake" or "marketing for marketing's sake." Everything we build connects to revenue. Every member of our team is obsessed with measurable results. And we structure our fees so we only win when you win.</p>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-4">Our Team Today</h2>
+            <p>Beyond the two of us, KLENTEC includes WordPress developers, designers, and DevOps engineers — a small, specialist team rather than a large agency roster. Every engagement still gets hands-on attention from the founders.</p>
           </div>
         </motion.div>
       </div>
@@ -107,44 +113,31 @@ const AboutPage = () => (
     <section className="section-padding gradient-bg-subtle">
       <div className="container mx-auto">
         <motion.h2 {...fadeUp} className="text-3xl md:text-4xl font-display font-bold text-center mb-14">
-          Led by the <span className="gradient-text">Founder</span>
+          Led by the <span className="gradient-text">Founders</span>
         </motion.h2>
-        <motion.div {...fadeUp} className="max-w-xl mx-auto card-elevated p-10 text-center">
-          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
-            <Users className="w-8 h-8 text-primary" />
-          </div>
-          <h3 className="text-xl font-display font-bold text-foreground mb-1">Uday Singh</h3>
-          <p className="text-sm text-primary font-semibold mb-4">Founder & Growth Strategist</p>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Leads strategy and client growth at KLENTEC, working hands-on with every
-            engagement from first call to launch.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-
-    <section className="section-padding">
-      <div className="container mx-auto max-w-2xl">
-        <motion.h2 {...fadeUp} className="text-3xl md:text-4xl font-display font-bold text-center mb-14">
-          By the Numbers
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
-          {[
-            { label: "Happy Clients", value: "150+" },
-            { label: "Avg. ROAS", value: "4.2x" },
-            { label: "Years of Experience", value: "10+" },
-            { label: "Client Retention Rate", value: "95%" },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              {...fadeUp}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="card-dreamy p-8 text-center"
-            >
-              <p className="text-4xl md:text-5xl font-display font-bold gradient-text mb-3">{stat.value}</p>
-              <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <motion.div {...fadeUp} className="card-elevated p-10 text-center">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+              <Users className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-display font-bold text-foreground mb-1">Uday Singh</h3>
+            <p className="text-sm text-primary font-semibold mb-4">Founder</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Hands-on across project management, backend, and frontend since founding KLENTEC —
+              including Middle East projects such as Emaar and similar developments.
+            </p>
+          </motion.div>
+          <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="card-elevated p-10 text-center">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 mx-auto">
+              <Users className="w-8 h-8 text-primary" />
+            </div>
+            <h3 className="text-xl font-display font-bold text-foreground mb-1">Vipul Kumar Singh</h3>
+            <p className="text-sm text-primary font-semibold mb-4">Co-Founder</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Over nine years of project management experience, having worked with clients across
+              the United States and globally.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

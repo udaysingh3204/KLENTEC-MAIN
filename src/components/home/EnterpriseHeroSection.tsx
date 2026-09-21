@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import GridBackground from "@/components/effects/GridBackground";
 
 const stats = [
-  { icon: TrendingUp, value: "4.2x", label: "Avg. ROAS delivered", rotate: "-rotate-2" },
-  { icon: Users, value: "150+", label: "Brands scaled", rotate: "rotate-1" },
-  { icon: Award, value: "10+ yrs", label: "Industry experience", rotate: "-rotate-1" },
+  { icon: TrendingUp, value: "24hr", label: "Fastest full build", rotate: "-rotate-2" },
+  { icon: Users, value: "1", label: "Team, every engagement", rotate: "rotate-1" },
+  { icon: Award, value: "100%", label: "Custom code, no templates", rotate: "-rotate-1" },
 ];
 
 const EnterpriseHeroSection = () => {
@@ -59,9 +59,9 @@ const EnterpriseHeroSection = () => {
               variants={itemVariants}
               className="mt-6 text-lg text-muted-foreground max-w-lg leading-relaxed"
             >
-              Join 150+ brands that grew revenue 4.2x through our strategic
-              digital solutions — from brand strategy to full-stack
-              development.
+              We build growth systems — from brand strategy to full-stack
+              development — designed to turn your digital presence into
+              revenue.
             </motion.p>
 
             <motion.div

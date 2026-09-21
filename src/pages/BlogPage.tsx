@@ -2,10 +2,16 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 import { BlogCard } from "@/components/BlogCard";
+import { SEO } from "@/components/SEO";
 
 const BlogPage = () => {
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Blog"
+        description="Insights on digital marketing, web development, and growth strategy from the KLENTEC team."
+        path="/blog"
+      />
       {/* Hero Section */}
       <section className="relative pt-40 pb-16 section-padding">
         <div className="container mx-auto">

@@ -27,6 +27,7 @@ export interface Inquiry {
   deadline: string | null
   source: string | null
   notes: string | null
+  internal_notes: string | null
   status: 'new' | 'contacted' | 'proposal_sent' | 'won' | 'lost'
   created_at: string
 }

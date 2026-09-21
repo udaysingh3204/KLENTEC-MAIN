@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Search, Compass, Hammer, LineChart, Megaphone, Code2, Palette, Zap, Target, Headset, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 
 const process = [
   {
@@ -80,6 +81,11 @@ const fadeUp = {
 const WorkPage = () => {
   return (
     <main>
+      <SEO
+        title="Our Work"
+        description="How KLENTEC approaches every engagement — our process, capabilities, and where we can help your business grow."
+        path="/work"
+      />
       <section className="relative gradient-bg-hero pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>

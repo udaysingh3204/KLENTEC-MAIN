@@ -1,9 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { supabase } from "@/lib/supabase";
 
 export interface Review {
   id?: string;
@@ -33,7 +28,6 @@ export const submitReview = async (review: Review) => {
       .select();
 
     if (error) throw error;
-    console.log("Review submitted:", data?.[0]?.id);
     return { success: true, reviewId: data?.[0]?.id };
   } catch (err) {
     console.error("Review submission error:", err);
@@ -128,20 +122,4 @@ export const deleteReview = async (reviewId: string) => {
     console.error("Failed to delete review:", err);
     throw err;
   }
-};
-
-/**
- * Subscribe to real-time review updates
- */
-export const subscribeToReviews = (callback: (review: Review) => void) => {
-  const subscription = supabase
-    .from("reviews")
-    .on("*", (payload) => {
-      if (payload.eventType === "INSERT") {
-        callback(payload.new as Review);
-      }
-    })
-    .subscribe();
-
-  return subscription;
 };

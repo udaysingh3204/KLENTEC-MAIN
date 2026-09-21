@@ -17,12 +17,12 @@ const EnterpriseServicesShowcase = () => {
       title: "Digital Marketing",
       description: "Drive qualified leads and measurable revenue growth",
       services: [
-        "PPC Campaigns (4.2x ROAS avg)",
+        "PPC Campaigns",
         "SEO & Content Strategy",
         "Social Media Management",
         "Email Marketing Automation",
       ],
-      results: "580% organic growth",
+      results: "SEO & content-led growth",
     },
     {
       icon: Code,
@@ -34,7 +34,7 @@ const EnterpriseServicesShowcase = () => {
         "E-commerce Platforms",
         "API Integration & Automation",
       ],
-      results: "65% avg conversion increase",
+      results: "Conversion-focused builds",
     },
     {
       icon: Palette,
@@ -46,7 +46,7 @@ const EnterpriseServicesShowcase = () => {
         "Web & App Design",
         "Marketing Collateral",
       ],
-      results: "4x brand recall improvement",
+      results: "Brand systems that stick",
     },
     {
       icon: Zap,
@@ -58,7 +58,7 @@ const EnterpriseServicesShowcase = () => {
         "WhatsApp Business Integration",
         "Workflow Optimization",
       ],
-      results: "68% lead response rate",
+      results: "Faster lead response",
     },
     {
       icon: Share2,
@@ -70,7 +70,7 @@ const EnterpriseServicesShowcase = () => {
         "Conversion Rate Optimization",
         "Tech Stack Consultation",
       ],
-      results: "2.8x blended ROI",
+      results: "Data-backed strategy",
     },
     {
       icon: Cpu,
@@ -82,7 +82,7 @@ const EnterpriseServicesShowcase = () => {
         "Content Creation",
         "24/7 Technical Support",
       ],
-      results: "15+ years avg retention",
+      results: "Ongoing, hands-on support",
     },
   ];
 

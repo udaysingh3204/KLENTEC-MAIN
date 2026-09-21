@@ -2,6 +2,7 @@ import ServiceHeroSection from "@/components/services/ServiceHeroSection";
 import ServiceFeaturesSection from "@/components/services/ServiceFeaturesSection";
 import ServiceProcessSection from "@/components/services/ServiceProcessSection";
 import ServiceQuoteCTASection from "@/components/services/ServiceQuoteCTASection";
+import { SEO } from "@/components/SEO";
 
 const DesignBrandingPage = () => {
   const features = [
@@ -78,11 +79,16 @@ const DesignBrandingPage = () => {
 
   return (
     <main className="min-h-screen bg-background">
+      <SEO
+        title="Design & Branding"
+        description="Strategic brand identity and design that stands out — logo, visual systems, and UI/UX."
+        path="/services/design-branding"
+      />
       <ServiceHeroSection
         title="Create Memorable Brand Experiences"
         subtitle="Design & Branding"
         description="Strategic brand identity and design that stands out. From logo to full visual systems, we create brands that resonate and convert."
-        benefits={["4x Brand Recall", "280% Traffic Growth", "92% Trust Score"]}
+        benefits={["Strategic Brand Identity", "Full Design Systems", "Conversion-Focused UI/UX"]}
         ctaText="Start Brand Journey"
         gradient="from-pink-600 to-rose-600"
       />

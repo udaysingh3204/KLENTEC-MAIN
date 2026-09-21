@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { Loader, Eye, EyeOff } from "lucide-react";
-import { adminSignIn } from "@/services/adminAuthService";
+import { adminSignIn, resetPassword } from "@/services/adminAuthService";
 import { Button } from "@/components/ui/button";
 
 const AdminLogin = () => {
@@ -12,6 +13,25 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [resetSent, setResetSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError("Enter your email above first, then click \"Forgot password?\"");
+      return;
+    }
+    setError("");
+    setResetLoading(true);
+    try {
+      await resetPassword(email);
+      setResetSent(true);
+    } catch (err: any) {
+      setError(err.message || "Failed to send reset email.");
+    } finally {
+      setResetLoading(false);
+    }
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +56,10 @@ const AdminLogin = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-900 to-slate-950 flex items-center justify-center p-4">
+      <Helmet>
+        <title>Admin Login | KLENTEC</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -88,6 +112,23 @@ const AdminLogin = () => {
                 </button>
               </div>
             </div>
+
+            <div className="flex justify-end -mt-2">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                disabled={resetLoading}
+                className="text-xs text-purple-400 hover:text-purple-300 disabled:opacity-50"
+              >
+                {resetLoading ? "Sending…" : "Forgot password?"}
+              </button>
+            </div>
+
+            {resetSent && (
+              <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-sm">
+                Reset link sent to {email}. Check your inbox.
+              </div>
+            )}
 
             {/* Error */}
             {error && (

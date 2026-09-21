@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CTAButton } from "@/components/CTAButton";
+import { SEO } from "@/components/SEO";
 
 interface FAQItem {
   category: string;
@@ -29,7 +30,7 @@ const FAQPage = () => {
         {
           id: "q2",
           q: "How long has KLENTEC been in business?",
-          a: "KLENTEC has over 10 years of experience helping businesses transform their digital presence. We've worked with 150+ brands across various industries.",
+          a: "KLENTEC was founded five years ago and is led by founder Uday Singh and co-founder Vipul Kumar Singh, who brings over nine years of project management experience. The team has delivered projects for clients across the US, the Middle East, and globally.",
         },
         {
           id: "q3",
@@ -163,7 +164,12 @@ const FAQPage = () => {
     .filter((category) => category.questions.length > 0);
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-background">
+      <SEO
+        title="FAQ"
+        description="Answers to common questions about working with KLENTEC — pricing, timelines, process, and more."
+        path="/faq"
+      />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-950 via-purple-900/20 to-slate-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
