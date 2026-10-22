@@ -21,7 +21,7 @@ const PricingShowcase = () => {
     {
       title: "24-Hour Landing Page",
       description: "Perfect for startups and quick launches",
-      originalPrice: formatPrice(Math.floor(starterPrice / 1.25)),
+      originalPrice: formatPrice(Math.round(starterPrice * 1.25)),
       newPrice: formatPrice(starterPrice),
       includes: [
         "1-2 section landing page",
@@ -37,7 +37,7 @@ const PricingShowcase = () => {
     {
       title: "Enterprise Speed Website",
       description: "Complete business website in 24 hours",
-      originalPrice: formatPrice(Math.floor(enterprisePrice / 1.25)),
+      originalPrice: formatPrice(Math.round(enterprisePrice * 1.25)),
       newPrice: formatPrice(enterprisePrice),
       includes: [
         "5 complete pages",
@@ -54,7 +54,7 @@ const PricingShowcase = () => {
     {
       title: "Growth Accelerator Package",
       description: "Full digital ecosystem for scaling",
-      originalPrice: formatPrice(Math.floor((regionalPrices["ecom-ads"] || 43750) / 1.25)),
+      originalPrice: formatPrice(Math.round((regionalPrices["ecom-ads"] || 43750) * 1.25)),
       newPrice: formatPrice(regionalPrices["ecom-ads"] || 43750),
       includes: [
         "8+ branded pages",

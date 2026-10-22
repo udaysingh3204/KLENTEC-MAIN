@@ -35,6 +35,12 @@ export const PriceDisplay = ({
 
   const classes = sizeClasses[size];
 
+  // Prices are whole-number currency strings, so the digits are the amount
+  const toAmount = (price: string) => Number(price.replace(/\D/g, ""));
+  const original = toAmount(originalPrice);
+  const current = toAmount(newPrice);
+  const savingsPercent = original > current ? Math.round((1 - current / original) * 100) : 0;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -69,15 +75,17 @@ export const PriceDisplay = ({
       </div>
 
       {/* Savings Calculator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-        className="text-xs text-green-400 font-semibold mt-2"
-      >
-        ✓ Save up to 25%
-      </motion.div>
+      {savingsPercent > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-xs text-green-400 font-semibold mt-2"
+        >
+          ✓ Save {savingsPercent}%
+        </motion.div>
+      )}
     </motion.div>
   );
 };

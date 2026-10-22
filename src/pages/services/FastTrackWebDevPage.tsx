@@ -78,7 +78,7 @@ const FastTrackWebDevPage = () => {
     {
       name: "Starter Speed",
       price: "₹7,811",
-      originalPrice: "₹6,249",
+      originalPrice: "₹9,764",
       showDiscount: true,
       period: "one-time",
       description: "Landing page + lead capture",
@@ -96,7 +96,7 @@ const FastTrackWebDevPage = () => {
     {
       name: "Enterprise Speed",
       price: "₹15,624",
-      originalPrice: "₹12,499",
+      originalPrice: "₹19,530",
       showDiscount: true,
       period: "one-time",
       description: "Full 5-page business website",
@@ -116,7 +116,7 @@ const FastTrackWebDevPage = () => {
     {
       name: "Growth Accelerator",
       price: "₹31,249",
-      originalPrice: "₹24,999",
+      originalPrice: "₹39,061",
       showDiscount: true,
       period: "one-time",
       description: "Complete digital ecosystem",
